@@ -1,0 +1,86 @@
+body {
+  color: $text;
+}
+
+main {
+  // Config
+  position: relative;
+  top: -52px;
+  z-index: 0;
+  &.burger-on {
+    top: -188px;
+  }
+}
+
+a {
+  color: $link-footer;
+
+  &.navbar-item,
+  .navbar-link {
+    color: $dark;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: transparent;
+      color: $navlink-hover;
+
+      @media (min-width: 1024px) {
+        transform: scale(1.25);
+      }
+      @media (max-width: 1023px) {
+        transform: scale(1.25) translate(10%, 0%);
+      }
+
+      &.logo {
+        &:hover,
+        &:focus,
+        &:focus-within,
+        &:active {
+          transform: scale(1);
+        }
+      }
+    }
+    &:active {
+      transform: scale(1);
+    }
+  }
+}
+
+.button {
+  border-radius: 15px;
+  border: 0px;
+  transition: all 0.3s;
+
+  &.is-link {
+    @include btn-color($link-btn);
+  }
+  &.is-success {
+    @include btn-color($success-btn);
+  }
+  &.is-danger {
+    @include btn-color($danger-btn);
+  }
+
+  &.is-dark {
+    @include btn-color($dark);
+  }
+  &.is-white {
+    @include btn-color($white);
+  }
+}
+
+.footer {
+  min-height: 336px;
+}
+
+.notification {
+  @include shadow(4px);
+  &.is-warning {
+    @include shadow(8px);
+  }
+  &.is-white {
+    @include shadow(12px);
+  }
+}

@@ -1,0 +1,17 @@
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Update Bulma's global variables
+$family-sans-serif: 'Nunito', sans-serif;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Import my custom colors
+@import 'global/colors.scss';
+
+// Import Bulma CSS framwork
+@import '/node_modules/bulma/bulma.sass';
+
+// import my config
+@import 'global/all';
+@import 'pages/all';

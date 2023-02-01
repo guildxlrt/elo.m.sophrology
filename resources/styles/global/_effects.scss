@@ -1,0 +1,59 @@
+.stickybar {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+}
+
+.add-blur {
+  @include blur-filter(4px);
+
+  &.is-primary {
+    @include transparent-back($primary, 0.7);
+  }
+  &.is-info {
+    @include transparent-back($info, 0.7);
+  }
+  &.is-warning {
+    @include transparent-back($warning, 0.7);
+  }
+  &.is-success {
+    @include transparent-back($success, 0.7);
+  }
+  &.is-white {
+    @include transparent-back($white, 0.6);
+  }
+  &.is-light {
+    @include transparent-back($light, 0.6);
+  }
+  &.is-dark {
+    @include transparent-back($dark, 0.5);
+  }
+  &.is-black {
+    @include transparent-back($black, 0.5);
+  }
+
+  &.navbar {
+    @include transparent-back($navbar-block, 0.8);
+  }
+  &.navbar-menu {
+    @include transparent-back($navbar-block, 1);
+  }
+
+  &.article {
+    @include blur-filter(8px);
+    @include transparent-back($white, 0.7);
+  }
+  &.about {
+    @include blur-filter(2px);
+  }
+
+  &.notification {
+    @include blur-filter(2px);
+  }
+}
+
+.centering-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

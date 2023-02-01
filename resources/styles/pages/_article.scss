@@ -1,0 +1,8 @@
+.article {
+  > .title,
+  > .content {
+    padding: 52px;
+    margin: 52px 0px 52px 52px;
+    border-left: 5px dotted $danger;
+  }
+}

@@ -1,0 +1,18 @@
+@layout('layout')
+
+@section('page')
+    <div
+        class="section is-large"
+        style="padding-top: 240px;"
+    >   
+        <article class="container article add-blur">
+            <h1 class="title">{{post.title}}</h1>
+            <div class="content">
+                <p>
+                    {{post.content}}
+                </p>
+            </div>
+        </article>
+        
+    </section>
+@endsection

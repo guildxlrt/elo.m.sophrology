@@ -1,0 +1,9 @@
+.bg-pattern {
+  background-color: $white;
+  & {
+    background-image: url('../../assets/leaf-ui.svg');
+    background-size: 100px;
+    background-repeat: repeat;
+    background-blend-mode: normal;
+  }
+}

@@ -1,0 +1,26 @@
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+
+export default class extends BaseSchema {
+  protected tableName = 'posts'
+
+  public async up() {
+    this.schema.createTable(this.tableName, (table) => {
+      table.increments('id')
+      table.integer('userId').notNullable()
+      table.string('title').notNullable()
+      table.text('content', 'longtext').nullable()
+      table.text('recap', 'tinytext').nullable()
+      table.boolean('online').notNullable().defaultTo(false)
+      table.string('thumbnail').nullable()
+      /**
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       */
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true }).nullable()
+    })
+  }
+
+  public async down() {
+    this.schema.dropTable(this.tableName)
+  }
+}

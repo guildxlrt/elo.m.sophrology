@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{--  Config  --}}
+    <title>Éloïse Martin ~ Sophrologie</title>
+    <meta name="description" content="Therapies de sophrologie d'Eloise Martin">
+    {{--  <link rel="icon" type="image/png" href="" sizes="16x16">  --}}
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+  </head>
+  
+  <body
+    class="bg-pattern"
+    x-data="{open: false}"
+  >
+    <header class="stickybar">
+      <nav
+        class="navbar add-blur"
+      >
+        <div class="container">
+          <div class="navbar-brand">
+            <div
+              class="navbar-burger is-marginless"
+              data-target="burger"
+              x-bind:class="open ? 'is-active' : null"
+              x-on:click="open = !open"
+            >
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+            </div>
+            <a class="navbar-item logo" href="/">
+              <span>Éloïse Martin</span>
+            </a> 
+          </div>
+
+          <div
+            id="burger"
+            class="navbar-menu"
+            x-bind:class="open ? 'is-active add-blur' : null"
+          >
+            <div class="navbar-end">
+              <a
+                href="/presentation"
+                class="navbar-item"
+              >
+                Qui suis-je ?
+              </a>
+              <a
+                href="/les-seances-de-sophrologie"
+                class="navbar-item"
+              >
+                Séances
+              </a>
+              <a
+                href="/blog"
+                class="navbar-item"
+              >
+                Blog
+              </a>
+            </div>
+          </div>
+        </div>    
+      </nav>
+    </header>
+
+    <main
+      class="section is-paddingless"
+      x-bind:class="open ? 'burger-on' : null"
+    >
+      @!section('page')
+    </main>
+      
+
+      
+    <footer
+      class="footer has-text-centered is-primary add-blur centering-item"
+    >
+      <div class="container">
+        <div class="columns">
+          <a href="#" class="column text">Presentation</a>
+          <a href="#" class="column">Mentions Legales</a>
+          <a href="#" class="column">Contact</a>
+        </div>
+        <p>ELoise Martin - Sophrologue - © 2023 Tous droits réservés</p>
+      </div>
+    </footer>
+  </body>
+</html>

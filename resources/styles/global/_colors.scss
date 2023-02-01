@@ -1,0 +1,47 @@
+//---Palette
+$anti-flash-white: #f3f3f3; //(modified,  origin : flatUIcolors, chinese)
+$purplish-grey: #6f5975; //(origin : flatUIcolors, russian)
+$silver: #c4c2c3;
+$dusk: #4d3b5e;
+$pale-pink: #ffb7b3;
+$magenta: #f1418f;
+$medium-mauve: #d81870;
+$light-lavender: #b999ff;
+$light-pink: #f4ccef;
+$pastel-green: #adff99;
+$pinky-palish-grey: #dcd4d9;
+$pinkish-grey: #d4aec3;
+
+//---Update Bulma's color variables
+$primary: $pale-pink;
+$info: $light-lavender;
+$warning: $magenta;
+$link: $light-pink;
+$danger: $medium-mauve;
+$success: $pastel-green;
+//---greyscale
+$white: $anti-flash-white;
+$grey-light: $silver;
+$grey-dark: $purplish-grey;
+$dark: $dusk;
+$light: $pinky-palish-grey;
+
+//---Elements
+// Shadow
+$shadow: $pinkish-grey;
+// links
+$link-footer: $medium-mauve;
+// buttons
+$link-btn: lighten($link, 3);
+$success-btn: lighten($success, 17);
+$danger-btn: $danger;
+// navbar
+$navlink-hover: $medium-mauve;
+$navbar-block: $light;
+
+// Update some of Bulma's component variables
+$body-background-color: $anti-flash-white;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$text: $dark;
