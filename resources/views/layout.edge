@@ -9,6 +9,7 @@
     {{--  <link rel="icon" type="image/png" href="" sizes="16x16">  --}}
     @entryPointStyles('app')
     @entryPointScripts('app')
+    {{--  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  --}}
   </head>
   
   <body
@@ -73,19 +74,8 @@
       @!section('page')
     </main>
       
-
+    @!component('components/contact')
       
-    <footer
-      class="footer has-text-centered is-primary add-blur centering-item"
-    >
-      <div class="container">
-        <div class="columns">
-          <a href="#" class="column text">Presentation</a>
-          <a href="#" class="column">Mentions Legales</a>
-          <a href="#" class="column">Contact</a>
-        </div>
-        <p>ELoise Martin - Sophrologue - © 2023 Tous droits réservés</p>
-      </div>
-    </footer>
+    @!component('components/footer')
   </body>
 </html>

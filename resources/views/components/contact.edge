@@ -1,0 +1,143 @@
+<section
+    class="section has-text-centered is-medium contact"
+>
+    <div class="container contact-header">
+        <h3 class="title">Contact</h3>
+        <span class="content">Pour me contacter : </span>
+    </div>
+    <div
+        class="container contact-content"
+        x-data="{
+            showForm: false,
+            inputs: {
+                name: '',
+                surname: '',
+                email: '',
+                content: '',
+                conditions: null
+            }        
+        }"
+    >
+        <div
+            class="container"
+            x-show="showForm"
+            x-transition
+        >
+            <form
+                class="field"
+                @submit.prevent="submitForm(inputs, showForm)"
+            >
+                <label class="label" for="name">Prénom</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="Prénom"
+                        x-model="inputs.surname"
+                    >
+                </div>
+                <p class="help is-success">This is good</p>
+
+                <label class="label" for="surname">Nom</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="Nom de famille"
+                        x-model="inputs.name"
+                    >
+                </div>
+                <p class="help is-danger">This is invalid</p>
+
+                <label class="label" for="email">Email</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="adresse@email.com"
+                        x-model="inputs.email"
+                    >
+                </div>
+                <p class="help is-danger">This is invalid</p>
+
+                <label class="label" for="content">Message</label>
+                <div class="control">
+                    <textarea
+                        class="textarea"
+                        placeholder="Expliquez les raisons de votre demande"
+                        x-model="inputs.content"
+                    ></textarea>
+                </div>
+
+                <div class="control">
+                    <label class="checkbox" for="conditions">
+                        <input
+                            type="checkbox"
+                            x-model="inputs.conditions"
+                        >
+                        I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+
+                <div
+                    class="edit-btn"
+                    x-show="showForm"
+                    x-transition
+                >
+                    <div class="control">
+                        <button
+                            class="button is-grey"
+                            x-on:click="function () {                        
+                                showForm = !showForm
+                                inputs.conditions = null
+                                inputs.surname = ''
+                                inputs.name = ''
+                                inputs.email = ''
+                                inputs.content = ''
+                            }"
+                        >
+                            Annuller
+                        </button>
+                    </div>
+                    <div class="control">
+                        <button
+                            class="button is-link"
+                            type="submit"
+                        >
+                            Envoyer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="control" x-show="!showForm" x-transition>
+            <button
+                class="button is-link"
+                x-on:click="showForm = !showForm"
+            >
+                Contacter
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+  async function submitForm(inputs, showForm) {
+    await axios({
+    method: 'post',
+    url: `/message`,
+    withCredentials: true,
+    data: inputs,
+    })
+    .then((res) => {
+        showForm = !showForm
+        inputs.conditions = null
+        inputs.surname = ''
+        inputs.name = ''
+        inputs.email = ''
+        inputs.content = ''
+    })
+    .catch((err) => console.error(err))
+  }
+</script>

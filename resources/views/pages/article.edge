@@ -1,18 +1,114 @@
 @layout('layout')
 
 @section('page')
-    <div
+    <section
         class="section is-large"
         style="padding-top: 240px;"
-    >   
-        <article class="container article add-blur">
-            <h1 class="title">{{post.title}}</h1>
-            <div class="content">
-                <p>
-                    {{post.content}}
-                </p>
-            </div>
-        </article>
+        x-data="{ modif: false }"
+    >
+        @if(post.id !== 'new')
+            @!component('../components/article/status', {
+                status: post.status,
+                id: post.id
+            })
+        @end
         
+        
+        @if(post.id === 'new')
+            <form
+                action="/blog/new"
+                method="post"
+            >
+                <div class="container has-text-centered">
+                    <a
+                        class="button is-dark"
+                        href="{{route('blog')}}"
+                    >
+                        Quitter
+                    </a>
+                    <button
+                        class="button is-link"
+                        type="submit"
+                    >
+                        Sauvegarder
+                    </button>
+                </div>
+                <div
+                    class="container article add-blur"
+                >
+                    @!component('../components/article/edit', {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                    })
+                </div>
+            </form>
+            
+        @else
+            <article
+                class="container article add-blur"
+                x-show="!modif"
+                x-transition
+            >
+                <h1 class="title">{{post.title}}</h1>
+                <div class="content">
+                    <p>
+                        {{post.content}}
+                    </p>
+                </div>
+            </article>
+
+            <div
+                class="container edit-btn"
+                x-show="!modif"
+                x-transition
+            >
+                <button
+                    class="button is-link"
+                    x-on:click="modif = !modif"
+                >
+                    Modifer
+                </button>
+
+                @component('../components/article/delete', { id: post.id })
+                  
+                @end
+            </div>
+            
+
+            <form
+                x-show="modif"
+                x-transition
+                action="/blog/{{post.id}}/update"
+                method="post"
+            >
+                <div class="container article add-blur">
+                    @!component('../components/article/edit', {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                    })
+                </div>
+                
+                <div
+                    class="container edit-btn"
+                    x-show="modif"
+                    x-transition
+                >
+                    <div
+                        class="button is-grey"
+                        x-on:click="modif = !modif"
+                    >
+                        Annuller
+                    </div>
+                    <button
+                        class="button is-link"
+                        type="submit"
+                    >
+                        Sauvegarder
+                    </button>
+                </div>
+            </form>
+        @end 
     </section>
 @endsection

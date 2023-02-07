@@ -39,6 +39,7 @@ a {
         &:focus-within,
         &:active {
           transform: scale(1);
+          color: $dark;
         }
       }
     }
@@ -53,6 +54,9 @@ a {
   border: 0px;
   transition: all 0.3s;
 
+  &.is-info {
+    @include btn-color($info-btn);
+  }
   &.is-link {
     @include btn-color($link-btn);
   }
@@ -65,6 +69,9 @@ a {
 
   &.is-dark {
     @include btn-color($dark);
+  }
+  &.is-grey {
+    @include btn-color($grey);
   }
   &.is-white {
     @include btn-color($white);

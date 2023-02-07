@@ -8,7 +8,7 @@
   @include blur-filter(4px);
 
   &.is-primary {
-    @include transparent-back($primary, 0.7);
+    @include transparent-back($primary, 0.8);
   }
   &.is-info {
     @include transparent-back($info, 0.7);
@@ -26,7 +26,7 @@
     @include transparent-back($light, 0.6);
   }
   &.is-dark {
-    @include transparent-back($dark, 0.5);
+    @include transparent-back($dark-bis, 0.5);
   }
   &.is-black {
     @include transparent-back($black, 0.5);
@@ -42,9 +42,6 @@
   &.article {
     @include blur-filter(8px);
     @include transparent-back($white, 0.7);
-  }
-  &.about {
-    @include blur-filter(2px);
   }
 
   &.notification {

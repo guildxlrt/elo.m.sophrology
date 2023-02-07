@@ -1,0 +1,18 @@
+@layout('layout')
+
+@section('page')
+    <section class="section is-large has-text-centered centering-item dashboard">
+        <h1
+            class="title"
+        >
+            Dashboard
+        </h1>
+        
+        <div class="container notification is-success add-blur">
+            <span>Vous etes connecte</span>
+        </div>
+        
+
+        @!component('../components/article/new.edge')
+    </section>
+@endsection

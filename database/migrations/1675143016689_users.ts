@@ -6,10 +6,8 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('name').notNullable()
-      table.string('surname').notNullable()
-      table.boolean('active').notNullable().defaultTo(true)
-      table.string('thumbnail').nullable()
+      table.string('email').notNullable()
+      table.string('password').notNullable()
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

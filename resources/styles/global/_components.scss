@@ -1,0 +1,38 @@
+.contact {
+  .contact-header {
+    padding-bottom: 28px;
+  }
+  .contact-content {
+    > .container > .field > .control {
+      .input {
+        max-width: 540px;
+      }
+      .textarea {
+        max-height: 312px;
+        height: 312px;
+      }
+    }
+
+    > .container > .field > .contact-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      > .control > .button {
+        margin: 0% 15px;
+      }
+    }
+  }
+}
+
+.edit-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: 250px;
+
+  > .container {
+    max-width: fit-content;
+    margin: 0px;
+  }
+}

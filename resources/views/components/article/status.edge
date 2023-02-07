@@ -1,0 +1,43 @@
+<div
+    class="container status has-text-centered"
+    x-data="{
+        id: {{id}},
+        isOnline: {{status}},
+        changeStatus: '',
+        statusMsg: ''
+    }"
+    x-effect="function(){
+        changeStatus = isOnline === true ? 'Retirer' : 'Publier'
+        statusMsg = isOnline === true ? `L'article est en ligne` : `L'article est en hors-ligne`
+    }"
+>
+    <div
+        class="container notification add-blur"
+        x-bind:class="isOnline ? 'is-success' : 'is-warning'"
+    >
+        <span
+            class="title"
+            x-html="statusMsg"
+        ></span>
+        <button
+            class="button"
+            x-bind:class="isOnline ? 'is-dark' : 'is-info'"
+            x-html="changeStatus"
+            x-on:click="
+                newStatus(id, isOnline)
+                .then(alert(`L'etat a ete change`))
+                .then(isOnline = !isOnline)
+            "
+        ></button>
+    </div>
+</div>
+<script>
+  async function newStatus(id, isOnline) {
+    await axios({
+    method: 'patch',
+    url: `/blog/${id}/status`,
+    withCredentials: true
+    })
+    .catch((err) => console.error(err))
+  }
+</script>

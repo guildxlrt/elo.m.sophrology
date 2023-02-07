@@ -16,8 +16,8 @@
         >
             @each(post in posts)
                 <li class="column is-narrow">
-                    <a href="{{route('posts.article', {id: post.id})}}">
-                        <div class="card is-white add-blur">
+                    <a href="{{route('get.article', {id: post.id})}}">
+                        <div class="card is-primary add-blur">
                             <div class="card-header">
                                 <h3
                                     class=" title is-5"
@@ -35,13 +35,5 @@
                 </li>
             @endeach
         </ul>
-    </section>
-
-    <section class="section has-text-centered  is-medium is-">
-        <div class="container">
-            <h2 class="title">Newsletter</h2>
-
-            <span class="content">Suivez ma nouvelle lettre</span>
-        </div>
     </section>
 @endsection

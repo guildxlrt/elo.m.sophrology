@@ -1,0 +1,35 @@
+<div class="title">
+    <label class="label" for="title">Titre</label>
+    <div class="control has-icons-left has-icons-right">
+        <input
+            class="input"
+            type="text"
+            name="title"
+            @if(id === 'new')
+                placeholder="{{title}}"
+                value=""      
+            @else
+                placeholder="Titre de l'article"
+                value="{{title}}"
+            @end
+        >
+    </div>
+</div>
+<div class="content">
+    <label class="label" for="content">Article</label>        
+    <div>
+        @if(id === 'new')
+            <textarea
+                class="textarea"
+                name="content"
+                placeholder="{{content}}"
+            ></textarea>       
+        @else
+            <textarea
+                class="textarea"
+                name="content"
+                placeholder="Contenu de l'article"
+            >{{content}}</textarea>
+        @end
+    </div> 
+</div>

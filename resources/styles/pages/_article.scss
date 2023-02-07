@@ -6,3 +6,10 @@
     border-left: 5px dotted $danger;
   }
 }
+.status {
+  > .notification {
+    width: fit-content;
+    @include recenter();
+    flex-direction: column;
+  }
+}

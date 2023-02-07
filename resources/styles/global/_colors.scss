@@ -1,43 +1,53 @@
 //---Palette
-$anti-flash-white: #f3f3f3; //(modified,  origin : flatUIcolors, chinese)
-$purplish-grey: #6f5975; //(origin : flatUIcolors, russian)
-$silver: #c4c2c3;
-$dusk: #4d3b5e;
-$pale-pink: #ffb7b3;
-$magenta: #f1418f;
-$medium-mauve: #d81870;
-$light-lavender: #b999ff;
-$light-pink: #f4ccef;
-$pastel-green: #adff99;
-$pinky-palish-grey: #dcd4d9;
+$anti-flash-white: #f2f2f2; //(modified,  origin : flatUIcolors, chinese)
+$charcoal: #6b6361; //(origin : flatUIcolors, russian)
+$silver: #d9d9d9;
+$chocolate: #3e1a0e;
+//---tetradic
+$pale-rose: #f0cabe;
+$light-grey-green: #ccefc1;
+$very-light-blue: #bfe4ef;
+$pale-lavender: #e2bfee;
+//---monochrom
+$pinkish-tan: #e5a797;
+//---analogus
+$pale-gold: #f0e2c0;
+$pale-pink: #efbecb;
+//---others
+$pale-magenta: #bf5396;
+$pinky-palish-grey: #dfd6d3;
 $pinkish-grey: #d4aec3;
 
 //---Update Bulma's color variables
-$primary: $pale-pink;
-$info: $light-lavender;
-$warning: $magenta;
-$link: $light-pink;
-$danger: $medium-mauve;
-$success: $pastel-green;
+$primary: $pale-rose;
+$info: $very-light-blue;
+$warning: $pale-lavender;
+$link: $pinkish-tan;
+$danger: $pale-magenta;
+$success: $light-grey-green;
 //---greyscale
 $white: $anti-flash-white;
 $grey-light: $silver;
-$grey-dark: $purplish-grey;
-$dark: $dusk;
+$grey-dark: $charcoal;
+$dark: $chocolate;
 $light: $pinky-palish-grey;
 
 //---Elements
 // Shadow
 $shadow: $pinkish-grey;
 // links
-$link-footer: $medium-mauve;
+$link-footer: $pale-magenta;
 // buttons
-$link-btn: lighten($link, 3);
-$success-btn: lighten($success, 17);
+$link-btn: lighten($link, 6);
+$success-btn: lighten($success, 12);
 $danger-btn: $danger;
+$info-btn: lighten($info, 8);
 // navbar
-$navlink-hover: $medium-mauve;
+$navlink-hover: $pale-magenta;
 $navbar-block: $light;
+//
+$about: $very-light-blue;
+$dark-bis: desaturate($dark, 55);
 
 // Update some of Bulma's component variables
 $body-background-color: $anti-flash-white;

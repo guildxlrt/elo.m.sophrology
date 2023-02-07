@@ -1,0 +1,23 @@
+.dashboard {
+  flex-direction: column;
+
+  @media (max-width: 1023px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  > .title {
+    margin-top: 104px;
+
+    @media (min-width: 1024px) {
+      margin-top: 0px;
+    }
+    height: 15%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  > .editor {
+    flex-direction: column;
+  }
+}
