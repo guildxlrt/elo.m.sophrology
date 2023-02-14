@@ -36,3 +36,26 @@
     margin: 0px;
   }
 }
+
+.flash {
+  &.success,
+  &.error {
+    background-color: transparentize($color: $info, $amount: 0.9);
+    backdrop-filter: blur(6px);
+
+    position: absolute;
+    z-index: 7;
+    width: 100%;
+    bottom: 0px;
+    padding: 50% 0%;
+    top: 52px;
+  }
+
+  &__msg {
+    position: sticky;
+    top: 0px;
+    left: 34vw;
+    padding: 40px;
+    border-radius: 50px;
+  }
+}

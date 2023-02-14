@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.string('title').notNullable()
-      table.text('content', 'longtext').nullable()
+      table.text('content', 'text').nullable()
       table.boolean('status').notNullable().defaultTo(false)
       table.string('thumbnail').nullable()
       /**

@@ -62,6 +62,12 @@
           }
           > .card-content {
             text-align: start;
+            max-height: 120px;
+            max-width: 328px;
+
+            display: inline-block;
+            overflow: hidden;
+            white-space: normal;
             text-overflow: ellipsis;
           }
           > .card-footer {

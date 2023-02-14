@@ -2,8 +2,26 @@
   background-color: $white;
   & {
     background-image: url('../../assets/leaf-ui.svg');
-    background-size: 100px;
+    background-size: 50px;
     background-repeat: repeat;
     background-blend-mode: normal;
+  }
+}
+
+.user-log {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+
+  > .user-log__img {
+    width: 50px;
+    height: 50px;
+    transform: scale(0.55);
+
+    filter: invert(48%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+
+    background-image: url('../../assets/icons/circle-user-solid.svg');
+    background-size: 50px;
+    background-repeat: no-repeat;
   }
 }

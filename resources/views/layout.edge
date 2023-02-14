@@ -63,9 +63,15 @@
               </a>
             </div>
           </div>
-        </div>    
+        </div>
+        <a class="user-log" href="{{route('dashboard')}}">
+          <div class="user-log__img"></div>
+        </a>
+        
       </nav>
     </header>
+
+    @!component('components/flash')
 
     <main
       class="section is-paddingless"
@@ -73,9 +79,9 @@
     >
       @!section('page')
     </main>
-      
+          
     @!component('components/contact')
-      
-    @!component('components/footer')
+          
+    @!component('components/footer') 
   </body>
 </html>

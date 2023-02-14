@@ -17,7 +17,7 @@ export default class BlogsController {
     }
   }
 
-  async new({ request, response }: HttpContextContract) {
+  async new({ request, response, session }: HttpContextContract) {
     const { title, content } = request.body()
 
     const post = await Post.create({
@@ -28,6 +28,7 @@ export default class BlogsController {
     post.save()
 
     const id = post.$attributes.id
+    session.flash({ success: `L'article a ete sauvegarde et publie` })
     return response.redirect(`/blog/${id}`)
   }
 
