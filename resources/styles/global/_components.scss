@@ -38,24 +38,18 @@
 }
 
 .flash {
-  &.success,
-  &.error {
-    background-color: transparentize($color: $info, $amount: 0.9);
-    backdrop-filter: blur(6px);
+  position: sticky;
+  z-index: 7;
 
-    position: absolute;
-    z-index: 7;
-    width: 100%;
-    bottom: 0px;
-    padding: 50% 0%;
-    top: 52px;
-  }
+  margin-top: 30px;
+  padding: 10px 20px 10px 20px;
+  border-width: 5px;
+  border-radius: 10px;
 
-  &__msg {
-    position: sticky;
-    top: 0px;
-    left: 34vw;
-    padding: 40px;
-    border-radius: 50px;
+  &.success {
+    @include flash-msg($info, 0.7);
   }
+  // &.errors {
+  //   @include flash-msg($warning, 0.7);
+  // }
 }

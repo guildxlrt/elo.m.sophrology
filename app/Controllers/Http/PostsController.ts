@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from '../../Models/Post'
+import PostValidator from '../../Validators/PostValidator'
 
 export default class BlogsController {
   async blog({ view }: HttpContextContract) {
@@ -18,11 +19,10 @@ export default class BlogsController {
   }
 
   async new({ request, response, session }: HttpContextContract) {
-    const { title, content } = request.body()
+    const data = await request.validate(PostValidator)
 
     const post = await Post.create({
-      title: title,
-      content: content,
+      ...data,
       status: true,
     })
     post.save()
@@ -32,7 +32,7 @@ export default class BlogsController {
     return response.redirect(`/blog/${id}`)
   }
 
-  async update({ params, request, response }: HttpContextContract) {
+  async update({ params, request, response, session }: HttpContextContract) {
     const id = params.id
     const { title, content } = request.body()
 
@@ -44,6 +44,7 @@ export default class BlogsController {
       })
       .save()
 
+    session.flash({ success: `L'article a ete mit a jour` })
     return response.redirect(`/blog/${id}`)
   }
 
@@ -67,12 +68,6 @@ export default class BlogsController {
     const post = await Post.findOrFail(id)
     post.delete()
 
-    return `
-      L'article ${post.id},
-      \n
-      "${post.title}",
-      \n
-      a ete supprime.
-    `
+    return `L'article a ete supprime.`
   }
 }

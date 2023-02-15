@@ -1,0 +1,12 @@
+@if(flashMessages.has(`errors.${value}`))
+        <span
+            class="subtitle is-5 has-text-danger"
+            x-data="{click: false}"
+            x-show="!click"
+            x-on:click="click = !click"
+            x-transition
+            style="cursor: pointer;"
+        >
+            {{ flashMessages.get(`errors.${value}`) }}
+        </span>
+    @end

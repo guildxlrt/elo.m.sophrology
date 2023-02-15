@@ -14,6 +14,7 @@
             @end
         >
     </div>
+    @!component('../../components/errors.edge', {value: 'title'})
 </div>
 <div class="content">
     <label class="label" for="content">Article</label>        
@@ -31,5 +32,6 @@
                 placeholder="Contenu de l'article"
             >{{content}}</textarea>
         @end
-    </div> 
+    </div>
+    @!component('../../components/errors.edge', {value: 'content'})
 </div>

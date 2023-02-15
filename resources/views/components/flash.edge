@@ -1,16 +1,16 @@
 @if(flashMessages.has('success'))
-
     <div
-        class="flash success has-text-centered"
-        x-data="{click: false}"
-        x-show="!click"
+        class="flash--cont has-text-centered"
+        
     >
         <button
-            class="title flash__msg"
+            class="flash success"
+            x-data="{click: false}"
+            x-show="!click"
             x-on:click="click = !click"
+            x-transition
         >
             {{ flashMessages.get('success') }}
         </button>
     </div>
-  
 @end

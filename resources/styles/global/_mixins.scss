@@ -82,3 +82,11 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin flash-msg($color-value, $amount-value) {
+  @include transparent-back($color-value, $amount-value);
+  border-color: transparentize(
+    $color: darken($color: $color-value, $amount: 40),
+    $amount: $amount-value
+  );
+}
