@@ -14,8 +14,7 @@
     }
 
     > .container > .field > .contact-buttons {
-      display: flex;
-      flex-direction: row;
+      @include flex-row;
       justify-content: center;
 
       > .control > .button {
@@ -26,8 +25,7 @@
 }
 
 .edit-btn {
-  display: flex;
-  flex-direction: row;
+  @include flex-row;
   justify-content: space-evenly;
   min-width: 250px;
 
@@ -38,8 +36,11 @@
 }
 
 .flash {
-  position: sticky;
-  z-index: 7;
+  &--cont {
+    position: sticky;
+    z-index: 20;
+    top: 80px;
+  }
 
   margin-top: 30px;
   padding: 10px 20px 10px 20px;
@@ -47,9 +48,25 @@
   border-radius: 10px;
 
   &.success {
-    @include flash-msg($info, 0.7);
+    @include flash-msg(lighten($info, 10), 0.05);
   }
-  // &.errors {
-  //   @include flash-msg($warning, 0.7);
-  // }
+  &.alert {
+    @include flash-msg(lighten($warning, 20), 0.05);
+  }
+}
+
+.error {
+  @include flex-row;
+  margin-top: 24px;
+
+  > .subtitle,
+  > .exit-icon {
+    cursor: pointer;
+  }
+
+  > .exit-icon {
+    margin-left: 10px;
+    position: relative;
+    bottom: -4px;
+  }
 }

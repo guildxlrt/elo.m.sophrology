@@ -1,7 +1,7 @@
 .bg-pattern {
   background-color: $white;
   & {
-    background-image: url('../../assets/leaf-ui.svg');
+    background-image: url('../../assets/background/leaf.svg');
     background-size: 50px;
     background-repeat: repeat;
     background-blend-mode: normal;
@@ -9,19 +9,35 @@
 }
 
 .user-log {
+  $position: 15px;
+
   position: absolute;
-  top: 0px;
-  right: 10px;
+  top: $position;
+  right: $position;
 
   > .user-log__img {
-    width: 50px;
-    height: 50px;
-    transform: scale(0.55);
+    $size: 25px;
+
+    width: $size;
+    height: $size;
+    background-size: $size;
 
     filter: invert(48%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 
     background-image: url('../../assets/icons/circle-user-solid.svg');
-    background-size: 50px;
     background-repeat: no-repeat;
   }
+}
+
+.exit-icon {
+  $size: 18px;
+
+  width: $size;
+  height: $size;
+  background-size: $size;
+
+  filter: invert(48%) sepia(60%) saturate(2476%) hue-rotate(305deg) brightness(80%) contrast(95%);
+
+  background-image: url('../../assets/icons/circle-xmark-solid.svg');
+  background-repeat: no-repeat;
 }

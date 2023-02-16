@@ -33,6 +33,8 @@ $dark: $chocolate;
 $light: $pinky-palish-grey;
 
 //---Elements
+$about: $pale-rose;
+$dark-bis: desaturate($dark, 55);
 // Shadow
 $shadow: $pinkish-grey;
 // links
@@ -45,9 +47,6 @@ $info-btn: lighten($info, 8);
 // navbar
 $navlink-hover: $pale-magenta;
 $navbar-block: $light;
-//
-$about: $very-light-blue;
-$dark-bis: desaturate($dark, 55);
 
 // Update some of Bulma's component variables
 $body-background-color: $anti-flash-white;

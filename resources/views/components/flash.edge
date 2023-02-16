@@ -4,13 +4,28 @@
         
     >
         <button
-            class="flash success"
+            class="subtitle is-6 flash success"
             x-data="{click: false}"
             x-show="!click"
             x-on:click="click = !click"
             x-transition
         >
             {{ flashMessages.get('success') }}
+        </button>
+    </div>
+@elseif(flashMessages.has('alert'))
+  <div
+        class="flash--cont has-text-centered"
+        
+    >
+        <button
+            class="subtitle is-6 flash alert"
+            x-data="{click: false}"
+            x-show="!click"
+            x-on:click="click = !click"
+            x-transition
+        >
+            {{ flashMessages.get('alert') }}
         </button>
     </div>
 @end

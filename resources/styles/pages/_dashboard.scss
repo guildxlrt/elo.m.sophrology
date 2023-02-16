@@ -1,5 +1,5 @@
 .dashboard {
-  flex-direction: column;
+  @include flex-column;
 
   @media (max-width: 1023px) {
     padding-left: 0px;
@@ -18,6 +18,6 @@
   }
 
   > .editor {
-    flex-direction: column;
+    @include flex-column;
   }
 }

@@ -7,16 +7,7 @@
     </div>
     <div
         class="container contact-content"
-        x-data="{
-            showForm: false,
-            inputs: {
-                name: '',
-                surname: '',
-                email: '',
-                content: '',
-                conditions: null
-            }        
-        }"
+        x-data="{ showForm: false }"
     >
         <div
             class="container"
@@ -25,7 +16,23 @@
         >
             <form
                 class="field"
-                @submit.prevent="submitForm(inputs, showForm)"
+                @submit.prevent="submitMsgForm(inputs, errors)"
+                x-data="{
+                    inputs: {
+                        name: '',
+                        surname: '',
+                        email: '',
+                        content: '',
+                        conditions: null
+                    },
+                    errors: {
+                        name: '',
+                        surname: '',
+                        email: '',
+                        content: '',
+                        conditions: '' 
+                    }
+                }"
             >
                 <label class="label" for="name">Prénom</label>
                 <div class="control has-icons-left has-icons-right">
@@ -36,7 +43,10 @@
                         x-model="inputs.surname"
                     >
                 </div>
-                <p class="help is-success">This is good</p>
+                <span
+                    class="subtitle is-5 has-text-danger"
+                    x-html="errors.surname"
+                ></span>
 
                 <label class="label" for="surname">Nom</label>
                 <div class="control has-icons-left has-icons-right">
@@ -47,7 +57,10 @@
                         x-model="inputs.name"
                     >
                 </div>
-                <p class="help is-danger">This is invalid</p>
+                <span
+                    class="subtitle is-5 has-text-danger"
+                    x-html="errors.name"
+                ></span>
 
                 <label class="label" for="email">Email</label>
                 <div class="control has-icons-left has-icons-right">
@@ -58,7 +71,10 @@
                         x-model="inputs.email"
                     >
                 </div>
-                <p class="help is-danger">This is invalid</p>
+                <span
+                    class="subtitle is-5 has-text-danger"
+                    x-html="errors.email"
+                ></span>
 
                 <label class="label" for="content">Message</label>
                 <div class="control">
@@ -68,6 +84,10 @@
                         x-model="inputs.content"
                     ></textarea>
                 </div>
+                <span
+                    class="subtitle is-5 has-text-danger"
+                    x-html="errors.content"
+                ></span>
 
                 <div class="control">
                     <label class="checkbox" for="conditions">
@@ -78,6 +98,10 @@
                         I agree to the <a href="#">terms and conditions</a>
                     </label>
                 </div>
+                <span
+                    class="subtitle is-5 has-text-danger"
+                    x-html="errors.conditions"
+                ></span>
 
                 <div
                     class="edit-btn"
@@ -87,14 +111,11 @@
                     <div class="control">
                         <button
                             class="button is-grey"
-                            x-on:click="function () {                        
-                                showForm = !showForm
-                                inputs.conditions = null
-                                inputs.surname = ''
-                                inputs.name = ''
-                                inputs.email = ''
-                                inputs.content = ''
-                            }"
+                            @click.prevent="
+                                showForm = !showForm            
+                                resetMsgInputs(inputs)
+                                resetMsgErrors(errors)
+                            "
                         >
                             Annuller
                         </button>
@@ -114,30 +135,10 @@
         <div class="control" x-show="!showForm" x-transition>
             <button
                 class="button is-link"
-                x-on:click="showForm = !showForm"
+                @click.prevent="showForm = !showForm"
             >
                 Contacter
             </button>
         </div>
     </div>
 </section>
-
-<script>
-  async function submitForm(inputs, showForm) {
-    await axios({
-    method: 'post',
-    url: `/message`,
-    withCredentials: true,
-    data: inputs,
-    })
-    .then((res) => {
-        showForm = !showForm
-        inputs.conditions = null
-        inputs.surname = ''
-        inputs.name = ''
-        inputs.email = ''
-        inputs.content = ''
-    })
-    .catch((err) => console.error(err))
-  }
-</script>

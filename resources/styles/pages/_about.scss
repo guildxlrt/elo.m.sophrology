@@ -8,7 +8,7 @@
 .about {
   @media (min-width: 1024px) {
     padding: 52px;
-    border-radius: 65% 8% 65% 8% / 8% 65% 8% 65%;
+    border-radius: 65% 13% 73% 8% / 8% 43% 18% 65%;
 
     @include blur-filter(2px);
     @include transparent-back($about, 0.9);
@@ -20,7 +20,7 @@
     }
   }
   @media (min-width: 540px) and (max-width: 1023px) {
-    border-radius: 25% 5% 25% 5% / 5% 25% 5% 25%;
+    border-radius: 25% 55% 38% 5% / 6% 25% 13% 25%;
     margin: 20px;
 
     @media (min-width: 768px) and (max-width: 1023px) {

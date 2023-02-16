@@ -34,18 +34,17 @@ export default class BlogsController {
 
   async update({ params, request, response, session }: HttpContextContract) {
     const id = params.id
-    const { title, content } = request.body()
+    const data = await request.validate(PostValidator)
 
     const post = await Post.findOrFail(id)
     post
       .merge({
-        title: title,
-        content: content,
+        ...data,
       })
       .save()
 
     session.flash({ success: `L'article a ete mit a jour` })
-    return response.redirect(`/blog/${id}`)
+    return response.redirect().back()
   }
 
   async status({ params, response }: HttpContextContract) {

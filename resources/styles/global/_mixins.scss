@@ -86,7 +86,17 @@
 @mixin flash-msg($color-value, $amount-value) {
   @include transparent-back($color-value, $amount-value);
   border-color: transparentize(
-    $color: darken($color: $color-value, $amount: 40),
+    $color: darken($color: $color-value, $amount: 30),
     $amount: $amount-value
   );
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
 }

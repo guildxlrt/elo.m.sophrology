@@ -31,13 +31,3 @@
         ></button>
     </div>
 </div>
-<script>
-  async function newStatus(id, isOnline) {
-    await axios({
-    method: 'patch',
-    url: `/blog/${id}/status`,
-    withCredentials: true
-    })
-    .catch((err) => console.error(err))
-  }
-</script>
