@@ -4,7 +4,12 @@
     <section
         class="section is-large"
         style="padding-top: 240px;"
-        x-data="{ modif: false }"
+        @if(flashMessages.has(`errors`))
+            x-data="{ modif: true }"
+        @else
+            x-data="{ modif: false }"    
+        @end
+
     >
         @if(post.id !== 'new')
             @!component('../components/article/status', {
@@ -15,34 +20,11 @@
         
         
         @if(post.id === 'new')
-            <form
-                action="/blog/new"
-                method="post"
-            >
-                <div class="container has-text-centered">
-                    <a
-                        class="button is-dark"
-                        href="{{route('blog')}}"
-                    >
-                        Quitter
-                    </a>
-                    <button
-                        class="button is-link"
-                        type="submit"
-                    >
-                        Sauvegarder
-                    </button>
-                </div>
-                <div
-                    class="container article add-blur"
-                >
-                    @!component('../components/article/edit', {
-                        id: post.id,
-                        title: post.title,
-                        content: post.content,
-                    })
-                </div>
-            </form>
+            @!component('../components/article/edit/form.edge', {
+                id: post.id,
+                title: '',
+                content: '',
+            })
             
         @else
             <article
@@ -70,45 +52,16 @@
                     Modifer
                 </button>
 
-                @component('../components/article/delete', { id: post.id })
-                  
-                @end
+                @!component('../components/article/delete', { id: post.id })
+                
             </div>
             
 
-            <form
-                x-show="modif"
-                x-transition
-                action="/blog/{{post.id}}/update"
-                method="post"
-            >
-                <div class="container article add-blur">
-                    @!component('../components/article/edit', {
-                        id: post.id,
-                        title: post.title,
-                        content: post.content,
-                    })
-                </div>
-                
-                <div
-                    class="container edit-btn"
-                    x-show="modif"
-                    x-transition
-                >
-                    <div
-                        class="button is-grey"
-                        x-on:click="modif = !modif"
-                    >
-                        Annuller
-                    </div>
-                    <button
-                        class="button is-link"
-                        type="submit"
-                    >
-                        Sauvegarder
-                    </button>
-                </div>
-            </form>
+           @!component('../components/article/edit/form.edge', {
+                id: post.id,
+                title: post.title,
+                content: post.content,
+            }) 
         @end 
     </section>
 @endsection

@@ -1,0 +1,69 @@
+<form
+    @submit.prevent="submitPostForm($event, '{{id}}', errors)"
+    x-data="{
+        errors: {
+            title: '',
+            content: ''
+        },
+    }"
+    @if(id !== 'new')
+        x-show="modif"
+        x-transition
+    @end
+    
+>
+    @if(id === 'new')
+        <div class="container has-text-centered edit-btn">
+            <a
+                class="button is-dark"
+                href="{{route('blog')}}"
+            >
+                Quitter
+            </a>
+            <button
+                class="button is-link"
+                type="submit"
+            >
+                Sauvegarder
+            </button>
+        </div>
+        <div
+            class="container article add-blur"
+        >
+            @!component('../../../components/article/edit/inputs.edge', {
+                id: id,
+                title: title,
+                content: content,
+            })
+        </div>
+    @else
+        <div class="container article add-blur">
+            @!component('../../../components/article/edit/inputs.edge', {
+                id: id,
+                title: title,
+                content: content,
+            })
+        </div>
+        <div
+            class="container edit-btn"
+            x-show="modif"
+            x-transition
+        >
+            <div
+                class="button is-grey"
+                x-on:click="
+                    modif = !modif
+                    resetPostErrors(errors)
+                "
+            >
+                Annuller
+            </div>
+            <button
+                class="button is-link"
+                type="submit"
+            >
+                Sauvegarder
+            </button>
+        </div>
+    @end
+</form>

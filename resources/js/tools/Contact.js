@@ -1,4 +1,4 @@
-export async function resetMsgInputs(inputs) {
+export function resetMsgInputs(inputs) {
   inputs.conditions = null
   inputs.surname = ''
   inputs.name = ''

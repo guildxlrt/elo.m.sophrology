@@ -57,7 +57,8 @@
 
 .error {
   @include flex-row;
-  margin-top: 24px;
+  margin: 24px;
+  justify-content: center;
 
   > .subtitle,
   > .exit-icon {

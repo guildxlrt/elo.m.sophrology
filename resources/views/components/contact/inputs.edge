@@ -1,0 +1,41 @@
+@if(field === 'content')
+    <label class="label" for="{{field}}">{{tag}}</label>
+    <div class="control">
+        <textarea
+            class="textarea"
+            placeholder="Expliquez les raisons de votre demande"
+            x-model="inputs.{{field}}"
+        ></textarea>
+    </div>
+    @!component('../../components/inputError.edge', {
+        value: field
+    })
+  
+@elseif(field === 'conditions')
+    <div class="control">
+        <label class="checkbox" for="{{field}}">
+            <input
+                type="checkbox"
+                x-model="inputs.{{field}}"
+            >
+            I agree to the <a href="#">terms and conditions</a>
+        </label>
+    </div>
+    @!component('../../components/inputError.edge', {
+        value: field
+    })
+  
+@else
+    <label class="label" for="{{field}}">{{tag}}</label>
+        <div class="control has-icons-left has-icons-right">
+            <input
+                class="input"
+                type="text"
+                placeholder="{{tag}}"
+                x-model="inputs.{{field}}"
+            >
+        </div>
+    @!component('../../components/inputError.edge', {
+        value: field
+    })
+@end

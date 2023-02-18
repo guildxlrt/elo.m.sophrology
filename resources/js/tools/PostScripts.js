@@ -31,3 +31,61 @@ export async function newStatus(id) {
     withCredentials: true,
   }).catch((err) => console.error(err))
 }
+
+export function resetPostErrors(errors) {
+  errors.title = ''
+  errors.content = ''
+}
+
+export async function submitPostForm(event, id, errors) {
+  resetPostErrors(errors)
+
+  const formData = new FormData(event.target)
+
+  const title = formData.get('title')
+  const content = formData.get('content')
+
+  let url = null
+  if (id === 'new') {
+    url = '/blog/new'
+  } else {
+    url = `/blog/${id}/update`
+  }
+
+  await axios({
+    method: 'post',
+    url: url,
+    withCredentials: true,
+    data: {
+      title: title,
+      content: content,
+    },
+  })
+    .then((res) => {
+      const { msg, id, created } = res.data
+
+      alert(msg)
+
+      if (created === true) {
+        setTimeout(function () {
+          window.location.href = `/blog/${id}`
+        }, 1500)
+      } else {
+        window.location.reload()
+      }
+    })
+    .catch((err) => {
+      const errorsList = err.response.data.errors
+
+      console.log(errorsList)
+
+      errorsList.map((error) => {
+        if (error.field === 'title') {
+          errors.title = error.message
+        }
+        if (error.field === 'content') {
+          errors.content = error.message
+        }
+      })
+    })
+}

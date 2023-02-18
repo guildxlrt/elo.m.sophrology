@@ -10,7 +10,7 @@ export default class BlogsController {
 
   async article({ params, view }: HttpContextContract) {
     if (params.id === 'new') {
-      const post = { id: 'new', title: "Titre de l'article", content: "Contenu de l'article" }
+      const post = { id: 'new' }
       return view.render('pages/article', { post })
     } else {
       const post = await Post.findOrFail(params.id)
@@ -18,7 +18,7 @@ export default class BlogsController {
     }
   }
 
-  async new({ request, response, session }: HttpContextContract) {
+  async new({ request }: HttpContextContract) {
     const data = await request.validate(PostValidator)
 
     const post = await Post.create({
@@ -28,11 +28,14 @@ export default class BlogsController {
     post.save()
 
     const id = post.$attributes.id
-    session.flash({ success: `L'article a ete sauvegarde et publie` })
-    return response.redirect(`/blog/${id}`)
+    return {
+      id: id,
+      created: true,
+      msg: `L'article a ete sauvegarde et publie`,
+    }
   }
 
-  async update({ params, request, response, session }: HttpContextContract) {
+  async update({ params, request }: HttpContextContract) {
     const id = params.id
     const data = await request.validate(PostValidator)
 
@@ -43,8 +46,11 @@ export default class BlogsController {
       })
       .save()
 
-    session.flash({ success: `L'article a ete mit a jour` })
-    return response.redirect().back()
+    return {
+      id: id,
+      new: false,
+      msg: `L'article a ete mit a jour`,
+    }
   }
 
   async status({ params, response }: HttpContextContract) {
