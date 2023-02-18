@@ -1,0 +1,53 @@
+<header class="stickybar">
+    <nav
+        class="navbar add-blur"
+    >
+        <div class="container">
+          <div class="navbar-brand">
+            <div
+              class="navbar-burger is-marginless"
+              data-target="burger"
+              x-bind:class="open ? 'is-active' : null"
+              x-on:click="open = !open"
+            >
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+            </div>
+            <a class="navbar-item logo" href="/">
+              <span>Éloïse Martin</span>
+            </a> 
+          </div>
+
+          <div
+            id="burger"
+            class="navbar-menu"
+            x-bind:class="open ? 'is-active add-blur' : null"
+          >
+            <div class="navbar-end">
+              <a
+                href="/presentation"
+                class="navbar-item"
+              >
+                Qui suis-je ?
+              </a>
+              <a
+                href="/les-seances-de-sophrologie"
+                class="navbar-item"
+              >
+                Séances
+              </a>
+              <a
+                href="/blog"
+                class="navbar-item"
+              >
+                Blog
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="usr-log" href="{{route('dashboard')}}">
+          <div class="usr-img offline"></div>
+        </a>
+    </nav>
+</header>

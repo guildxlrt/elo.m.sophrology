@@ -1,31 +1,24 @@
-.bg-pattern {
-  background-color: $white;
-  & {
-    background-image: url('../../assets/background/leaf.svg');
-    background-size: 50px;
-    background-repeat: repeat;
-    background-blend-mode: normal;
-  }
-}
-
-.user-log {
+.usr-log {
   $position: 15px;
 
   position: absolute;
   top: $position;
   right: $position;
 
-  > .user-log__img {
+  > .usr-img {
     $size: 25px;
 
     width: $size;
     height: $size;
     background-size: $size;
-
-    filter: invert(48%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
-
-    background-image: url('../../assets/icons/circle-user-solid.svg');
     background-repeat: no-repeat;
+  }
+
+  > .online {
+    background-image: url('../../assets/icons/circle-user-solid_on.svg');
+  }
+  > .offline {
+    background-image: url('../../assets/icons/circle-user-solid_off.svg');
   }
 }
 

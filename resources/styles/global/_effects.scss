@@ -10,6 +10,9 @@
   &.is-primary {
     @include transparent-back($primary, 0.8);
   }
+  &.is-secondary {
+    @include transparent-back($secondary, 0.8);
+  }
   &.is-info {
     @include transparent-back($info, 0.7);
   }
@@ -23,7 +26,7 @@
     @include transparent-back($white, 0.6);
   }
   &.is-light {
-    @include transparent-back($light, 0.6);
+    @include transparent-back($light, 0.2);
   }
   &.is-dark {
     @include transparent-back($dark-bis, 0.5);
