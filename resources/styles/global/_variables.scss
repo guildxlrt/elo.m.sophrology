@@ -1,0 +1,45 @@
+//---Update Bulma's color variables
+$primary: $pale-rose;
+$info: $very-light-blue;
+$warning: $pale-lavender;
+$link: $pinkish-tan;
+$danger: $pale-magenta;
+$success: $light-grey-green;
+//---greyscale
+$white: $anti-flash-white;
+$grey-light: $silver;
+$grey-dark: $charcoal;
+$dark: $chocolate;
+$light: $pinky-palish-grey;
+
+//---Elements
+$about: $pale-pink;
+$dark-bis: desaturate($dark, 55);
+$secondary: $pale-pink;
+$article: white;
+// background
+$bg-color: lighten($pale-rose, 15);
+// Shadow
+$shadow: $pinkish-grey;
+// navbar
+$navlink-hover: $pale-magenta;
+$navbar-block: $light;
+// links
+$link-footer: $pale-magenta;
+// buttons
+$link-btn: lighten($link, 6);
+$success-btn: lighten($success, 12);
+$danger-btn: $danger;
+$info-btn: lighten($info, 8);
+
+// Update some of Bulma's component variables
+$body-background-color: $anti-flash-white;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$text: $dark;
+
+// directions
+$to-right: 90deg;
+$to-botom-right: 135deg;
+$to-top-left: 315deg;

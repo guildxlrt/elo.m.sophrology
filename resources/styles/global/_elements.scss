@@ -55,39 +55,41 @@ a {
   transition: all 0.3s;
 
   &.is-info {
-    @include btn-color($info-btn);
+    color: $dark;
+    &:hover {
+      color: $dark;
+      box-shadow: 0px 0px 6px 1px darken($success-btn, 30);
+    }
+    @include btn-colors($info-btn);
   }
   &.is-link {
-    @include btn-color($link-btn);
+    @include btn-colors($link-btn);
+    &:hover {
+      box-shadow: 0px 0px 6px 0px darken($link-btn, 30%);
+      color: white;
+      background-color: $link-btn;
+    }
   }
   &.is-success {
-    @include btn-color($success-btn);
+    color: $dark;
+    &:hover {
+      color: $dark;
+      box-shadow: 0px 0px 6px 1px darken($success-btn, 30);
+    }
+    @include btn-colors($success-btn);
   }
   &.is-danger {
-    @include btn-color($danger-btn);
+    @include btn-colors($danger-btn);
   }
 
   &.is-dark {
-    @include btn-color($dark);
+    @include btn-colors($dark);
   }
   &.is-grey {
-    @include btn-color($grey);
+    color: white;
+    @include btn-colors($grey);
   }
   &.is-white {
-    @include btn-color($white);
-  }
-}
-
-.footer {
-  min-height: 336px;
-}
-
-.notification {
-  @include shadow(4px);
-  &.is-warning {
-    @include shadow(8px);
-  }
-  &.is-white {
-    @include shadow(12px);
+    @include btn-colors($white);
   }
 }

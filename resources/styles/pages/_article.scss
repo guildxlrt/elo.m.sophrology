@@ -1,4 +1,8 @@
 .article {
+  @include shadow(10px);
+
+  @include lin-gradient($to-right, $article, $anti-flash-white);
+
   > .title,
   > .content {
     padding: 52px;

@@ -1,29 +1,32 @@
 /* offset-x | offset-y | blur-radius | spread-radius | color */
 @mixin shadow($blur-radius) {
-  box-shadow: 0px 0px $blur-radius 0px transparentize($color: $shadow, $amount: 0.5);
+  box-shadow: 0px 0px $blur-radius 3px transparentize($color: $shadow, $amount: 0.5);
 }
 
 @mixin transparent-back($color-value, $amount-value) {
   @include shadow(6px);
-  $darkened: darken($color-value, 12%);
-  background: linear-gradient(
-    0deg,
+  $darkened: darken($color-value, 42%);
+
+  @if $color-value == $light or $color-value == white {
+    $darkened: darken($color-value, 12%);
+    box-shadow: 0px 0px 10px 0px transparentize($color: darken($shadow, 10), $amount: 0.35);
+  }
+
+  @include lin-gradient(
+    $to-top-left,
     transparentize($color: $darkened, $amount: $amount-value) 0%,
     transparentize($color: $color-value, $amount: $amount-value) 100%
   );
 
   @if $color-value == $black or $color-value == $dark or $color-value == $dark-bis {
     box-shadow: 0px 0px 10px 0px transparentize($color: darken($shadow, 10), $amount: 0.25);
-    $lightened: lighten($color-value, 40%);
-    background: linear-gradient(
-      0deg,
+    $lightened: lighten($color-value, 50%);
+
+    @include lin-gradient(
+      $to-top-left,
       transparentize($color: $color-value, $amount: $amount-value) 0%,
       transparentize($color: $lightened, $amount: $amount-value) 100%
     );
-  }
-
-  @if $color-value == $light {
-    box-shadow: 0px 0px 10px 0px transparentize($color: darken($shadow, 10), $amount: 0.35);
   }
 }
 
@@ -32,7 +35,7 @@
   -webkit-backdrop-filter: blur($amount-value);
 }
 
-@mixin btn-color($color-value) {
+@mixin btn-colors($color-value) {
   $main: $color-value;
   $lightened: lighten($color-value, 20%);
   $darkened: darken($color-value, 20%);
@@ -40,44 +43,37 @@
 
   // white buttons
   @if $color-value == $white or $color-value == $light {
-    background: radial-gradient(
-      transparentize($color: $lightened, $amount: $amount-value) 60%,
-      transparentize($color: $main, $amount: $amount-value) 70%,
-      transparentize($color: $darkened, $amount: $amount-value) 100%
+    @include rad-gradient(
+      transparentize($color: $lightened, $amount: $amount-value),
+      60%,
+      transparentize($color: $main, $amount: $amount-value),
+      70%,
+      transparentize($color: $darkened, $amount: $amount-value),
+      100%
     );
   } @else {
-    @if $color-value == $link-btn or $color-value == $grey {
-      color: white;
-    }
-
     // dark buttons
     @if $color-value == $black or $color-value == $dark {
       $main: lighten($color-value, 10%);
     }
 
-    background: radial-gradient(
-      transparentize($color: $darkened, $amount: $amount-value) 40%,
-      transparentize($color: $main, $amount: $amount-value) 100%,
-      transparentize($color: $lightened, $amount: $amount-value) 100%
+    @include rad-gradient(
+      transparentize($color: $darkened, $amount: $amount-value),
+      40%,
+      transparentize($color: $main, $amount: $amount-value),
+      100%,
+      transparentize($color: $lightened, $amount: $amount-value),
+      100%
     );
   }
 
   border: 2px solid transparentize($color: darken($main, 10%), $amount: $amount-value);
-
   &:hover {
     transform: scale(1.08);
-
-    @if $color-value == $link-btn or $color-value == $success-btn {
-      @if $color-value == $success-btn or $color-value == $info-btn {
-        box-shadow: 0px 0px 6px 1px darken($success-btn, 30);
-      }
-      @if$color-value == $link-btn {
-        box-shadow: 0px 0px 6px 0px desaturate($danger, 20%);
-        color: white;
-      }
-    } @else {
-      box-shadow: 0px 0px 4px 1px $color-value;
-    }
+    box-shadow: 0px 0px 4px 1px $color-value;
+  }
+  &.is-hovered {
+    background-color: $color-value;
   }
 }
 
@@ -103,4 +99,32 @@
 @mixin flex-column {
   display: flex;
   flex-direction: column;
+}
+
+@mixin lin-gradient($direction, $color-1, $color-2) {
+  background: $color-1; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    $direction,
+    $color-1,
+    $color-2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    $direction,
+    $color-1,
+    $color-2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin rad-gradient($color-1, $amount-1, $color-2, $amount-2, $color-3, $amount-3) {
+  background: $color-1; /* fallback for old browsers */
+  background: -webkit-radial-gradient(
+    $color-1 $amount-1,
+    $color-2 $amount-2,
+    $color-3 $amount-3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: radial-gradient(
+    $color-1 $amount-1,
+    $color-2 $amount-2,
+    $color-3 $amount-3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

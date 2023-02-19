@@ -71,3 +71,17 @@
     bottom: -4px;
   }
 }
+
+.footer {
+  min-height: 336px;
+}
+
+.notification {
+  @include shadow(4px);
+  &.is-warning {
+    @include shadow(8px);
+  }
+  &.is-white {
+    @include shadow(12px);
+  }
+}
