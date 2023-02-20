@@ -31,6 +31,10 @@ $link-btn: lighten($link, 6);
 $success-btn: lighten($success, 12);
 $danger-btn: $danger;
 $info-btn: lighten($info, 8);
+// inputs
+$input: lighten(desaturate($info, 50), 15);
+$input-hover: $info;
+$input-focus: $link;
 
 // Update some of Bulma's component variables
 $body-background-color: $anti-flash-white;

@@ -46,6 +46,7 @@
   padding: 10px 20px 10px 20px;
   border-width: 5px;
   border-radius: 10px;
+  @include shadow(6px, 3px, $shadow, 0.5);
 
   &.success {
     @include flash-msg(lighten($success, 6), 0.4);
@@ -77,11 +78,11 @@
 }
 
 .notification {
-  @include shadow(4px);
+  @include shadow(4px, 3px, $shadow, 0.5);
   &.is-warning {
-    @include shadow(8px);
+    @include shadow(8px, 3px, $shadow, 0.5);
   }
   &.is-white {
-    @include shadow(12px);
+    @include shadow(12px, 3px, $shadow, 0.5);
   }
 }

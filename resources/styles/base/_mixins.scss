@@ -1,15 +1,16 @@
 /* offset-x | offset-y | blur-radius | spread-radius | color */
-@mixin shadow($blur-radius) {
-  box-shadow: 0px 0px $blur-radius 3px transparentize($color: $shadow, $amount: 0.5);
+@mixin shadow($blur-radius, $spread-radius, $shadow-color, $shadow-amount) {
+  box-shadow: 0px 0px $blur-radius $spread-radius
+    transparentize($color: $shadow-color, $amount: $shadow-amount);
 }
 
 @mixin transparent-back($color-value, $amount-value) {
-  @include shadow(6px);
+  @include shadow(6px, 3px, $shadow, 0.5);
   $darkened: darken($color-value, 42%);
 
   @if $color-value == $light or $color-value == white {
     $darkened: darken($color-value, 12%);
-    box-shadow: 0px 0px 10px 0px transparentize($color: darken($shadow, 10), $amount: 0.35);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
   }
 
   @include lin-gradient(
@@ -19,7 +20,8 @@
   );
 
   @if $color-value == $black or $color-value == $dark or $color-value == $dark-bis {
-    box-shadow: 0px 0px 10px 0px transparentize($color: darken($shadow, 10), $amount: 0.25);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
+
     $lightened: lighten($color-value, 50%);
 
     @include lin-gradient(
@@ -70,7 +72,7 @@
   border: 2px solid transparentize($color: darken($main, 10%), $amount: $amount-value);
   &:hover {
     transform: scale(1.08);
-    box-shadow: 0px 0px 4px 1px $color-value;
+    @include shadow(6px, 1px, $color-value, 0);
   }
   &.is-hovered {
     background-color: $color-value;
