@@ -27,14 +27,14 @@
   
 @else
     <label class="label" for="{{field}}">{{tag}}</label>
-        <div class="control has-icons-left has-icons-right">
-            <input
-                class="input"
-                type="text"
-                placeholder="{{tag}}"
-                x-model="inputs.{{field}}"
-            >
-        </div>
+    <div class="control has-icons-left has-icons-right">
+        <input
+            class="input"
+            type="text"
+            placeholder="{{tag}}"
+            x-model="inputs.{{field}}"
+        >
+    </div>
     @!component('../../components/inputError.edge', {
         value: field
     })

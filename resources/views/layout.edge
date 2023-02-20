@@ -16,9 +16,10 @@
     class="bg-gradient"
     x-data="{open: false}"
   >
+    <div class="leafs">
     @!component('components/header')
-
     @!component('components/flash')
+
 
     <main
       class="section is-paddingless"
@@ -26,7 +27,7 @@
     >
       @!section('page')
     </main>
-          
+    
     @!component('components/contact/contact')
           
     @!component('components/footer') 

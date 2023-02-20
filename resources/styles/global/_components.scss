@@ -48,10 +48,10 @@
   border-radius: 10px;
 
   &.success {
-    @include flash-msg(lighten($info, 10), 0.05);
+    @include flash-msg(lighten($success, 6), 0.4);
   }
   &.alert {
-    @include flash-msg(lighten($warning, 20), 0.05);
+    @include flash-msg(lighten($warning, 15), 0.4);
   }
 }
 

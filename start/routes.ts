@@ -20,23 +20,22 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-// Route.get('/', async ({ view }) => {
-//   return view.render('welcome')
-// })
+Route.get('/', 'PagesController.index')
+Route.get('/presentation', 'PagesController.about')
+Route.get('/les-seances-de-sophrologie', 'PagesController.sessions')
+Route.get('/blog', 'PagesController.blog').as('blog')
+Route.get('/blog/:id', 'PagesController.article').as('get.article')
+Route.get('/dashboard', 'PagesController.dashboard').as('dashboard')
 
-Route.get('/', 'HomeController.index').as('home')
-Route.get('/presentation', 'HomeController.about').as('about')
-Route.get('/les-seances-de-sophrologie', 'HomeController.sessions').as('sessions')
+Route.group(() => {
+  Route.post('/blog/new', 'PostsController.new')
+  Route.post('/blog/:id/update', 'PostsController.update')
+  Route.patch('/blog/:id/status', 'PostsController.status')
+  Route.delete('/blog/:id/delete', 'PostsController.delete')
+}).middleware('auth')
 
-Route.post('/message', 'MessagesController.send').as('message')
+Route.post('/message', 'MessagesController.send')
 
-Route.get('/dashboard', 'UsersController.dashboard').as('dashboard')
+Route.post('/create', 'UsersController.create')
 Route.post('/login', 'UsersController.login').as('login')
-Route.delete('/logout', 'UsersController.logout').as('logout')
-
-Route.get('/blog', 'PostsController.blog').as('blog')
-Route.get('/blog/:id', 'PostsController.article').as('get.article')
-Route.post('/blog/new', 'PostsController.new').as('new.article')
-Route.post('/blog/:id/update', 'PostsController.update').as('update.article')
-Route.patch('/blog/:id/status', 'PostsController.status').as('status.article')
-Route.delete('/blog/:id/delete', 'PostsController.delete').as('delete.article')
+//Route.delete('/logout', 'UsersController.logout')

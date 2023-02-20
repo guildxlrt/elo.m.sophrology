@@ -83,11 +83,14 @@
   align-items: center;
 }
 
-@mixin flash-msg($color-value, $amount-value) {
-  @include transparent-back($color-value, $amount-value);
+@mixin flash-msg($color-value, $opacity) {
+  background-color: transparentize(
+    $color: darken($color: $color-value, $amount: 15),
+    $amount: $opacity
+  );
   border-color: transparentize(
-    $color: darken($color: $color-value, $amount: 30),
-    $amount: $amount-value
+    $color: darken($color: $color-value, $amount: 35),
+    $amount: $opacity
   );
 }
 

@@ -1,3 +1,5 @@
+//----// HTML's
+
 body {
   color: $text;
 }
@@ -49,18 +51,20 @@ a {
   }
 }
 
+//----// CLASSES
+
 .button {
   border-radius: 15px;
   border: 0px;
   transition: all 0.3s;
 
   &.is-info {
+    @include btn-colors($info-btn);
     color: $dark;
     &:hover {
       color: $dark;
       box-shadow: 0px 0px 6px 1px darken($success-btn, 30);
     }
-    @include btn-colors($info-btn);
   }
   &.is-link {
     @include btn-colors($link-btn);
@@ -71,12 +75,12 @@ a {
     }
   }
   &.is-success {
+    @include btn-colors($success-btn);
     color: $dark;
     &:hover {
       color: $dark;
-      box-shadow: 0px 0px 6px 1px darken($success-btn, 30);
+      box-shadow: 0px 0px 6px 1px #9bf48a;
     }
-    @include btn-colors($success-btn);
   }
   &.is-danger {
     @include btn-colors($danger-btn);

@@ -1,0 +1,49 @@
+<section class="section is-large has-text-centered centering-item dashboard">
+    <h1
+        class="title"
+    >
+        @if(type === 'login')
+            Se connecter
+        @elseif(type === 'create')
+            Creer
+        @end
+    </h1>
+        
+    <form
+        class="form" 
+        method="post"
+        @if(type === 'login')
+            action="/login"
+        @elseif(type === 'create')
+            action="/create"
+        @end
+    >
+        @!component('../../components/dashboard/input.edge', {
+            name: 'email',
+            tag: 'Adresse E-m@il',
+            value: 'miss@hello.is'
+        })
+
+        
+        @!component('../../components/dashboard/input.edge', {
+            name: 'password',
+            tag: 'Mot de passe',
+            value: 'qwerty'
+        })
+
+        @if(type === 'create')
+            @!component('../../components/dashboard/input.edge', {
+                name: 'passwordConfirm',
+                tag: 'Confirmation du mot de passe',
+                value: 'qwerty'
+            })
+        @end
+
+
+        <button
+            type="submit"
+            class="button is-link"
+            style="margin-top: 22px"
+        >Connexion</button>
+    </form>        
+</section>

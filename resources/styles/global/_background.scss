@@ -1,10 +1,12 @@
 .bg-gradient {
-  background: $bg-color; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    $to-botom-right,
-    $white,
-    $bg-color
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: url('../../assets/background/leaf-gold.svg') 0%/65px,
-    linear-gradient($to-botom-right, $white, $bg-color); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  @include lin-gradient($to-botom-right, $white, $bg-color);
+}
+
+.leafs {
+  background: url('../../assets/background/leaf-grey.svg') 0%/65px;
+}
+
+.test {
+  width: 50px;
+  height: 50px;
 }

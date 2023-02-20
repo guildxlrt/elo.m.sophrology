@@ -3,21 +3,6 @@ import Post from '../../Models/Post'
 import PostValidator from '../../Validators/PostValidator'
 
 export default class BlogsController {
-  async blog({ view }: HttpContextContract) {
-    const posts = await Post.all()
-    return view.render('pages/blog', { posts })
-  }
-
-  async article({ params, view }: HttpContextContract) {
-    if (params.id === 'new') {
-      const post = { id: 'new' }
-      return view.render('pages/article', { post })
-    } else {
-      const post = await Post.findOrFail(params.id)
-      return view.render('pages/article', { post })
-    }
-  }
-
   async new({ request }: HttpContextContract) {
     const data = await request.validate(PostValidator)
 

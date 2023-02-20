@@ -1,0 +1,26 @@
+<label
+    class="label"
+    for="{{name}}"
+>
+    {{tag}}
+</label>
+<div class="control has-icons-left has-icons-right">
+    <input
+        name="{{name}}"
+        class="input"
+        type="text"
+        placeholder="{{tag}}"
+        value="{{value}}"
+    >
+</div>
+@if(flashMessages.has(`errors.${name}`))
+    <div
+        class="error"
+    >
+        <span
+            class="subtitle is-5 has-text-danger"
+        >
+            {{ flashMessages.get(`errors.${name}`) }}
+        </span>
+    </div>
+@end
