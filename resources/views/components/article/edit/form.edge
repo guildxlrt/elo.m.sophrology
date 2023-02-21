@@ -28,21 +28,25 @@
             </button>
         </div>
         <div
-            class="container article add-blur"
+            class="container article-wrap add-blur"
         >
-            @!component('../../../components/article/edit/inputs.edge', {
-                id: id,
-                title: title,
-                content: content,
-            })
+            <div class="article">
+                @!component('../../../components/article/edit/inputs.edge', {
+                    id: id,
+                    title: title,
+                    content: content,
+                })
+            </div>
         </div>
     @else
-        <div class="container article add-blur">
-            @!component('../../../components/article/edit/inputs.edge', {
-                id: id,
-                title: title,
-                content: content,
-            })
+        <div class="container article-wrap add-blur">
+            <div class="article">
+                @!component('../../../components/article/edit/inputs.edge', {
+                    id: id,
+                    title: title,
+                    content: content,
+                })
+            </div>
         </div>
         <div
             class="container edit-btn"

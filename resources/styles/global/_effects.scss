@@ -46,7 +46,7 @@
 
   &.navbar {
     @include transparent-back($navbar-block, 0.8);
-    @include shadow(6px, 2px, $shadow, 0.5);
+    @include shadow(6px, 3px, $shadow, 0.4);
   }
   &.navbar-menu {
     @include transparent-back($navbar-block, 1);

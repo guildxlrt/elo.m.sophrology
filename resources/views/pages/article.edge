@@ -28,15 +28,17 @@
             
         @else
             <article
-                class="container article"
+                class="container article-wrap"
                 x-show="!modif"
                 x-transition
             >
-                <h1 class="title">{{post.title}}</h1>
-                <div class="content">
-                    <p>
-                        {{post.content}}
-                    </p>
+                <div class="article">
+                    <h1 class="title">{{post.title}}</h1>
+                    <div class="content">
+                        <p>
+                            {{post.content}}
+                        </p>
+                    </div>
                 </div>
             </article>
 
