@@ -86,6 +86,9 @@ export async function submitPostForm(event, id, errors) {
         if (error.field === 'content') {
           errors.content = error.message
         }
+        if (!error.field) {
+          errors.content = 'Acces non authorise...'
+        }
       })
     })
 }

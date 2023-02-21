@@ -73,10 +73,6 @@
   }
 }
 
-.footer {
-  min-height: 336px;
-}
-
 .notification {
   @include shadow(4px, 3px, $shadow, 0.5);
   &.is-warning {

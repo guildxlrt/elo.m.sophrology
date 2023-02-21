@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
-import MessageValidator from '../../Validators/MessageValidator'
+import MessageValidator from 'App/Validators/MessageValidator'
 
 export default class MessagesController {
   async send({ request, session }: HttpContextContract) {

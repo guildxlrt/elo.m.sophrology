@@ -18,21 +18,21 @@
             action="/create"
         @end
     >
-        @!component('../../components/dashboard/input.edge', {
+        @!component('../../components/user/input.edge', {
             name: 'email',
             tag: 'Adresse E-m@il',
             value: 'miss@hello.is'
         })
 
         
-        @!component('../../components/dashboard/input.edge', {
+        @!component('../../components/user/input.edge', {
             name: 'password',
             tag: 'Mot de passe',
             value: 'qwerty'
         })
 
         @if(type === 'create')
-            @!component('../../components/dashboard/input.edge', {
+            @!component('../../components/user/input.edge', {
                 name: 'passwordConfirm',
                 tag: 'Confirmation du mot de passe',
                 value: 'qwerty'

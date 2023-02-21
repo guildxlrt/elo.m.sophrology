@@ -1,33 +1,69 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Post from '../../Models/Post'
+import Post from 'App/Models/Post'
 
-export default class HomeController {
-  async index({ view }: HttpContextContract) {
-    return view.render('pages/index')
+export default class PagesController {
+  async index({ view, auth }: HttpContextContract) {
+    let user = false
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+    return view.render('pages/index', { user: user })
   }
-  async about({ view }: HttpContextContract) {
-    return view.render('pages/about')
+  async about({ view, auth }: HttpContextContract) {
+    let user = false
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+    return view.render('pages/about', { user: user })
   }
-  async sessions({ view }: HttpContextContract) {
-    return view.render('pages/sessions')
+  async sessions({ view, auth }: HttpContextContract) {
+    let user = false
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+    return view.render('pages/sessions', { user: user })
   }
 
-  async blog({ view }: HttpContextContract) {
+  async blog({ view, auth }: HttpContextContract) {
+    let user = false
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
     const posts = await Post.all()
-    return view.render('pages/blog', { posts })
+    return view.render('pages/blog', { posts, user: user })
   }
 
-  async article({ params, view }: HttpContextContract) {
+  async article({ params, view, auth, response, session }: HttpContextContract) {
     if (params.id === 'new') {
-      const post = { id: 'new' }
-      return view.render('pages/article', { post })
+      if (auth.user === undefined) {
+        session.flash({ alert: 'Vous devez etre connecte pour rediger' })
+        return response.redirect().toPath('/user')
+      } else {
+        let user = false
+        if (auth.user !== undefined) {
+          user = auth.user.id
+        }
+        const post = { id: 'new' }
+        return view.render('pages/article', { post, user: user })
+      }
     } else {
+      let user = false
+
+      if (auth.user !== undefined) {
+        user = auth.user.id
+      }
       const post = await Post.findOrFail(params.id)
-      return view.render('pages/article', { post })
+      return view.render('pages/article', { post, user: user })
     }
   }
 
-  async dashboard({ view }: HttpContextContract) {
-    return view.render('pages/dashboard')
+  async user({ view, auth }: HttpContextContract) {
+    let user = false
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
+    return view.render('pages/user', { user: user })
   }
 }

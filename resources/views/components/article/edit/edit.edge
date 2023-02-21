@@ -1,0 +1,22 @@
+<div
+    class="container edit-btn"
+    x-show="!modif"
+    x-transition
+>
+    <button
+        class="button is-link"
+        x-on:click="modif = !modif"
+    >
+        Modifer
+    </button>
+
+    @!component('../components/article/delete', { id: id })
+                
+</div>
+            
+
+@!component('../components/article/edit/form.edge', {
+    id: id,
+    title: title,
+    content: content,
+}) 

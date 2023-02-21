@@ -25,7 +25,7 @@ Route.get('/presentation', 'PagesController.about')
 Route.get('/les-seances-de-sophrologie', 'PagesController.sessions')
 Route.get('/blog', 'PagesController.blog').as('blog')
 Route.get('/blog/:id', 'PagesController.article').as('get.article')
-Route.get('/dashboard', 'PagesController.dashboard').as('dashboard')
+Route.get('/user', 'PagesController.user').as('user')
 
 Route.group(() => {
   Route.post('/blog/new', 'PostsController.new')
@@ -38,4 +38,4 @@ Route.post('/message', 'MessagesController.send')
 
 Route.post('/create', 'UsersController.create')
 Route.post('/login', 'UsersController.login').as('login')
-//Route.delete('/logout', 'UsersController.logout')
+Route.delete('/logout', 'UsersController.logout').as('logout')

@@ -11,7 +11,7 @@
         @end
 
     >
-        @if(post.id !== 'new')
+        @if(post.id !== 'new' && user !== false)
             @!component('../components/article/status', {
                 status: post.status,
                 id: post.id
@@ -40,28 +40,13 @@
                 </div>
             </article>
 
-            <div
-                class="container edit-btn"
-                x-show="!modif"
-                x-transition
-            >
-                <button
-                    class="button is-link"
-                    x-on:click="modif = !modif"
-                >
-                    Modifer
-                </button>
-
-                @!component('../components/article/delete', { id: post.id })
-                
-            </div>
-            
-
-           @!component('../components/article/edit/form.edge', {
-                id: post.id,
-                title: post.title,
-                content: post.content,
-            }) 
+            @if(user !== false)
+                @!component('../components/article/edit/edit.edge', {
+                    id: post.id,
+                    title: post.title,
+                    content: post.content,
+                }) 
+            @end
         @end 
     </section>
 @endsection

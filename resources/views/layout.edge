@@ -9,7 +9,6 @@
     {{--  <link rel="icon" type="image/png" href="" sizes="16x16">  --}}
     @entryPointStyles('app')
     @entryPointScripts('app')
-    {{--  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  --}}
   </head>
   
   <body
@@ -17,9 +16,10 @@
     x-data="{open: false}"
   >
     <div class="leafs">
-    @!component('components/header')
+    @!component('components/header', {
+      user: user
+    })
     @!component('components/flash')
-
 
     <main
       class="section is-paddingless"
@@ -27,8 +27,10 @@
     >
       @!section('page')
     </main>
-    
-    @!component('components/contact/contact')
+
+    @if(user === false)
+      @!component('components/contact/contact')
+    @end
           
     @!component('components/footer') 
   </body>

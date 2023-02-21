@@ -1,17 +1,15 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Post from '../../Models/Post'
-import PostValidator from '../../Validators/PostValidator'
+import Post from 'App/Models/Post'
+import PostValidator from 'App/Validators/PostValidator'
 
-export default class BlogsController {
+export default class PostsController {
   async new({ request }: HttpContextContract) {
     const data = await request.validate(PostValidator)
-
     const post = await Post.create({
       ...data,
       status: true,
     })
     post.save()
-
     const id = post.$attributes.id
     return {
       id: id,

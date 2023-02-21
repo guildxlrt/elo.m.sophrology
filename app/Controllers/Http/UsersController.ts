@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import User from '../../Models/User'
-import UserValidator from '../../Validators/UserValidator'
+import User from 'App/Models/User'
+import UserValidator from 'App/Validators/UserValidator'
 
 export default class UsersController {
   async create({ request, response, session }: HttpContextContract) {
@@ -33,7 +33,8 @@ export default class UsersController {
     }
     return response.redirect().back()
   }
-  async logout({ request }: HttpContextContract) {
-    return `delete : loged out`
+
+  async logout({ auth, response }: HttpContextContract) {
+    await auth.use('web').logout()
   }
 }

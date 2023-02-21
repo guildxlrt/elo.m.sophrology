@@ -1,0 +1,21 @@
+@layout('layout')
+
+@section('page')
+
+    
+
+    @if(user === false)
+        @!component('../components/user/userForm.edge', {
+            type: 'login'
+        })
+
+        @!component('../components/user/userForm.edge', {
+            type: 'create'
+        })
+    @else
+      @!component('../components/user/dashboard.edge')
+    @end
+
+    
+    
+@endsection

@@ -53,6 +53,16 @@ a {
 
 //----// CLASSES
 
+.footer {
+  min-height: 336px;
+  > .container > .columns > .column {
+    color: $danger;
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
 .button {
   border-radius: 15px;
   border: 0px;

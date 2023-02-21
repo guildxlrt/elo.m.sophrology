@@ -46,8 +46,12 @@
             </div>
           </div>
         </div>
-        <a class="usr-log" href="{{route('dashboard')}}">
-          <div class="usr-img offline"></div>
+        <a class="usr-log" href="{{route('user')}}">
+          @if(user === false)
+            <div class="usr-img offline"></div>
+          @else
+            <div class="usr-img online"></div>
+          @end
         </a>
     </nav>
 </header>
