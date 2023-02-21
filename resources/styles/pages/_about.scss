@@ -6,6 +6,7 @@
 }
 
 .about {
+  @include shadow(6px, 1px, $shadow, 0.5);
   @media (min-width: 1024px) {
     padding: 52px;
     border-radius: 65% 13% 73% 8% / 8% 43% 18% 65%;
