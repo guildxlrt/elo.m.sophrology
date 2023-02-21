@@ -9,34 +9,44 @@
 
   &.is-primary {
     @include transparent-back($primary, 0.7);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.is-secondary {
     @include transparent-back($secondary, 0.7);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.is-info {
     @include transparent-back($info, 0.7);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.is-warning {
     @include transparent-back($warning, 0.7);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.is-success {
     @include transparent-back($success, 0.7);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.is-white {
     @include transparent-back(white, 0.2);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
   }
   &.is-light {
     @include transparent-back($light, 0.2);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
   }
   &.is-dark {
     @include transparent-back($dark-bis, 0.5);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
   }
   &.is-black {
     @include transparent-back($black, 0.5);
+    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
   }
 
   &.navbar {
     @include transparent-back($navbar-block, 0.8);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
   &.navbar-menu {
     @include transparent-back($navbar-block, 1);
@@ -44,6 +54,7 @@
 
   &.notification {
     @include blur-filter(2px);
+    @include shadow(6px, 3px, $shadow, 0.5);
   }
 }
 

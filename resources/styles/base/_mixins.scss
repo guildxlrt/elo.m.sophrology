@@ -5,12 +5,10 @@
 }
 
 @mixin transparent-back($color-value, $amount-value) {
-  @include shadow(6px, 3px, $shadow, 0.5);
   $darkened: darken($color-value, 42%);
 
   @if $color-value == $light or $color-value == white {
     $darkened: darken($color-value, 12%);
-    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
   }
 
   @include lin-gradient(
@@ -20,8 +18,6 @@
   );
 
   @if $color-value == $black or $color-value == $dark or $color-value == $dark-bis {
-    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
-
     $lightened: lighten($color-value, 50%);
 
     @include lin-gradient(
@@ -91,7 +87,7 @@
     $amount: $opacity
   );
   border-color: transparentize(
-    $color: darken($color: $color-value, $amount: 35),
+    $color: darken($color: $color-value, $amount: 20),
     $amount: $opacity
   );
 }
