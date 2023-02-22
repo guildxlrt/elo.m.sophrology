@@ -53,15 +53,15 @@
             x-show="modif"
             x-transition
         >
-            <div
+            <button
                 class="button is-grey"
-                x-on:click="
+               @click.prevent="
                     modif = !modif
                     resetPostErrors(errors)
                 "
             >
                 Annuller
-            </div>
+            </button>
             <button
                 class="button is-link"
                 type="submit"

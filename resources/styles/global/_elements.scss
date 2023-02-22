@@ -111,6 +111,8 @@ a {
 .input,
 .textarea {
   background-color: $input;
+  border-radius: 10px;
+
   @include shadow(4px, 1px, darken($input, 20%), 0);
   &:hover {
     border-color: $input-hover;

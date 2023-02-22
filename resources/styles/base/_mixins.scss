@@ -85,7 +85,9 @@
   border: 3px solid transparentize(desaturate($color-value, 50%), 0.5);
   @include blur-filter(4px);
   background-color: none;
-  box-shadow: 2px 2px 6px 3px transparentize(desaturate($color-value, 50%), 0.5);
+
+  @include shadow(6px, 3px, desaturate($color-value, 50%), 0.5);
+
   @include lin-gradient(
     $to-botom-right,
     transparentize(saturate($color-value, 50%), 0.3) 0%,

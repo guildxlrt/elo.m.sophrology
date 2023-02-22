@@ -39,7 +39,6 @@
   margin-top: 30px;
   padding: 10px 20px 10px 20px;
   border-width: 5px;
-  border-radius: 10px;
 
   &__cont {
     position: sticky;
@@ -50,6 +49,7 @@
       &.is-warning,
       &.is-success {
         background-color: transparent;
+        border-radius: 10px;
       }
     }
   }
