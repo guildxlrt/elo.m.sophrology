@@ -1,0 +1,60 @@
+.dashboard {
+  @include flex-column;
+
+  @media (max-width: 1023px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 55px;
+  }
+
+  > .title {
+    @media (min-width: 1024px) {
+      margin-top: 0px;
+    }
+    height: 15%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  > .container {
+    @include flex-column;
+  }
+
+  > .container,
+  > .form {
+    $vert-marg: 80px;
+    margin-top: $vert-marg;
+    margin-bottom: $vert-marg;
+  }
+
+  // CONNECT FORM
+  > .columns > .column {
+    min-height: 535px;
+    margin: 40px;
+    border-radius: 65% 3% 65% 3% / 3% 65% 3% 65%;
+
+    @media (max-width: 539px) {
+      margin: 42px 8px;
+    }
+
+    > .title {
+      margin-top: 12px;
+    }
+
+    > .form {
+      min-height: 420px;
+      max-width: 285px;
+      margin: 0px 12px 12px 12px;
+
+      @include flex-column;
+      justify-content: space-between;
+      align-items: center;
+
+      > .button {
+        width: fit-content;
+        @include flex-row;
+        margin-top: 12px;
+      }
+    }
+  }
+}

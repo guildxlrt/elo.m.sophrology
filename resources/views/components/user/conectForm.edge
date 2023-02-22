@@ -1,4 +1,4 @@
-<section class="section is-large has-text-centered centering-item dashboard">
+<div class="column notification is-primary add-blur">
     <h1
         class="title"
     >
@@ -19,23 +19,29 @@
         @end
     >
         @!component('../../components/user/input.edge', {
+            type: type,
+            title: 'Adresse email',
             name: 'email',
-            tag: 'Adresse E-m@il',
-            value: 'miss@hello.is'
+            placeholder: 'adresse@email',
+            value: ''
         })
 
         
         @!component('../../components/user/input.edge', {
+            type: type,
+            title: 'Mot de passe',
             name: 'password',
-            tag: 'Mot de passe',
-            value: 'qwerty'
+            placeholder: 'mot de passe',
+            value: ''
         })
 
         @if(type === 'create')
             @!component('../../components/user/input.edge', {
+                type: type,
+                title: 'Confirmation',
                 name: 'passwordConfirm',
-                tag: 'Confirmation du mot de passe',
-                value: 'qwerty'
+                placeholder: 'confirmation',
+                value: ''
             })
         @end
 
@@ -43,7 +49,6 @@
         <button
             type="submit"
             class="button is-link"
-            style="margin-top: 22px"
         >
             @if(type === 'create')
                 Creer  
@@ -52,4 +57,4 @@
             @end
         </button>
     </form>        
-</section>
+</div>

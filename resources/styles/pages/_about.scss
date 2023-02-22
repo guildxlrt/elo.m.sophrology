@@ -1,5 +1,5 @@
 .page-padding {
-  padding-top: 188px;
+  padding-top: 128px;
   @media (max-width: 1023px) {
     padding: 104px 0px 104px 0px;
   }
@@ -7,28 +7,26 @@
 
 .about {
   @include shadow(6px, 1px, $shadow, 0.5);
+
+  @media (max-width: 767px) {
+    box-shadow: none;
+  }
+  @media (min-width: 768px) {
+    @include blur-filter(2px);
+    @include transparent-back($about, 0.9);
+  }
+
+  @media (min-width: 540px) and (max-width: 1023px) {
+    margin: 20px;
+    border-radius: 25% 55% 38% 5% / 6% 25% 13% 25%;
+  }
+
   @media (min-width: 1024px) {
     padding: 52px;
     border-radius: 65% 13% 73% 8% / 8% 43% 18% 65%;
-
-    @include blur-filter(2px);
-    @include transparent-back($about, 0.9);
-
-    > .title,
-    > .content {
-      padding: 24px;
-      margin: 52px 52px 52px 52px;
-    }
   }
+
   @media (min-width: 540px) and (max-width: 1023px) {
-    border-radius: 25% 55% 38% 5% / 6% 25% 13% 25%;
-    margin: 20px;
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      @include blur-filter(2px);
-      @include transparent-back($about, 0.9);
-    }
-
     > .title {
       padding: 72px 36px;
     }
@@ -36,11 +34,16 @@
       padding: 0px 36px 72px 36px;
     }
   }
-  @media (max-width: 539px) {
-    > .title,
-    > .content {
+
+  > .title,
+  > .content {
+    @media (max-width: 539px) {
       padding: 24px;
       margin: 0px;
+    }
+    @media (min-width: 1024px) {
+      padding: 24px;
+      margin: 52px 52px 52px 52px;
     }
   }
 }

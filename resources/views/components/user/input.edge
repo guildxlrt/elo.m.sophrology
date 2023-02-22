@@ -2,23 +2,27 @@
     class="label"
     for="{{name}}"
 >
-    {{tag}}
+    {{title}}
 </label>
 <div class="control has-icons-left has-icons-right">
     <input
         name="{{name}}"
         class="input"
-        type="text"
-        placeholder="{{tag}}"
+        placeholder="{{placeholder}}"
         value="{{value}}"
+        @if(name === 'password' || name === 'passwordConfirm')
+            type="password"
+        @else
+            type="text"
+        @end
     >
 </div>
-@if(flashMessages.has(`errors.${name}`))
+@if(flashMessages.has(`errors.${name}`) && type === 'create')
     <div
         class="error"
     >
         <span
-            class="subtitle is-5 has-text-danger"
+            class="subtitle is-6 has-text-danger"
         >
             {{ flashMessages.get(`errors.${name}`) }}
         </span>

@@ -5,13 +5,17 @@
     
 
     @if(user === false)
-        @!component('../components/user/userForm.edge', {
-            type: 'login'
-        })
+        <section class="section is-medium has-text-centered centering-item dashboard">
+            <div class="columns">
+                @!component('../components/user/conectForm.edge', {
+                    type: 'login'
+                })
 
-        {{--  @!component('../components/user/userForm.edge', {
-            type: 'create'
-        })  --}}
+                @!component('../components/user/conectForm.edge', {
+                    type: 'create'
+                })
+            </div>
+        </section>
     @else
       @!component('../components/user/dashboard.edge')
     @end

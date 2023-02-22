@@ -36,23 +36,29 @@
 }
 
 .flash {
-  &--cont {
-    position: sticky;
-    z-index: 20;
-    top: 80px;
-  }
-
   margin-top: 30px;
   padding: 10px 20px 10px 20px;
   border-width: 5px;
   border-radius: 10px;
-  @include shadow(6px, 3px, $shadow, 0.5);
 
-  &.success {
-    @include flash-msg(lighten($success, 6), 0.4);
+  &__cont {
+    position: sticky;
+    z-index: 20;
+    top: 80px;
+
+    > .tag:not(body) {
+      &.is-warning,
+      &.is-success {
+        background-color: transparent;
+      }
+    }
   }
-  &.alert {
-    @include flash-msg(lighten($warning, 15), 0.4);
+
+  &.is-success {
+    @include flash-colors($success);
+  }
+  &.is-warning {
+    @include flash-colors($warning);
   }
 }
 
@@ -80,5 +86,11 @@
   }
   &.is-white {
     @include shadow(12px, 3px, $shadow, 0.5);
+  }
+}
+
+.navbar-end {
+  @media (min-width: 1024px) and (max-width: 1280px) {
+    margin-left: 555px;
   }
 }

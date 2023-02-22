@@ -81,14 +81,15 @@
   align-items: center;
 }
 
-@mixin flash-msg($color-value, $opacity) {
-  background-color: transparentize(
-    $color: darken($color: $color-value, $amount: 15),
-    $amount: $opacity
-  );
-  border-color: transparentize(
-    $color: darken($color: $color-value, $amount: 20),
-    $amount: $opacity
+@mixin flash-colors($color-value) {
+  border: 3px solid transparentize(desaturate($color-value, 50%), 0.5);
+  @include blur-filter(4px);
+  background-color: none;
+  box-shadow: 2px 2px 6px 3px transparentize(desaturate($color-value, 50%), 0.5);
+  @include lin-gradient(
+    $to-botom-right,
+    transparentize(saturate($color-value, 50%), 0.3) 0%,
+    transparentize(desaturate($color-value, 50%), 0.3) 100%
   );
 }
 

@@ -18,9 +18,9 @@ export default class UserValidator {
   })
 
   public messages: CustomMessages = {
-    'required': 'Le champs doit etre complete.',
+    'required': 'Le champs doit etre complete',
     'email': `l'email doit etre au format email : bernard@email.com,  jeannette.dupond@laposte.fr`,
-    'email.unique': 'Cet adresse email est deja utilise !!',
+    'email.unique': `L'adresse email est deja utilise`,
     'passwordConfirm.confirmed': 'Les mots de passe doivent se correspondre',
     'password.validate': `Le mot de passe n'est pas assez fort :
     • il doit etre d'une longueur minimum de 8 caracteres

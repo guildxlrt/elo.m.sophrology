@@ -1,26 +1,23 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
+const namesRegex = new RegExp(
+  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
+)
+
 export default class MessageValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
     surname: schema.string({ trim: true }, [
       rules.minLength(2),
-      rules.maxLength(24),
-      rules.regex(
-        new RegExp(/^([a-zA-ZÀ-ÿ]{2,30})(-[a-zA-ZÀ-ÿ]{2,30})?(\s[a-zA-ZÀ-ÿ]{2,30})?$/, 'g')
-      ),
+      rules.maxLength(60),
+      rules.regex(new RegExp(namesRegex)),
     ]),
     name: schema.string({ trim: true }, [
       rules.minLength(2),
-      rules.maxLength(24),
-      rules.regex(
-        new RegExp(
-          /^([a-zA-ZÀ-ÿ]{1,3}\s)?([a-zA-ZÀ-ÿ]{1,3}[']{1})?([a-zA-ZÀ-ÿ]{2,26})(\s[a-zA-ZÀ-ÿ]{2,26})?(-[a-zA-ZÀ-ÿ]{2,26})?(\s[a-zA-ZÀ-ÿ]{2,26})?$/,
-          'g'
-        )
-      ),
+      rules.maxLength(140),
+      rules.regex(new RegExp(namesRegex)),
     ]),
     email: schema.string([
       rules.email(),
@@ -35,11 +32,10 @@ export default class MessageValidator {
   })
 
   public messages: CustomMessages = {
-    'minLength': 'Le champs doit comporter au minimum {{ options.minLength }} caracteres',
-    'maxLength': 'Le champs ne doit pas depasser les {{ options.maxLength }} caracteres',
-    'surname.regex': 'Votre prenom ne doit comporter que des lettres',
-    'name.regex': 'Votre patronyme ne doit comporter que des lettres',
-    'required': 'Le champs doit etre complete.',
-    'email': `l'email doit etre au format email : bernard@email.com,  jeannette.dupond@laposte.fr`,
+    minLength: 'Le champs doit comporter au minimum {{ options.minLength }} caracteres',
+    maxLength: 'Le champs ne doit pas depasser les {{ options.maxLength }} caracteres',
+    regex: `Le champs ne doit comporter que des lettres`,
+    required: 'Le champs doit etre complete',
+    email: `Ladresse'email doit etre au format email : bernard@email.com,  jeannette.dupond@laposte.fr`,
   }
 }

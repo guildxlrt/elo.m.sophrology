@@ -10,7 +10,7 @@ export default class PostValidator {
   })
 
   public messages: CustomMessages = {
-    required: 'Le champs doit etre complete.',
+    required: 'Le champs doit etre complete',
     minLength: 'Le champs doit comporter au minimum {{ options.minLength }} caracteres',
     maxLength: 'Le champs ne doit pas depasser les {{ options.maxLength }} caracteres',
   }
