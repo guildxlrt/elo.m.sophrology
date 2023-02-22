@@ -44,6 +44,12 @@
             type="submit"
             class="button is-link"
             style="margin-top: 22px"
-        >Connexion</button>
+        >
+            @if(type === 'create')
+                Creer  
+            @elseif(type === 'login')
+                Connexion
+            @end
+        </button>
     </form>        
 </section>

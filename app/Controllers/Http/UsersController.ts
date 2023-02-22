@@ -5,21 +5,15 @@ import UserValidator from 'App/Validators/UserValidator'
 export default class UsersController {
   async create({ request, response, session }: HttpContextContract) {
     const data = await request.validate(UserValidator)
-    const emailIsUnique = await User.findBy('email', data.email)
 
-    if (emailIsUnique === null) {
-      const user = await User.create({
-        ...data,
-      })
-      user.save()
+    const user = await User.create({
+      ...data,
+    })
+    user.save()
 
-      const id = user.$attributes.id
-      session.flash({ success: `L'utilisateur ${id} a ete cree !!` })
-      return response.redirect().back()
-    } else {
-      session.flash({ alert: `Cet adresse email est deja utilise !!` })
-      return response.redirect().back()
-    }
+    const id = user.$attributes.id
+    session.flash({ success: `L'utilisateur ${id} a ete cree !!` })
+    return response.redirect().back()
   }
 
   async login({ request, auth, response, session }: HttpContextContract) {
@@ -34,7 +28,7 @@ export default class UsersController {
     return response.redirect().back()
   }
 
-  async logout({ auth, response }: HttpContextContract) {
+  async logout({ auth }: HttpContextContract) {
     await auth.use('web').logout()
   }
 }

@@ -12,16 +12,18 @@ export default class UserValidator {
         gmailRemoveDots: true,
         gmailRemoveSubaddress: true,
       }),
+      rules.unique({ table: 'users', column: 'email' }),
     ]),
-    password: schema.string({ trim: true }, [
-      rules.confirmed('passwordConfirm'),
-      rules.minLength(4),
-    ]),
+    password: schema.string({ trim: true }, [rules.confirmed('passwordConfirm'), rules.validate()]),
   })
 
   public messages: CustomMessages = {
     'required': 'Le champs doit etre complete.',
     'email': `l'email doit etre au format email : bernard@email.com,  jeannette.dupond@laposte.fr`,
+    'email.unique': 'Cet adresse email est deja utilise !!',
     'passwordConfirm.confirmed': 'Les mots de passe doivent se correspondre',
+    'password.validate': `Le mot de passe n'est pas assez fort :
+    • il doit etre d'une longueur minimum de 8 caracteres
+    • il doit contenir au minimum 2 chiffres, 2 minuscules et 2 majuscules`,
   }
 }
