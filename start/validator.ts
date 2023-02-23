@@ -10,7 +10,7 @@
 import { validator } from '@ioc:Adonis/Core/Validator'
 import PasswordValidator from 'password-validator'
 
-validator.rule('validate', (value, _, options) => {
+validator.rule('validPasswd', (value, _, options) => {
   var schema = new PasswordValidator()
   // Add properties to it
   schema
@@ -40,8 +40,19 @@ validator.rule('validate', (value, _, options) => {
   if (testPasswd === false) {
     options.errorReporter.report(
       options.pointer,
-      'validate',
+      'validPasswd',
       'password validation failed',
+      options.arrayExpressionPointer
+    )
+  }
+})
+
+validator.rule('checkIsTrue', (value, _, options) => {
+  if (value !== true) {
+    options.errorReporter.report(
+      options.pointer,
+      'checkIsTrue',
+      'checkIsTrue validation failed',
       options.arrayExpressionPointer
     )
   }

@@ -1,21 +1,27 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
 import MessageValidator from 'App/Validators/MessageValidator'
+import { ContactService } from 'App/Services/ContactService'
+import { inject } from '@adonisjs/core/build/standalone'
 
+export interface MessageData {
+  surname: string
+  name: string
+  email: string
+  content: string
+  conditions: boolean
+}
+
+@inject()
 export default class MessagesController {
-  async send({ request, session }: HttpContextContract) {
-    const data = await request.validate(MessageValidator)
+  constructor(private contact: ContactService) {}
 
-    if (data.conditions === true) {
-      await Database.table('messages').returning('id').insert({
-        surname: data.surname,
-        name: data.name,
-        email: data.email,
-        content: data.content,
-      })
-      return `Le messasge a ete envoye.`
-    } else {
-      return { check: false }
-    }
+  async send({ request }: HttpContextContract) {
+    const x = request.body()
+    console.log(x.conditions)
+
+    const data = await request.validate(MessageValidator)
+    this.contact.send(data as MessageData)
+
+    return `Le messasge a ete envoye.`
   }
 }
