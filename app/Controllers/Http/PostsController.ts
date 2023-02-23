@@ -5,7 +5,9 @@ import PostValidator from 'App/Validators/PostValidator'
 export default class PostsController {
   async new({ request, auth }: HttpContextContract) {
     const data = await request.validate(PostValidator)
-    const post = await Post.create({
+
+    const post = new Post()
+    post.merge({
       ...data,
       status: true,
       user_id: auth.user.id,
@@ -21,22 +23,26 @@ export default class PostsController {
     }
   }
 
-  async update({ params, request, bouncer }: HttpContextContract) {
+  async update({ params, request, bouncer, response }: HttpContextContract) {
     const id = params.id
     const data = await request.validate(PostValidator)
 
     const post = await Post.findOrFail(id)
     if ((await bouncer.allows('editPost', post)) === true) {
-      post
-        .merge({
-          ...data,
-        })
-        .save()
+      if (params.title === post.title || params.title === '' || params.content === post.content)
+        return response.status(202)
+      else {
+        post
+          .merge({
+            ...data,
+          })
+          .save()
 
-      return {
-        id: id,
-        new: false,
-        msg: `L'article a ete mit a jour`,
+        return {
+          id: id,
+          new: false,
+          msg: `L'article a ete mit a jour`,
+        }
       }
     } else {
       return {

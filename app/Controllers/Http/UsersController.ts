@@ -9,7 +9,6 @@ export default class UsersController {
     const data = await request.validate(UserValidator)
 
     const user = new User()
-
     user.merge({
       ...data,
     })
