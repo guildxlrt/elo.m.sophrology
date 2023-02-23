@@ -15,6 +15,9 @@
         @else
             type="text"
         @end
+        @if(active === false)
+            disabled
+        @end
     >
 </div>
 @if(flashMessages.has(`errors.${name}`) && type === 'create')

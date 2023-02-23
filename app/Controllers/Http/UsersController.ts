@@ -2,20 +2,30 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import UserValidator from 'App/Validators/UserValidator'
 
+export const allowNewUsr = Boolean(Number(process.env.CREATE_USER))
+
 export default class UsersController {
   async create({ request, response, session, auth }: HttpContextContract) {
     const data = await request.validate(UserValidator)
 
-    const user = await User.create({
+    const user = new User()
+
+    user.merge({
       ...data,
     })
-    user.save()
 
-    const id = user.$attributes.id
-    session.flash({ success: `L'utilisateur ${id} a ete cree !!` })
+    if (allowNewUsr === true) {
+      await user.save()
 
-    await auth.use('web').attempt(data.email, data.password)
+      const id = user.$attributes.id
+      session.flash({ success: `L'utilisateur ${id} a ete cree !!` })
 
+      await auth.use('web').attempt(data.email, data.password)
+    } else {
+      session.flash({
+        alert: `La creation de nouveaux compte est suspendue !!`,
+      })
+    }
     return response.redirect().back()
   }
 

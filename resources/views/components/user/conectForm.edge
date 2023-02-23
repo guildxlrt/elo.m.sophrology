@@ -23,7 +23,8 @@
             title: 'Adresse email',
             name: 'email',
             placeholder: 'adresse@email',
-            value: ''
+            value: '',
+            active: allowNewUsr
         })
 
         
@@ -32,7 +33,9 @@
             title: 'Mot de passe',
             name: 'password',
             placeholder: 'mot de passe',
-            value: ''
+            value: '',
+            active: allowNewUsr
+
         })
 
         @if(type === 'create')
@@ -41,7 +44,8 @@
                 title: 'Confirmation',
                 name: 'passwordConfirm',
                 placeholder: 'confirmation',
-                value: ''
+                value: '',
+                active: allowNewUsr
             })
         @end
 

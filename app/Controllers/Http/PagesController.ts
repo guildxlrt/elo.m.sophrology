@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
+import { allowNewUsr } from './UsersController'
 
 export default class PagesController {
   async index({ view, auth }: HttpContextContract) {
@@ -75,6 +76,6 @@ export default class PagesController {
       user = auth.user.id
     }
 
-    return view.render('pages/user', { user: user })
+    return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr })
   }
 }
