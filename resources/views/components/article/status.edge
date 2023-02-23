@@ -24,9 +24,11 @@
             x-bind:class="isOnline ? 'is-dark' : 'is-info'"
             x-html="changeStatus"
             x-on:click="
-                newStatus(id, isOnline)
-                .then(alert(`L'etat a ete change`))
-                .then(isOnline = !isOnline)
+                newStatus(id)
+                .then((res) => {
+                    alert(res.msg)
+                    if(res.success === true) isOnline = !isOnline
+                })
             "
         ></button>
     </div>

@@ -3,7 +3,7 @@ import User from 'App/Models/User'
 import UserValidator from 'App/Validators/UserValidator'
 
 export default class UsersController {
-  async create({ request, response, session }: HttpContextContract) {
+  async create({ request, response, session, auth }: HttpContextContract) {
     const data = await request.validate(UserValidator)
 
     const user = await User.create({
@@ -13,6 +13,9 @@ export default class UsersController {
 
     const id = user.$attributes.id
     session.flash({ success: `L'utilisateur ${id} a ete cree !!` })
+
+    await auth.use('web').attempt(data.email, data.password)
+
     return response.redirect().back()
   }
 
@@ -25,6 +28,7 @@ export default class UsersController {
     } catch {
       session.flash({ alert: 'identifiants incorrects' })
     }
+
     return response.redirect().back()
   }
 

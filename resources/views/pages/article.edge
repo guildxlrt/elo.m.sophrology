@@ -10,7 +10,7 @@
         @end
 
     >
-        @if(post.id !== 'new' && user !== false)
+        @if(post.id !== 'new' && user !== false && isAuthor === true)
             @!component('../components/article/status', {
                 status: post.status,
                 id: post.id
@@ -41,7 +41,7 @@
                 </div>
             </article>
 
-            @if(user !== false)
+            @if(user !== false && isAuthor === true)
                 @!component('../components/article/edit/edit.edge', {
                     id: post.id,
                     title: post.title,

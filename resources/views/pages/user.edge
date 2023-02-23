@@ -1,8 +1,6 @@
 @layout('layout')
 
-@section('page')
-
-    
+@section('page')  
 
     @if(user === false)
         <section class="section is-medium has-text-centered centering-item dashboard">
@@ -19,7 +17,5 @@
     @else
       @!component('../components/user/dashboard.edge')
     @end
-
-    
     
 @endsection

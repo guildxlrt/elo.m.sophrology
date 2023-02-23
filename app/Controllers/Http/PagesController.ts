@@ -34,7 +34,7 @@ export default class PagesController {
     return view.render('pages/blog', { posts, user: user })
   }
 
-  async article({ params, view, auth, response, session }: HttpContextContract) {
+  async article({ params, view, auth, response, session, bouncer }: HttpContextContract) {
     if (params.id === 'new') {
       if (auth.user === undefined) {
         session.flash({ alert: 'Vous devez etre connecte pour rediger' })
@@ -48,13 +48,24 @@ export default class PagesController {
         return view.render('pages/article', { post, user: user })
       }
     } else {
+      const post = await Post.findOrFail(params.id)
+
       let user = false
+      let author = false
 
       if (auth.user !== undefined) {
         user = auth.user.id
+
+        if ((await bouncer.allows('editPost', post)) === true) {
+          author = true
+        }
       }
-      const post = await Post.findOrFail(params.id)
-      return view.render('pages/article', { post, user: user })
+
+      return view.render('pages/article', {
+        post,
+        user: user,
+        isAuthor: author,
+      })
     }
   }
 
