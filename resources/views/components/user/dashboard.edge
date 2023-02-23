@@ -4,7 +4,45 @@
     >
         Tableau de bord
     </h1>
-    @!component('../../components/user/createPost.edge')
+    <div
+        class="container has-text-centered centering-item"
+    >
+        <h1
+            class="title is-4"
+        >
+            Ecrire un article :
+        </h1>
 
-    @!component('../../components/user/logout.edge')
+        <div class="container">
+            <div class="control">
+                <a
+                    class="button is-link"
+                    href="{{route('get.article', {id: 'new'})}}"
+                >
+                    Nouvel article
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="container has-text-centered centering-item"
+    >
+        <h1
+            class="title is-4"
+        >
+            Se deconnecter :
+        </h1>
+
+        <div class="container">
+            <div class="control">
+                <button
+                    class="button is-dark"
+                    x-on:click="logout()"
+                >
+                    Deconnexion
+                </button>
+            </div>
+        </div>
+    </div>
 </section>
