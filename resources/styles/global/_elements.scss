@@ -56,7 +56,7 @@ a {
 .button {
   border-radius: 15px;
   border: 0px;
-  transition: all 0.35s $bezier-smooth 0s;
+  transition: all 0.35s $bezier-1 0s;
 
   &.is-info {
     @include btnColors($info-btn);

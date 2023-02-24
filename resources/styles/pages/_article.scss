@@ -1,18 +1,9 @@
 .section.is-medium {
   padding-top: 100px;
-  &.isNew {
-    padding-top: 144px;
-  }
 }
-
 .article-view {
-  @include opacity($bezier-smooth);
-
-  > .edit-btn {
-    margin: 40px;
-  }
+  @include opacity($bezier-1);
 }
-
 .article-wrap {
   @include slantShadow(3px, 10px, 0.3);
   border-radius: 3px 10px 6px 4px;
@@ -32,6 +23,9 @@
 
     > .title {
       min-height: 125px;
+    }
+    > .content.read-it {
+      min-height: 390px;
     }
 
     > .title,

@@ -45,7 +45,7 @@
   border-width: 5px;
 
   &:hover {
-    @include over($bezier);
+    @include over($bezier-1);
   }
 
   &__cont {
@@ -53,7 +53,7 @@
     z-index: 20;
     top: 80px;
 
-    @include appear($bezier-smooth);
+    @include opacity($bezier-1);
 
     > .tag:not(body) {
       &.is-warning,

@@ -2,11 +2,7 @@
 
 @section('page')
     <section
-        @if(post.id !== 'new')
-            class="section is-medium article-view"
-        @else
-            class="section is-medium article-view isNew"
-        @end
+        class="section is-medium article-view"
         @if(flashMessages.has(`errors`))
             x-data="{ modif: true }"
         @else
@@ -36,7 +32,7 @@
             >
                 <div class="article">
                     <h1 class="title">{{post.title}}</h1>
-                    <div class="content">
+                    <div class="content read-it">
                         <p>
                             {{post.content}}
                         </p>

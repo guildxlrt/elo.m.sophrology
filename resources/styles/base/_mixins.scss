@@ -139,12 +139,6 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-@mixin appear($timing-func) {
-  transform: scale(0);
-  opacity: 0;
-  animation: appear 1.2s $timing-func 0.3s 1 normal forwards;
-}
-
 @mixin over($timing-func) {
   transform: scale(1);
   opacity: 1;

@@ -1,4 +1,5 @@
 <form
+    class="edit-new-form"
     @submit.prevent="submitPostForm($event, '{{id}}', errors)"
     x-data="{
         errors: {
@@ -13,6 +14,9 @@
     
 >
     @if(id === 'new')
+        <div class="container has-text-centered" style="margin-bottom: 45px;">
+            <label class="title is-2">Rediger le nouvel article : </label>
+        </div>
         <div class="container has-text-centered edit-btn">
             <a
                 class="button is-dark"
@@ -33,8 +37,8 @@
             <div class="article">
                 @!component('../../../components/article/edit/inputs.edge', {
                     id: id,
-                    title: 'UN tritgre',
-                    content: 'content',
+                    title: '',
+                    content: '',
                 })
             </div>
         </div>

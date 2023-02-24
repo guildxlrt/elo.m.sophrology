@@ -1,3 +1,9 @@
+.section.is-large {
+  @media (min-width: 1024px) {
+    padding-top: 100px;
+  }
+}
+
 .blog {
   @include flexColumn;
 
@@ -7,7 +13,7 @@
   }
 
   > .title {
-    margin-top: 104px;
+    margin-top: 58px;
 
     @media (min-width: 1024px) {
       margin-top: 0px;
@@ -35,13 +41,13 @@
           padding: 0px;
         }
 
-        @include appear($bezier-smooth);
+        @include opacity($bezier-2);
 
         .card {
           border-radius: 7% 40% 7% 40% / 40% 8% 40% 7%;
 
           &:hover {
-            @include over($bezier);
+            @include over($bezier-1);
           }
 
           width: 340px;
