@@ -1,17 +1,22 @@
 /* offset-x | offset-y | blur-radius | spread-radius | color */
-@mixin shadow($blur-radius, $spread-radius, $shadow-color, $shadow-amount) {
+@mixin smoothShadow($blur-radius, $spread-radius, $shadow-color, $shadow-amount) {
   box-shadow: 0px 0px $blur-radius $spread-radius
     transparentize($color: $shadow-color, $amount: $shadow-amount);
 }
 
-@mixin transparent-back($color-value, $amount-value) {
+@mixin slantShadow($direction, $blur-radius, $shadow-amount) {
+  box-shadow: $direction calc($direction + 2px) $blur-radius 4px
+    transparentize($shadow, $shadow-amount);
+}
+
+@mixin transparentBack($color-value, $amount-value) {
   $darkened: darken($color-value, 42%);
 
   @if $color-value == $light or $color-value == white {
     $darkened: darken($color-value, 12%);
   }
 
-  @include lin-gradient(
+  @include linGradient(
     $to-top-left,
     transparentize($color: $darkened, $amount: $amount-value) 0%,
     transparentize($color: $color-value, $amount: $amount-value) 100%
@@ -20,7 +25,7 @@
   @if $color-value == $black or $color-value == $dark or $color-value == $dark-bis {
     $lightened: lighten($color-value, 50%);
 
-    @include lin-gradient(
+    @include linGradient(
       $to-top-left,
       transparentize($color: $color-value, $amount: $amount-value) 0%,
       transparentize($color: $lightened, $amount: $amount-value) 100%
@@ -28,12 +33,12 @@
   }
 }
 
-@mixin blur-filter($amount-value) {
+@mixin blurFilter($amount-value) {
   backdrop-filter: blur($amount-value);
   -webkit-backdrop-filter: blur($amount-value);
 }
 
-@mixin btn-colors($color-value) {
+@mixin btnColors($color-value) {
   $main: $color-value;
   $lightened: lighten($color-value, 20%);
   $darkened: darken($color-value, 20%);
@@ -41,7 +46,7 @@
 
   // white buttons
   @if $color-value == $white or $color-value == $light {
-    @include rad-gradient(
+    @include radGradient(
       transparentize($color: $lightened, $amount: $amount-value),
       60%,
       transparentize($color: $main, $amount: $amount-value),
@@ -55,7 +60,7 @@
       $main: lighten($color-value, 10%);
     }
 
-    @include rad-gradient(
+    @include radGradient(
       transparentize($color: $darkened, $amount: $amount-value),
       40%,
       transparentize($color: $main, $amount: $amount-value),
@@ -68,44 +73,45 @@
   border: 2px solid transparentize($color: darken($main, 10%), $amount: $amount-value);
   &:hover {
     transform: scale(1.08);
-    @include shadow(6px, 1px, $color-value, 0);
+    @include smoothShadow(6px, 1px, $color-value, 0);
   }
+
   &.is-hovered {
     background-color: $color-value;
   }
 }
 
-@mixin recenter {
+@mixin reCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@mixin flash-colors($color-value) {
+@mixin flashColors($color-value) {
   border: 3px solid transparentize(desaturate($color-value, 50%), 0.5);
-  @include blur-filter(4px);
+  @include blurFilter(4px);
   background-color: none;
 
-  @include shadow(6px, 3px, desaturate($color-value, 50%), 0.5);
+  @include smoothShadow(6px, 3px, desaturate($color-value, 50%), 0.5);
 
-  @include lin-gradient(
+  @include linGradient(
     $to-botom-right,
     transparentize(saturate($color-value, 50%), 0.3) 0%,
     transparentize(desaturate($color-value, 50%), 0.3) 100%
   );
 }
 
-@mixin flex-row {
+@mixin flexRow {
   display: flex;
   flex-direction: row;
 }
 
-@mixin flex-column {
+@mixin flexColumn {
   display: flex;
   flex-direction: column;
 }
 
-@mixin lin-gradient($direction, $color-1, $color-2) {
+@mixin linGradient($direction, $color-1, $color-2) {
   background: $color-1; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     $direction,
@@ -119,7 +125,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-@mixin rad-gradient($color-1, $amount-1, $color-2, $amount-2, $color-3, $amount-3) {
+@mixin radGradient($color-1, $amount-1, $color-2, $amount-2, $color-3, $amount-3) {
   background: $color-1; /* fallback for old browsers */
   background: -webkit-radial-gradient(
     $color-1 $amount-1,
@@ -131,4 +137,21 @@
     $color-2 $amount-2,
     $color-3 $amount-3
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin appear($timing-func) {
+  transform: scale(0);
+  opacity: 0;
+  animation: appear 1.2s $timing-func 0.3s 1 normal forwards;
+}
+
+@mixin over($timing-func) {
+  transform: scale(1);
+  opacity: 1;
+  animation: over 6.2s $timing-func 0.3s infinite alternate backwards;
+}
+
+@mixin opacity($timing-func) {
+  opacity: 0;
+  animation: justOpacity 3.2s $timing-func 0.3s 1 alternate forwards;
 }

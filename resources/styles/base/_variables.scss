@@ -47,3 +47,7 @@ $text: $dark;
 $to-right: 90deg;
 $to-botom-right: 135deg;
 $to-top-left: 315deg;
+
+//Cubic-bezier
+$bezier-smooth: cubic-bezier(0, 0.5, 0.8, 0.6);
+$bezier: cubic-bezier(0.2, 0.5, 1, 0.2);

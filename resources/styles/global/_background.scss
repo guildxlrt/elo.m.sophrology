@@ -1,5 +1,5 @@
 .bg-gradient {
-  @include lin-gradient($to-botom-right, $white, $bg-color);
+  @include linGradient($to-botom-right, $white, $bg-color);
 }
 
 .leafs {

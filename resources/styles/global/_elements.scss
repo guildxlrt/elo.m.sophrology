@@ -53,67 +53,57 @@ a {
 
 //----// CLASSES
 
-.footer {
-  min-height: 336px;
-  > .container > .columns > .column {
-    color: $danger;
-    &:hover {
-      color: $dark;
-    }
-  }
-}
-
 .button {
   border-radius: 15px;
   border: 0px;
-  transition: all 0.3s;
+  transition: all 0.35s $bezier-smooth 0s;
 
   &.is-info {
-    @include btn-colors($info-btn);
+    @include btnColors($info-btn);
     color: $dark;
     &:hover {
       color: $dark;
-      @include shadow(6px, 1px, darken($info-btn, 20%), 0);
+      @include smoothShadow(6px, 1px, darken($info-btn, 20%), 0);
     }
   }
   &.is-link {
-    @include btn-colors($link-btn);
+    @include btnColors($link-btn);
     &:hover {
-      @include shadow(6px, 1px, darken($link-btn, 30%), 0);
+      @include smoothShadow(6px, 1px, darken($link-btn, 30%), 0);
       color: white;
       background-color: $link-btn;
     }
   }
   &.is-success {
-    @include btn-colors($success-btn);
+    @include btnColors($success-btn);
     color: $dark;
     &:hover {
       color: $dark;
-      @include shadow(6px, 2px, #9bf48a, 0);
+      @include smoothShadow(6px, 2px, #9bf48a, 0);
     }
   }
   &.is-danger {
-    @include btn-colors($danger-btn);
+    @include btnColors($danger-btn);
   }
 
   &.is-dark {
-    @include btn-colors($dark);
+    @include btnColors($dark);
   }
   &.is-grey {
     color: white;
-    @include btn-colors($grey);
+    @include btnColors($grey);
   }
   &.is-white {
-    @include btn-colors($white);
+    @include btnColors($white);
   }
 }
 
 .input,
 .textarea {
-  @include lin-gradient($to-top-left, darken($input, 7%), $input);
+  @include linGradient($to-top-left, darken($input, 8%), $input);
   border-radius: 10px;
 
-  @include shadow(4px, 1px, darken($input, 20%), 0);
+  @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
   &:hover {
     border-color: $input-hover;
   }
@@ -122,9 +112,8 @@ a {
   }
 
   &:disabled {
-    @include shadow(4px, 1px, darken($input, 20%), 0);
-    @include lin-gradient($to-top-left, darken($silver, 7%), $silver);
-
+    @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
+    @include linGradient($to-top-left, darken($silver, 7%), $silver);
     border-color: $silver;
   }
 }

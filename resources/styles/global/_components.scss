@@ -14,7 +14,7 @@
     }
 
     > .container > .field > .contact-buttons {
-      @include flex-row;
+      @include flexRow;
       justify-content: center;
 
       > .control > .button {
@@ -25,7 +25,7 @@
 }
 
 .edit-btn {
-  @include flex-row;
+  @include flexRow;
   justify-content: space-evenly;
   min-width: 250px;
 
@@ -40,10 +40,16 @@
   padding: 10px 20px 10px 20px;
   border-width: 5px;
 
+  &:hover {
+    @include over($bezier);
+  }
+
   &__cont {
     position: sticky;
     z-index: 20;
     top: 80px;
+
+    @include appear($bezier-smooth);
 
     > .tag:not(body) {
       &.is-warning,
@@ -55,15 +61,15 @@
   }
 
   &.is-success {
-    @include flash-colors($success);
+    @include flashColors($success);
   }
   &.is-warning {
-    @include flash-colors($warning);
+    @include flashColors($warning);
   }
 }
 
 .error {
-  @include flex-row;
+  @include flexRow;
   margin: 24px;
   justify-content: center;
 
@@ -80,17 +86,47 @@
 }
 
 .notification {
-  @include shadow(4px, 3px, $shadow, 0.5);
-  &.is-warning {
-    @include shadow(8px, 3px, $shadow, 0.5);
-  }
-  &.is-white {
-    @include shadow(12px, 3px, $shadow, 0.5);
-  }
+  @include slantShadow(1px, 7px, 0.5);
 }
 
+.navbar {
+  @include smoothShadow(6px, 3px, $shadow, 0.4);
+}
 .navbar-end {
   @media (min-width: 1024px) and (max-width: 1280px) {
     margin-left: 555px;
   }
+}
+
+.footer {
+  @include smoothShadow(6px, 3px, $shadow, 0.4);
+  min-height: 336px;
+  > .container > .columns > .column {
+    color: $danger;
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+.card {
+  @include flexColumn;
+  justify-content: space-between;
+  padding: 38px 22px;
+  transition: all 0.3s;
+  width: 100%;
+  min-width: 320px;
+  max-width: 420px;
+  min-height: 370px;
+  box-shadow: 3px 5px 10px 4px transparentize($shadow, 0.3);
+  > .card-header {
+    @include smoothShadow(0px, 0px, transparent, 1);
+  }
+  > .card-footer {
+    border-top: none;
+  }
+}
+
+.hero {
+  @include smoothShadow(6px, 3px, $shadow, 0.4);
 }

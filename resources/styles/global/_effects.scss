@@ -5,56 +5,45 @@
 }
 
 .add-blur {
-  @include blur-filter(4px);
+  @include blurFilter(4px);
 
   &.is-primary {
-    @include transparent-back($primary, 0.7);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include transparentBack($primary, 0.7);
   }
   &.is-secondary {
-    @include transparent-back($secondary, 0.7);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include transparentBack($secondary, 0.7);
   }
   &.is-info {
-    @include transparent-back($info, 0.7);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include transparentBack($info, 0.7);
   }
   &.is-warning {
-    @include transparent-back($warning, 0.7);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include transparentBack($warning, 0.7);
   }
   &.is-success {
-    @include transparent-back($success, 0.7);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include transparentBack($success, 0.7);
   }
   &.is-white {
-    @include transparent-back(white, 0.2);
-    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
+    @include transparentBack(white, 0.2);
   }
   &.is-light {
-    @include transparent-back($light, 0.2);
-    @include shadow(10px, 3px, darken($shadow, 10), 0.35);
+    @include transparentBack($light, 0.2);
   }
   &.is-dark {
-    @include transparent-back($dark-bis, 0.5);
-    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
+    @include transparentBack($dark-bis, 0.5);
   }
   &.is-black {
-    @include transparent-back($black, 0.5);
-    @include shadow(10px, 3px, darken($shadow, 10), 0.25);
+    @include transparentBack($black, 0.5);
   }
 
   &.navbar {
-    @include transparent-back($navbar-block, 0.8);
-    @include shadow(6px, 3px, $shadow, 0.4);
+    @include transparentBack($navbar-block, 0.8);
   }
   &.navbar-menu {
-    @include transparent-back($navbar-block, 1);
+    @include transparentBack($navbar-block, 1);
   }
 
   &.notification {
-    @include blur-filter(2px);
-    @include shadow(6px, 3px, $shadow, 0.5);
+    @include blurFilter(2px);
   }
 }
 

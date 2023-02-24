@@ -12,7 +12,7 @@
         <div
             class="container"
             x-show="showForm"
-            x-transition
+            x-transition.duration.1200ms
         >
             <form
                 class="field"
@@ -61,7 +61,7 @@
                 <div
                     class="edit-btn"
                     x-show="showForm"
-                    x-transition
+                    x-transition.duration.1200ms
                 >
                     <div class="control">
                         <button
@@ -87,7 +87,7 @@
             </form>
         </div>
 
-        <div class="control" x-show="!showForm" x-transition>
+        <div class="control" x-show="!showForm" x-transition.duration.1200ms>
             <button
                 class="button is-link"
                 @click.prevent="showForm = !showForm"

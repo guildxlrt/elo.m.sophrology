@@ -2,7 +2,7 @@
   background-image: url('../../assets/images/pexels-stayhereforu-15113964.webp');
   background-position: 40% center;
   background-size: cover;
-  @include shadow(12px, 6px, $shadow, 0.3);
+  @include smoothShadow(12px, 6px, $shadow, 0.3);
 
   > .hero-body > .title {
     color: lighten($color: $primary, $amount: 10);

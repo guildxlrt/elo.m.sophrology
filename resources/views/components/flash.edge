@@ -4,7 +4,7 @@
             class="tag is-success is-large flash" 
             x-data="{click: false}" 
             x-show="!click"
-            x-transition
+            x-transition.duration.1200ms
         >
             {{ flashMessages.get('success') }}
             <button
@@ -19,7 +19,7 @@
             class="tag is-warning is-large flash" 
             x-data="{click: false}"
             x-show="!click"
-            x-transition
+            x-transition.duration.1200ms
         >
             {{ flashMessages.get('alert') }}
             <button
