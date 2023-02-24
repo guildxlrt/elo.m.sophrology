@@ -153,5 +153,5 @@
 
 @mixin opacity($timing-func) {
   opacity: 0;
-  animation: justOpacity 3.2s $timing-func 0.3s 1 alternate forwards;
+  animation: justOpacity 2.2s $timing-func 0.3s 1 alternate forwards;
 }

@@ -8,8 +8,8 @@ export default class UsersController {
   async create({ request, response, session, auth }: HttpContextContract) {
     const data = await request.validate(UserValidator)
 
-    const user = new User()
-    user.merge({
+    const user = await new User()
+    await user.merge({
       ...data,
     })
 
@@ -22,7 +22,7 @@ export default class UsersController {
       await auth.use('web').attempt(data.email, data.password)
     } else {
       session.flash({
-        alert: `La creation de nouveaux compte est suspendue !!`,
+        alert: `Creation de compte actuellement suspendue !!`,
       })
     }
     return response.redirect().back()

@@ -16,9 +16,6 @@ export default class MessagesController {
   constructor(private contact: ContactService) {}
 
   async send({ request }: HttpContextContract) {
-    const x = request.body()
-    console.log(x.conditions)
-
     const data = await request.validate(MessageValidator)
     this.contact.send(data as MessageData)
 

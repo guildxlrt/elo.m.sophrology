@@ -2,13 +2,16 @@
 
 @section('page')
     <section
-        class="section is-medium article-view"
+        @if(post.id !== 'new')
+            class="section is-medium article-view"
+        @else
+            class="section is-medium article-view isNew"
+        @end
         @if(flashMessages.has(`errors`))
             x-data="{ modif: true }"
         @else
             x-data="{ modif: false }"    
         @end
-
     >
         @if(post.id !== 'new' && user !== false && isAuthor === true)
             @!component('../components/article/status', {
@@ -29,7 +32,7 @@
             <article
                 class="container article-wrap"
                 x-show="!modif"
-                x-transition
+                x-transition.opacity.1200ms
             >
                 <div class="article">
                     <h1 class="title">{{post.title}}</h1>

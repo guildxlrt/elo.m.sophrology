@@ -6,13 +6,11 @@ export default class PostsController {
   async new({ request, auth }: HttpContextContract) {
     const data = await request.validate(PostValidator)
 
-    const post = new Post()
-    post.merge({
+    const post = await Post.create({
       ...data,
       status: true,
       user_id: auth.user.id,
     })
-    post.save()
 
     const id = post.$attributes.id
 
@@ -32,7 +30,7 @@ export default class PostsController {
       if (params.title === post.title || params.title === '' || params.content === post.content)
         return response.status(202)
       else {
-        post
+        await post
           .merge({
             ...data,
           })
@@ -59,7 +57,7 @@ export default class PostsController {
     const post = await Post.findOrFail(id)
 
     if ((await bouncer.allows('editPost', post)) === true) {
-      post
+      await post
         .merge({
           status: !post.status,
         })
@@ -83,7 +81,7 @@ export default class PostsController {
 
     const post = await Post.findOrFail(id)
     if ((await bouncer.allows('editPost', post)) === true) {
-      post.delete()
+      await post.delete()
       return response.status(200).json("L'article a ete supprime.")
     } else return response.status(401).json("Cet article n'est pas le votre")
   }

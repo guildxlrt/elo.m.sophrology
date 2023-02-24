@@ -8,7 +8,7 @@
     }"
     @if(id !== 'new')
         x-show="modif"
-        x-transition
+        x-transition.opacity.1200ms
     @end
     
 >
@@ -49,9 +49,9 @@
             </div>
         </div>
         <div
-            class="container edit-btn"
+            class="container edit-btn down"
             x-show="modif"
-            x-transition
+            x-transition.opacity.1200ms
         >
             <button
                 class="button is-grey"

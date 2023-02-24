@@ -53,6 +53,9 @@
         <button
             type="submit"
             class="button is-link"
+            @if(allowNewUsr === false)
+                disabled
+            @end
         >
             @if(type === 'create')
                 Creer  

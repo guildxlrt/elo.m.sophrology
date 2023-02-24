@@ -1,9 +1,9 @@
 <div
     class="form"
     x-show="!modif"
-    x-transition
+    x-transition.opacity.1200ms
 >
-    <div class="container has-text-centered edit-btn">
+    <div class="container has-text-centered edit-btn down">
         <button
             class="button is-link"
             x-on:click="modif = !modif"
