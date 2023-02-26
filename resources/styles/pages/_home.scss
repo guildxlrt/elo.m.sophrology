@@ -9,3 +9,11 @@
     text-shadow: 1px 1px 2px #ed1c46, 0 0 0.5em $info, 0 0 1.2em $primary;
   }
 }
+
+.textblock {
+  border-radius: 5% 95% 25% 44% / 15% 30% 60% 50%;
+  $size: 320px;
+  height: $size;
+  width: $size;
+  padding: 80px;
+}

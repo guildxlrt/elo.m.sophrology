@@ -22,6 +22,7 @@ export default class PagesController {
     if (auth.user !== undefined) {
       user = auth.user.id
     }
+
     return view.render('pages/sessions', { user: user })
   }
 
@@ -32,37 +33,39 @@ export default class PagesController {
     }
 
     const posts = await Post.all()
+
     return view.render('pages/blog', { posts, user: user })
   }
 
-  async article({ params, view, auth, response, session, bouncer }: HttpContextContract) {
+  async post({ params, view, auth, response, session, bouncer }: HttpContextContract) {
+    let user = false
+    let author = false
+
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
     if (params.id === 'new') {
       if (auth.user === undefined) {
         session.flash({ alert: 'Vous devez etre connecte pour rediger' })
+
         return response.redirect().toPath('/user')
       } else {
-        let user = false
-        if (auth.user !== undefined) {
-          user = auth.user.id
+        const post = {
+          id: params.id,
+          content_type: params.content_type,
         }
-        const post = { id: 'new' }
-        return view.render('pages/article', { post, user: user })
+
+        return view.render('pages/post', { post, user: user })
       }
     } else {
       const post = await Post.findOrFail(params.id)
 
-      let user = false
-      let author = false
-
-      if (auth.user !== undefined) {
-        user = auth.user.id
-
-        if ((await bouncer.allows('editPost', post)) === true) {
-          author = true
-        }
+      if (auth.user !== undefined && (await bouncer.allows('editPost', post)) === true) {
+        author = true
       }
 
-      return view.render('pages/article', {
+      return view.render('pages/post', {
         post,
         user: user,
         isAuthor: author,

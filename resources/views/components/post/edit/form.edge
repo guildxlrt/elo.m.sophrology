@@ -1,6 +1,6 @@
 <form
     class="edit-new-form"
-    @submit.prevent="submitPostForm($event, '{{id}}', errors)"
+    @submit.prevent="submitPostForm($event, '{{id}}', '{{content_type}}', errors)"
     x-data="{
         errors: {
             title: '',
@@ -15,7 +15,7 @@
 >
     @if(id === 'new')
         <div class="container has-text-centered" style="margin-bottom: 45px;">
-            <label class="title is-2">Rediger le nouvel article : </label>
+            <label class="title is-2">Nouvelle Publication : </label>
         </div>
         <div class="container has-text-centered edit-btn">
             <a
@@ -32,25 +32,35 @@
             </button>
         </div>
         <div
-            class="container article-wrap add-blur"
+            @if(content_type === 'ARTICLE')
+                class="container post-wrap article add-blur"
+            @elseif(content_type === 'VIDEO')
+                class="container post-wrap video add-blur"
+            @end
         >
-            <div class="article">
-                @!component('../../../components/article/edit/inputs.edge', {
-                    id: id,
-                    title: '',
-                    content: '',
-                })
-            </div>
+            
+            @!component('../../../components/post/edit/inputs.edge', {
+                id: id,
+                title: '',
+                content: '',
+                content_type: content_type
+            })
+            
         </div>
     @else
-        <div class="container article-wrap add-blur">
-            <div class="article">
-                @!component('../../../components/article/edit/inputs.edge', {
-                    id: id,
-                    title: title,
-                    content: content,
-                })
-            </div>
+        <div
+            @if(content_type === 'ARTICLE')
+                class="container post-wrap article add-blur"
+            @elseif(content_type === 'VIDEO')
+                class="container post-wrap video add-blur"
+            @end
+        >
+            @!component('../../../components/post/edit/inputs.edge', {
+                id: id,
+                title: title,
+                content: content,
+                content_type: content_type
+            })
         </div>
         <div
             class="container edit-btn down"

@@ -1,0 +1,48 @@
+<div
+    @if(content_type === 'ARTICLE')
+        class="post article"
+
+    @elseif(content_type === 'VIDEO')
+        class="post video"
+    @end
+>
+    <div class="title">
+        <label class="label" for="title">Titre</label>
+        <div class="control has-icons-left has-icons-right">
+            <input
+                id="title-input"
+                class="input"
+                type="text"
+                name="title"
+                placeholder="Titre"
+                value="{{title}}"
+            >
+        </div>
+        @!component('../../../components/inputError.edge', {
+            value: 'title'
+        })
+    </div>
+    <div class="content">
+        <label class="label" for="content">
+            @if(content_type === 'ARTICLE')
+                Article
+            @elseif(content_type === 'VIDEO')
+                Video
+            @end
+        </label>
+        @if(content_type === 'ARTICLE')
+            <div>
+                <textarea
+                    id="content-input"
+                    class="textarea"
+                    name="content"
+                    placeholder="Contenu"
+                >{{content}}</textarea>
+            </div>
+        @end
+        @!component('../../../components/inputError.edge', {
+            value: 'content'
+        })
+    </div>
+</div>
+

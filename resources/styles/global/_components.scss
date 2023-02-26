@@ -126,6 +126,10 @@
   > .card-header {
     @include smoothShadow(0px, 0px, transparent, 1);
   }
+  > .card-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
   > .card-footer {
     border-top: none;
   }

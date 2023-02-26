@@ -10,31 +10,32 @@ export async function deletePost(id) {
   let delAuth = null
 
   await axios({
-    method: 'get',
+    method: 'delete',
     url: `/blog/${id}/before-delete`,
     withCredentials: true,
   })
-    .then((res) => (delAuth = res.data.authorized))
-    .catch((err) => console.error(err))
-
-  if (delAuth === true) {
-    if (confirm(delMsg) === true) {
-      await axios({
-        method: 'delete',
-        url: `/blog/${id}/delete`,
-        withCredentials: true,
-      })
-        .then((res) => {
-          alert(res.data)
-          setTimeout(function () {
-            window.location.href = '/blog'
-          }, 1500)
+    .then(async () => {
+      if (confirm(delMsg) === true) {
+        await axios({
+          method: 'delete',
+          url: `/blog/${id}/delete`,
+          withCredentials: true,
         })
-        .catch((err) => console.error(err))
-    } else {
-      alert("L'article ne sera pas supprime")
-    }
-  } else alert("Cet article n'est pas le votre")
+          .then((res) => {
+            alert(res.data)
+            setTimeout(function () {
+              window.location.href = '/blog'
+            }, 1500)
+          })
+          .catch((err) => console.error(err))
+      } else {
+        alert('La publication ne sera pas supprime')
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      alert("Cette publication n'est pas le votre")
+    })
 }
 
 export async function newStatus(id) {
@@ -69,7 +70,7 @@ export function resetPostErrors(errors) {
   errors.content = ''
 }
 
-export async function submitPostForm(event, id, errors) {
+export async function submitPostForm(event, id, content_type, errors) {
   resetPostErrors(errors)
 
   const formData = new FormData(event.target)
@@ -91,6 +92,7 @@ export async function submitPostForm(event, id, errors) {
     data: {
       title: title,
       content: content,
+      content_type: content_type,
     },
   })
     .then((res) => {

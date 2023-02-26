@@ -2,15 +2,15 @@
 
 @section('page')
     <section
-        class="section is-medium article-view"
+        class="section is-medium post"
         @if(flashMessages.has(`errors`))
             x-data="{ modif: true }"
         @else
             x-data="{ modif: false }"    
         @end
-    >
+    >        
         @if(post.id !== 'new' && user !== false && isAuthor === true)
-            @!component('../components/article/status', {
+            @!component('../components/post/status', {
                 status: post.status,
                 id: post.id
             })
@@ -18,19 +18,31 @@
         
         
         @if(post.id === 'new')
-            @!component('../components/article/edit/form.edge', {
+            @!component('../components/post/edit/form.edge', {
                 id: post.id,
                 title: '',
                 content: '',
+                content_type: post.content_type
             })
-            
+
         @else
             <article
-                class="container article-wrap"
+                @if(post.content_type === 'ARTICLE')
+                    class="container post-wrap article"
+                @elseif(post.content_type === 'VIDEO')
+                    class="container post-wrap video"
+                @end
+                class="container post-wrap"
                 x-show="!modif"
                 x-transition.opacity.1200ms
             >
-                <div class="article">
+                <div 
+                    @if(post.content_type === 'ARTICLE')
+                        class="post article"
+                    @elseif(post.content_type === 'VIDEO')
+                        class="post video"
+                    @end
+                >
                     <h1 class="title">{{post.title}}</h1>
                     <div class="content read-it">
                         <p>
@@ -41,10 +53,11 @@
             </article>
 
             @if(user !== false && isAuthor === true)
-                @!component('../components/article/edit/edit.edge', {
+                @!component('../components/post/edit/edit.edge', {
                     id: post.id,
                     title: post.title,
                     content: post.content,
+                    content_type: post.content_type
                 }) 
             @end
         @end 

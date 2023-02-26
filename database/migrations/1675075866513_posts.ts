@@ -9,14 +9,25 @@ export default class extends BaseSchema {
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true }).nullable()
 
+      table
+        .enu('content_type', ['ARTICLE', 'VIDEO'], {
+          useNative: true,
+          enumName: 'post_content_type',
+          existingType: false,
+          schemaName: 'public',
+        })
+        .notNullable()
+
       table.string('title').notNullable()
-      table.text('content', 'text').nullable()
+      table.text('content', 'text').notNullable()
+      table.string('cover').nullable()
+
       table.boolean('status').notNullable().defaultTo(false)
-      table.string('thumbnail').nullable()
     })
   }
 
   public async down() {
+    this.schema.raw('DROP TYPE IF EXISTS "post_content_type"')
     this.schema.dropTable(this.tableName)
   }
 }

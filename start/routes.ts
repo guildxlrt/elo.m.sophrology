@@ -23,15 +23,17 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', 'PagesController.index')
 Route.get('/presentation', 'PagesController.about')
 Route.get('/les-seances-de-sophrologie', 'PagesController.sessions')
-Route.get('/blog', 'PagesController.blog').as('blog')
-Route.get('/blog/:id', 'PagesController.article').as('get.article')
 Route.get('/user', 'PagesController.user').as('user')
+
+Route.get('/blog', 'PagesController.blog').as('blog')
+Route.get('/blog/:id', 'PagesController.post').as('get.post')
+Route.get('/blog/:id/:content_type', 'PagesController.post').as('new.post')
 
 Route.group(() => {
   Route.post('/blog/new', 'PostsController.new')
   Route.post('/blog/:id/update', 'PostsController.update')
   Route.patch('/blog/:id/status', 'PostsController.status')
-  Route.get('/blog/:id/before-delete', 'PostsController.beforeDelete')
+  Route.delete('/blog/:id/before-delete', 'PostsController.beforeDelete')
   Route.delete('/blog/:id/delete', 'PostsController.delete')
 }).middleware('auth')
 

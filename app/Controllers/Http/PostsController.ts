@@ -27,9 +27,9 @@ export default class PostsController {
 
     const post = await Post.findOrFail(id)
     if ((await bouncer.allows('editPost', post)) === true) {
-      if (params.title === post.title || params.title === '' || params.content === post.content)
+      if (params.title === post.title || params.title === '' || params.content === post.content) {
         return response.status(202)
-      else {
+      } else {
         await post
           .merge({
             ...data,
@@ -67,13 +67,13 @@ export default class PostsController {
     } else return response.status(401).json('Acces non authorise')
   }
 
-  async beforeDelete({ params, bouncer }: HttpContextContract) {
+  async beforeDelete({ params, bouncer, response }: HttpContextContract) {
     const id = params.id
-
     const post = await Post.findOrFail(id)
+
     if ((await bouncer.allows('editPost', post)) === true) {
-      return { authorized: true }
-    } else return { authorized: false }
+      return response.status(202)
+    } else return response.status(401)
   }
 
   async delete({ params, response, bouncer }: HttpContextContract) {
