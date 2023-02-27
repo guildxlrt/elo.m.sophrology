@@ -1,6 +1,6 @@
 @if(field === 'content')
     <label class="label" for="{{field}}">{{tag}}</label>
-    <div class="control">
+    <div class="input-wrapper">
         <textarea
             class="textarea"
             placeholder="Expliquez les raisons de votre demande"
@@ -12,7 +12,7 @@
     })
   
 @elseif(field === 'conditions')
-    <div class="control">
+    <div class="input-wrapper">
         <label class="checkbox" for="{{field}}">
             <input
                 type="checkbox"
@@ -27,7 +27,7 @@
   
 @else
     <label class="label" for="{{field}}">{{tag}}</label>
-    <div class="control has-icons-left has-icons-right">
+    <div class="input-wrapper has-icons-left has-icons-right">
         <input
             class="input"
             type="text"

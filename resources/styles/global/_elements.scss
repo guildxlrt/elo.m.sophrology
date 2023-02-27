@@ -100,8 +100,8 @@ a {
 
 .input,
 .textarea {
-  @include linGradient($to-top-left, darken($input, 8%), $input);
-  border-radius: 10px;
+  @include linGradient($to-top-left, $darken-input, $input);
+  border-radius: $input-radius;
 
   @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
   &:hover {
@@ -115,5 +115,27 @@ a {
     @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
     @include linGradient($to-top-left, darken($silver, 7%), $silver);
     border-color: $silver;
+  }
+}
+
+.file.is-boxed.has-name .file-cta {
+  border-radius: $input-radius $input-radius 0 0;
+}
+.file.is-boxed.has-name .file-name {
+  border-radius: 0 0 $input-radius $input-radius;
+}
+
+.file {
+  border-radius: $input-radius;
+  width: fit-content;
+  @include reCenter();
+  @include smoothShadow(4px, 1px, darken($shadow, 30%), 0);
+
+  > .file-label {
+    > .file-name {
+      border-color: $darken-input;
+
+      @include linGradient($to-top-left, $darken-input, $input);
+    }
   }
 }

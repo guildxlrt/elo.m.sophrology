@@ -14,10 +14,7 @@
     
 >
     @if(id === 'new')
-        <div class="container has-text-centered" style="margin-bottom: 45px;">
-            <label class="title is-2">Nouvelle Publication : </label>
-        </div>
-        <div class="container has-text-centered edit-btn">
+        <div class="container has-text-centered wrap-buttons">
             <a
                 class="button is-dark"
                 href="{{route('blog')}}"
@@ -33,9 +30,9 @@
         </div>
         <div
             @if(content_type === 'ARTICLE')
-                class="container post-wrap article add-blur"
+                class="container post-wrapper article add-blur"
             @elseif(content_type === 'VIDEO')
-                class="container post-wrap video add-blur"
+                class="container post-wrapper video add-blur"
             @end
         >
             
@@ -50,9 +47,9 @@
     @else
         <div
             @if(content_type === 'ARTICLE')
-                class="container post-wrap article add-blur"
+                class="container post-wrapper article add-blur"
             @elseif(content_type === 'VIDEO')
-                class="container post-wrap video add-blur"
+                class="container post-wrapper video add-blur"
             @end
         >
             @!component('../../../components/post/edit/inputs.edge', {
@@ -63,7 +60,7 @@
             })
         </div>
         <div
-            class="container edit-btn down"
+            class="container wrap-buttons down"
             x-show="modif"
             x-transition.opacity.1200ms
         >

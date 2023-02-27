@@ -16,7 +16,6 @@ $light: $pinky-palish-grey;
 $about: $pale-pink;
 $dark-bis: desaturate($dark, 55);
 $secondary: $pale-pink;
-$article: white;
 // background
 $bg-color: lighten($pale-rose, 13);
 // Shadow
@@ -33,8 +32,10 @@ $danger-btn: $danger;
 $info-btn: lighten($info, 8);
 // inputs
 $input: lighten(desaturate($info, 50), 15);
+$darken-input: darken($input, 8%);
 $input-hover: $info;
 $input-focus: $link;
+$input-radius: 10px;
 
 // Update some of Bulma's component variables
 $body-background-color: $anti-flash-white;

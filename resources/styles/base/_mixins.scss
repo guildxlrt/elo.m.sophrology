@@ -156,6 +156,22 @@
   }
 
   @if $content-type == 'video' {
-    border-radius: 10% 90% 25% 44% / 30% 30% 65% 30%;
+    border-radius: 20% 20% 20% 20% / 80% 80% 80% 80%;
   }
+}
+
+@mixin post-bg-col($top-left, $top-right, $bottom-right, $bottom-left, $opacity) {
+  $opacity: 0.5;
+  background: linear-gradient(
+      -225deg,
+      transparentize($top-left, $opacity) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(0, 255, 255, 0) 60%,
+      transparentize($bottom-right, $opacity) 100%
+    ),
+    linear-gradient(
+      45deg,
+      transparentize($bottom-left, $opacity) 0%,
+      transparentize($top-right, $opacity) 100%
+    );
 }

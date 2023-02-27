@@ -6,7 +6,7 @@
         <span class="content">Pour me contacter : </span>
     </div>
     <div
-        class="container contact-content"
+        class="container contact-body"
         x-data="{ showForm: false }"
     >
         <div
@@ -59,36 +59,32 @@
                 })
 
                 <div
-                    class="edit-btn"
+                    class="wrap-buttons"
                     x-show="showForm"
                     x-transition.opacity.duration.1200ms.scale.origin.top
                 >
-                    <div class="control">
-                        <button
-                            class="button is-grey"
-                            @click.prevent="
-                                showForm = !showForm            
-                                resetMsgInputs(inputs)
-                                resetMsgErrors(errors)
-                            "
-                        >
-                            Annuller
-                        </button>
-                    </div>
-                    <div class="control">
-                        <button
-                            class="button is-link"
-                            type="submit"
-                        >
-                            Envoyer
-                        </button>
-                    </div>
+                    <button
+                        class="button is-grey"
+                        @click.prevent="
+                            showForm = !showForm            
+                            resetMsgInputs(inputs)
+                            resetMsgErrors(errors)
+                        "
+                    >
+                        Annuller
+                    </button>
+                    <button
+                        class="button is-link"
+                        type="submit"
+                    >
+                        Envoyer
+                    </button>
                 </div>
             </form>
         </div>
 
         <div
-            class="control"
+            class="click-control"
             x-show="!showForm"
             x-transition.opacity.duration.1200ms.scale.origin.top
         >

@@ -7,8 +7,6 @@ const delMsg = `
 `
 
 export async function deletePost(id) {
-  let delAuth = null
-
   await axios({
     method: 'delete',
     url: `/blog/${id}/before-delete`,
@@ -74,9 +72,27 @@ export async function submitPostForm(event, id, content_type, errors) {
   resetPostErrors(errors)
 
   const formData = new FormData(event.target)
+  let data = null
 
-  const title = formData.get('title')
-  const content = formData.get('content')
+  if (content_type === 'ARTICLE') {
+    const title = formData.get('title')
+    const content = formData.get('content')
+
+    data = {
+      content_type: content_type,
+      title: title,
+      content: content,
+    }
+  } else if (content_type === 'VIDEO') {
+    const title = formData.get('title')
+    const video = formData.get('video')
+
+    data = {
+      content_type: content_type,
+      title: title,
+      video: video,
+    }
+  }
 
   let url = null
   if (id === 'new') {
@@ -89,10 +105,9 @@ export async function submitPostForm(event, id, content_type, errors) {
     method: 'post',
     url: url,
     withCredentials: true,
-    data: {
-      title: title,
-      content: content,
-      content_type: content_type,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
     },
   })
     .then((res) => {
@@ -118,6 +133,9 @@ export async function submitPostForm(event, id, content_type, errors) {
           errors.title = error.message
         }
         if (error.field === 'content') {
+          errors.content = error.message
+        }
+        if (error.field === 'video') {
           errors.content = error.message
         }
         if (!error.field) {

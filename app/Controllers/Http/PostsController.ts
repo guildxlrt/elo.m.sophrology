@@ -1,53 +1,157 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Drive from '@ioc:Adonis/Core/Drive'
 import Post from 'App/Models/Post'
-import PostValidator from 'App/Validators/PostValidator'
+import { string } from '@ioc:Adonis/Core/Helpers'
+import { PostType } from 'App/Types/Types'
+import {
+  ArticleValidator,
+  NewVideoValidator,
+  UpdateVideoValidator,
+} from '../../Validators/PostValidator'
+import { NewPost, UpdateVideo } from '../../Types/Types'
 
 export default class PostsController {
-  async new({ request, auth }: HttpContextContract) {
-    const data = await request.validate(PostValidator)
+  async new({ request, auth, response }: HttpContextContract) {
+    const contentType: PostType = request.body().content_type
 
-    const post = await Post.create({
-      ...data,
-      status: true,
-      user_id: auth.user.id,
-    })
+    if (contentType === PostType.ARTICLE) {
+      const data = await request.validate(ArticleValidator)
 
-    const id = post.$attributes.id
+      const cleanedData: NewPost = {
+        status: true,
+        user_id: auth.user.id,
+        title: data.title,
+        content_type: data.content_type,
+        content: data.content,
+      }
 
-    return {
-      id: id,
-      created: true,
-      msg: `L'article a ete sauvegarde et publie`,
+      const post = await Post.create({
+        ...cleanedData,
+      })
+
+      const id = post.$attributes.id
+
+      return response.status(200).json({
+        id: id,
+        created: true,
+        msg: `L'article a ete sauvegarde et publie`,
+      })
+    } else if (contentType === PostType.VIDEO) {
+      const data = await request.validate(NewVideoValidator)
+
+      const video = data.video
+
+      const newFileName = string.generateRandom(32) + '.' + video?.extname
+      await video?.moveToDisk('videos', { name: newFileName })
+
+      const cleanedData: NewPost = {
+        status: true,
+        user_id: auth.user.id,
+        title: data.title,
+        content_type: data.content_type,
+        content: newFileName,
+      }
+
+      const post = await Post.create({
+        ...cleanedData,
+      })
+
+      const id = post.$attributes.id
+
+      return {
+        id: id,
+        created: true,
+        msg: `La video a ete sauvegarde et publie`,
+      }
     }
   }
 
   async update({ params, request, bouncer, response }: HttpContextContract) {
     const id = params.id
-    const data = await request.validate(PostValidator)
-
     const post = await Post.findOrFail(id)
-    if ((await bouncer.allows('editPost', post)) === true) {
-      if (params.title === post.title || params.title === '' || params.content === post.content) {
-        return response.status(202)
-      } else {
-        await post
-          .merge({
-            ...data,
-          })
-          .save()
 
-        return {
-          id: id,
-          new: false,
-          msg: `L'article a ete mit a jour`,
+    // AUTHORIZE
+    if ((await bouncer.allows('editPost', post)) === true) {
+      const contentType = request.body().content_type
+
+      if (contentType !== post.content_type) {
+        return response.status(409).json({
+          content_type_error:
+            "the Post's content type is not the same in the Database and the request",
+        })
+      } else if (contentType === PostType.ARTICLE) {
+        const data = await request.validate(ArticleValidator)
+
+        if (
+          (data.title === post.title || params.title === '') &&
+          (data.content === post.content || params.content === '')
+        ) {
+          return response.status(202).json({
+            id: id,
+            new: false,
+            msg: `Aucune modifications !!`,
+          })
+        } else {
+          await post
+            .merge({
+              ...data,
+            })
+            .save()
+
+          return response.status(200).json({
+            id: id,
+            new: false,
+            msg: `L'article a ete mit a jour`,
+          })
+        }
+      } else if (contentType === PostType.VIDEO) {
+        const data = await request.validate(UpdateVideoValidator)
+
+        if ((data.title === post.title || params.title === '') && !data.video) {
+          return response.status(202).json({
+            id: id,
+            new: false,
+            msg: `Aucune modifications !!`,
+          })
+        } else {
+          const newData: UpdateVideo = {
+            title: post.title,
+            content: post.content,
+          }
+
+          if (data.title) {
+            newData.title = request.body().title
+          }
+
+          if (data.video) {
+            const video = data.video
+
+            const newFileName = string.generateRandom(32) + '.' + video?.extname
+            await video?.moveToDisk('videos', { name: newFileName })
+
+            newData.content = newFileName
+            await Drive.delete(`videos/${post.content}`)
+          }
+
+          await post
+            .merge({
+              ...newData,
+            })
+            .save()
+
+          return response.status(200).json({
+            id: id,
+            new: false,
+            msg: `La video a ete mit a jour`,
+          })
         }
       }
     } else {
-      return {
+      return response.status(401).json({
         id: id,
         new: false,
         msg: `Cet article n'est pas le votre`,
-      }
+      })
     }
   }
 
@@ -73,7 +177,7 @@ export default class PostsController {
 
     if ((await bouncer.allows('editPost', post)) === true) {
       return response.status(202)
-    } else return response.status(401)
+    } else return response.status(401).json('Acces non authorise')
   }
 
   async delete({ params, response, bouncer }: HttpContextContract) {
@@ -81,8 +185,13 @@ export default class PostsController {
 
     const post = await Post.findOrFail(id)
     if ((await bouncer.allows('editPost', post)) === true) {
+      if (post.content_type === PostType.VIDEO) {
+        await Drive.delete(`videos/${post.content}`)
+      }
+
       await post.delete()
-      return response.status(200).json("L'article a ete supprime.")
-    } else return response.status(401).json("Cet article n'est pas le votre")
+
+      return response.status(200).json('La publication a ete supprime.')
+    } else return response.status(401).json('Acces non authorise')
   }
 }

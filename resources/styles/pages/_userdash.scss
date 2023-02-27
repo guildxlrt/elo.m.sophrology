@@ -18,10 +18,13 @@
 
   > .container {
     @include flexColumn;
+
+    > .wrap-buttons {
+      justify-content: space-between;
+    }
   }
 
-  > .container,
-  > .form {
+  > .container {
     $vert-marg: 80px;
     margin-top: $vert-marg;
     margin-bottom: $vert-marg;

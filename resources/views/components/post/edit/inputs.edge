@@ -8,7 +8,7 @@
 >
     <div class="title">
         <label class="label" for="title">Titre</label>
-        <div class="control has-icons-left has-icons-right">
+        <div class="has-icons-left has-icons-right">
             <input
                 id="title-input"
                 class="input"
@@ -36,9 +36,35 @@
                     id="content-input"
                     class="textarea"
                     name="content"
-                    placeholder="Contenu"
+                    placeholder="Article"
                 >{{content}}</textarea>
             </div>
+        @elseif(content_type === 'VIDEO')
+            
+            <div
+                class="file is-dark is-normal is-boxed has-name"
+                x-data="{filename: ''}"
+            >
+                <label class="file-label">
+                    <input
+                        class="file-input"
+                        type="file"
+                        name="video"
+                        @change.prevent="filename = $event.target.files[0].name"
+                    >
+                    <span class="file-cta">
+                    <span class="file-label">
+                        Choisir un fichier
+                    </span>
+                    </span>
+                    <span
+                        class="file-name"
+                        x-html="filename ? filename : 'Nom du fichier'"
+                    >
+                    Nom du fichier
+                    </span>
+                </label>
+                </div>
         @end
         @!component('../../../components/inputError.edge', {
             value: 'content'
