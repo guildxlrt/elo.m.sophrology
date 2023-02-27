@@ -6,4 +6,8 @@ coverage
 .env
 .env.ts
 tmp
-store
+
+store/videos/*
+store/covers/*
+!store/videos/.gitkeep
+!store/covers/.gitkeep
