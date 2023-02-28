@@ -13,24 +13,17 @@
     background-size: $size;
     background-repeat: no-repeat;
   }
-
-  > .online {
-    background-image: url('../../assets/icons/circle-user-solid_on.svg');
-  }
-  > .offline {
-    background-image: url('../../assets/icons/circle-user-solid_off.svg');
-  }
 }
 
-.exit-icon {
-  $size: 18px;
+// .exit-icon {
+//   $size: 18px;
 
-  width: $size;
-  height: $size;
-  background-size: $size;
+//   width: $size;
+//   height: $size;
+//   background-size: $size;
 
-  filter: invert(48%) sepia(60%) saturate(2476%) hue-rotate(305deg) brightness(80%) contrast(95%);
+//   filter: invert(48%) sepia(60%) saturate(2476%) hue-rotate(305deg) brightness(80%) contrast(95%);
 
-  background-image: url('../../assets/icons/circle-xmark-solid.svg');
-  background-repeat: no-repeat;
-}
+//   background-image: url('../../assets/icons/circle-xmark-solid.svg');
+//   background-repeat: no-repeat;
+// }

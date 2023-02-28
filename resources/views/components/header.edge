@@ -48,9 +48,15 @@
         </div>
         <a class="usr-log" href="{{route('user')}}">
           @if(user === false)
-            <div class="usr-img offline"></div>
+            <img
+              src="/icons/circle-user-solid_off.svg"
+              class="usr-img offline"
+            />
           @else
-            <div class="usr-img online"></div>
+            <img
+              src="/icons/circle-user-solid_on.svg"
+              class="usr-img offline"
+            />
           @end
         </a>
     </nav>
