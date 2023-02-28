@@ -54,7 +54,7 @@ export default driveConfig({
       |
       */
       // root: Application.tmpPath('uploads'),
-      root: 'store',
+      root: Application.makePath('store'),
 
       /*
       |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ export default driveConfig({
       | you are not registering routes with this prefix.
       |
       */
-      basePath: '/uploads',
+      basePath: '/store',
     },
 
     /*

@@ -26,46 +26,15 @@
             })
 
         @else
-            <article
-                @if(post.content_type === 'ARTICLE')
-                    class="container post-wrapper article"
-                @elseif(post.content_type === 'VIDEO')
-                    class="container post-wrapper video add-blur"
-                @end
-                class="container post-wrapper"
-                x-show="!modif"
-                x-transition.opacity.1200ms
-            >
-                <div 
-                    @if(post.content_type === 'ARTICLE')
-                        class="post article"
-                    @elseif(post.content_type === 'VIDEO')
-                        class="post video"
-                    @end
-                >
-                    <h1 class="title">{{post.title}}</h1>
-
-                    @if(post.content_type === 'ARTICLE')
-                        <div class="content read-it">
-                            <p>
-                                {{post.content}}
-                            </p>
-                        </div>
-                    @elseif(post.content_type === 'VIDEO')
-                        <div class="content play-it">
-                            <video width="320" height="240" controls>
-                                <source src="/store/videos/{{post.content}}" type="video/mp4">
-                                <source src="/store/videos/{{post.content}}" type="video/ogg">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    @end
-                    
-                </div>
-            </article>
+            @!component('../components/post/view.edge', {
+                id: post.id,
+                title: post.title,
+                content: post.content,
+                content_type: post.content_type
+            })
 
             @if(user !== false && isAuthor === true)
-                @!component('../components/post/edit/edit.edge', {
+                @!component('../components/post/edit/edit-btn.edge', {
                     id: post.id,
                     title: post.title,
                     content: post.content,
