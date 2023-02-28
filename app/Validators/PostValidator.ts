@@ -1,6 +1,6 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PostType } from '../Types/Types'
+import { PostType } from '../Utils/Types'
 
 const msg = {
   required: 'Le champs doit etre complete',

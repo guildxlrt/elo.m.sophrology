@@ -2,13 +2,13 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Drive from '@ioc:Adonis/Core/Drive'
 import Post from 'App/Models/Post'
 import { string } from '@ioc:Adonis/Core/Helpers'
-import { PostType } from 'App/Types/Types'
+import { PostType } from 'App/Utils/Types'
 import {
   ArticleValidator,
   NewVideoValidator,
   UpdateVideoValidator,
 } from '../../Validators/PostValidator'
-import { NewPost, UpdateVideo } from '../../Types/Types'
+import { NewPost, UpdateVideo } from '../../Utils/Types'
 
 export default class PostsController {
   async new({ request, auth, response }: HttpContextContract) {

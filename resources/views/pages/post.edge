@@ -30,7 +30,8 @@
                 id: post.id,
                 title: post.title,
                 content: post.content,
-                content_type: post.content_type
+                content_type: post.content_type,
+                createdAt: post.createdAt
             })
 
             @if(user !== false && isAuthor === true)

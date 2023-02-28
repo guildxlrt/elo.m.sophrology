@@ -5,22 +5,20 @@
   @include opacity($bezier-1);
 }
 .post-wrapper {
-  background-image: url('../../assets/backgrounds/components/freepik__blank-white-notepaper-design_53876-97378.avif');
-
   &.article {
     @include slantShadow(3px, 10px, 0.3);
     @include post-radius('article');
+    background-image: url('../../assets/backgrounds/components/article.avif');
   }
   &.video {
     margin-top: 60px;
     @include post-radius('video');
-    @include slantShadow(3px, 10px, 0);
   }
 
   > .post {
     &.article {
       @include post-radius('article');
-      @include post-bg-col(white, lighten($pinkish-tan, 15), $silver, $white, 0.5);
+      @include post-bg-col(white, lighten($info, 17), $silver, $white, 0.5);
 
       width: 100%;
       height: 100%;
@@ -50,27 +48,20 @@
           border-left: 5px dotted $danger;
         }
       }
+      > .tag {
+        position: absolute;
+        right: 10px;
+        bottom: -50px;
+      }
     }
     &.video {
       @include post-radius('video');
-      @include post-bg-col($white, $silver, $charcoal, $dark, 0.9);
 
       width: 100%;
-      height: 100%;
-      padding: 5%;
+      height: fit-content;
+      padding: 3% 0% 0% 0%;
 
-      @media (max-height: 539px) {
-        min-height: 335px;
-        max-height: 435px;
-      }
-      @media (min-height: 540px) and (max-height: 911px) {
-        min-height: 455px;
-        max-height: 555px;
-      }
-      @media (min-height: 912px) {
-        min-height: 635px;
-        max-height: 735px;
-      }
+      height: fit-content;
 
       > .title > div > .input {
         width: 75%;
@@ -78,10 +69,21 @@
       > .title,
       .content {
         text-align: center;
+        height: fit-content;
+        > .video-player {
+          width: 100%;
+          @include smoothShadow(8px, 4px, $dark, 0.4);
+          @include post-radius('video');
+        }
       }
       > .content {
         @include reCenter();
         flex-direction: column;
+        > .tag {
+          position: absolute;
+          right: 20%;
+          bottom: -42px;
+        }
       }
     }
   }

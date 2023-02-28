@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
+import dateFormat from '../../Utils/Functions'
 import { allowNewUsr } from './UsersController'
 
 export default class PagesController {
@@ -64,6 +65,9 @@ export default class PagesController {
       if (auth.user !== undefined && (await bouncer.allows('editPost', post)) === true) {
         author = true
       }
+
+      post.createdAt = dateFormat(post.createdAt)
+      post.updatedAt = dateFormat(post.updatedAt)
 
       return view.render('pages/post', {
         post,

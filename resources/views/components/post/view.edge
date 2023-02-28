@@ -15,7 +15,12 @@
             class="post video"
         @end
     >
-        <h1 class="title">{{title}}</h1>
+        <h1
+            class="title is-3"         
+            @if(content_type === 'VIDEO')
+                style="margin-bottom: 42px;"
+            @end
+        >{{title}}</h1>
 
         @if(content_type === 'ARTICLE')
             <div class="content read-it">
@@ -23,15 +28,18 @@
                     {{content}}
                 </p>
             </div>
+            <div class="tag is-dark is-medium">{{createdAt}}</div>
         @elseif(content_type === 'VIDEO')
             <div class="content">
-                <video class="video" style="width: 80%; height: 100%;" controls>
+                <video class="video-player" style="width: 80%; height: 100%;" controls>
                     <source src="/store/videos/{{content}}" type="video/mp4">
                     <source src="/store/videos/{{content}}" type="video/ogg">
                     Your browser does not support the video tag.
                 </video>
+                <div class="tag is-black is-medium">{{createdAt}}</div>
             </div>
         @end
         
     </div>
 </article>
+

@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
-import { PostType } from 'App/Types/Types'
+import { PostType } from 'App/Utils/Types'
 
 export default class Post extends BaseModel {
   @column({ isPrimary: true })
