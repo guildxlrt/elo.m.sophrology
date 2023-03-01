@@ -50,6 +50,6 @@ export default function dateFormat(value: Date, dateType: PostDateType) {
     return newFormat(time, oneMinute, ' minute')
   }
   if (time < oneMinute) {
-    return "moins d'une minute"
+    return label + "il y a moins d'une minute"
   }
 }

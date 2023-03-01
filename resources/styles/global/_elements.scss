@@ -113,8 +113,8 @@ a {
 
   &:disabled {
     @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
-    @include linGradient($to-top-left, darken($silver, 7%), $silver);
-    border-color: $silver;
+    @include linGradient($to-top-left, darken($grey-light, 7%), $grey-light);
+    border-color: $grey-light;
   }
 }
 
@@ -173,7 +173,7 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $silver;
+    background-color: $grey-light;
     -webkit-transition: 0.6s;
     transition: 0.6s;
 

@@ -35,6 +35,14 @@
                     post: post,
                 }) 
             @end
-        @end 
+        @end
+
+        @if(post.id !== 'new')
+            @!component('../components/post/timestamp.edge', {
+                updatedAt: post.updatedAt,
+                createdAt: post.createdAt
+            })
+        @end
+        
     </section>
 @endsection

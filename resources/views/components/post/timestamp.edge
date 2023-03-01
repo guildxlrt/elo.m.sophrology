@@ -1,12 +1,14 @@
-<div class="timestamps">
-    @if(updatedAt !== null)
-        <div class="tag is-primary is-medium updatedAt">
-            @if(updatedAt !== null)
-                {{updatedAt}}                      
-            @end
+<div class="container">
+    <div class="columns timestamps">
+        @if(updatedAt !== null)
+            <div class="tag column is-4 is-primary is-medium">
+                @if(updatedAt !== null)
+                    {{updatedAt}}                      
+                @end
+            </div>
+        @end
+        <div class="tag column is-4 is-black is-medium">
+            {{createdAt}}
         </div>
-    @end
-    <div class="tag is-black is-medium createdAt">
-        {{createdAt}}
     </div>
 </div>
