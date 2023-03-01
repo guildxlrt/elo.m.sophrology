@@ -36,6 +36,10 @@
       > .file-selector {
         @include reCenter();
         flex-direction: column;
+        > .switch {
+          position: relative;
+          top: -15px;
+        }
       }
 
       > .cover {

@@ -1,5 +1,6 @@
 .dashboard {
   @include flexColumn;
+  margin-top: 52px;
 
   @media (max-width: 1023px) {
     padding-left: 0px;

@@ -16,11 +16,6 @@ const limit = {
   video: '250mb',
 }
 
-// const extnames = {
-//   cover: ,
-//   video: ,
-// }
-
 export default class PostValidator {
   constructor(protected ctx: HttpContextContract) {}
 
@@ -51,6 +46,7 @@ export class ArticleValidator {
       size: limit.cover,
       extnames: ['jpg', 'gif', 'png', 'webp', 'avif', 'JPG', 'GIF', 'PNG', 'WEBP', 'AVIF'],
     }),
+    covercheck: schema.boolean(),
   })
 
   public messages: CustomMessages = {

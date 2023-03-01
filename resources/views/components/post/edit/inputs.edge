@@ -23,12 +23,39 @@
         })
     </div>
     @if(content_type === 'ARTICLE')
-        <div class="file-selector">
+        <div
+            class="file-selector"
+            @if(id !== 'new' && cover !== null)
+                x-data="{ showFileInput: true }"
+            @else
+                x-data="{ showFileInput: false }"
+            @end
+            
+        >
             <label class="title is-5">Couverture : </label>
-            @!component('../../../components/post/edit/file-input.edge', {
-                id: id,
-                content_type: content_type,
-                cover: cover
+            <label class="switch">
+                <input
+                    type="checkbox"
+                    name="covercheck"
+                    @change.prevent="showFileInput = !showFileInput"
+                    @if(id !== 'new' && cover !== null)
+                        checked
+                    @end
+                >
+                <span class="slider round"></span>
+            </label>
+            <div
+                x-show="showFileInput"
+                x-transition.opacity.duration.400ms
+            >
+                @!component('../../../components/post/edit/file-input.edge', {
+                    id: id,
+                    content_type: content_type,
+                    cover: cover
+                })
+            </div>
+            @!component('../../../components/inputError.edge', {
+                value: 'cover'
             })
         </div>
     @end

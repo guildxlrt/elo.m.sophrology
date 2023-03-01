@@ -78,12 +78,19 @@ export async function submitPostForm(event, id, content_type, errors) {
     const title = formData.get('title')
     const content = formData.get('content')
 
+    const checkbox = formData.get('covercheck')
     const cover = formData.get('cover')
+    let covercheck = false
+
+    if (checkbox && checkbox === 'on') {
+      covercheck = true
+    }
 
     data = {
       content_type: content_type,
       title: title,
       content: content,
+      covercheck: covercheck,
       cover: cover,
     }
   } else if (content_type === 'VIDEO') {
@@ -127,11 +134,10 @@ export async function submitPostForm(event, id, content_type, errors) {
       }
     })
     .catch((err) => {
-      const errorsList = err.response.data.errors
+      const errList = err.response.data.errors
+      console.log(err.response.data)
 
-      console.log(errorsList)
-
-      errorsList.map((error) => {
+      errList.map((error) => {
         if (error.field === 'title') {
           errors.title = error.message
         }
@@ -142,7 +148,7 @@ export async function submitPostForm(event, id, content_type, errors) {
           errors.content = error.message
         }
         if (error.field === 'cover') {
-          errors.content = error.message
+          errors.cover = error.message
         }
         if (!error.field) {
           errors.content = 'Acces non authorise...'

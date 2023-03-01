@@ -18,9 +18,28 @@ export default class PostsController {
       const data = await request.validate(ArticleValidator)
 
       const cover = data.cover
+      const covercheck = data.covercheck
       let newFileName: string | null = null
 
-      if (cover !== null || undefined) {
+      if (covercheck === true && cover === undefined) {
+        return response.status(400).json({
+          errors: [
+            {
+              field: 'cover',
+              message: `cover's check is on, but there is no file`,
+            },
+          ],
+        })
+      } else if (covercheck === false && cover !== undefined) {
+        return response.status(400).json({
+          errors: [
+            {
+              field: 'cover',
+              message: `cover's check is off, but there is a file`,
+            },
+          ],
+        })
+      } else if (covercheck === true && cover !== undefined) {
         newFileName = string.generateRandom(32) + '.' + cover?.extname
         await cover?.moveToDisk('covers', { name: newFileName })
       }
@@ -93,52 +112,83 @@ export default class PostsController {
       } else if (contentType === PostType.ARTICLE) {
         const data = await request.validate(ArticleValidator)
 
-        if (
-          (data.title === post.title || params.title === '') &&
-          (data.content === post.content || params.content === '') &&
-          !data.cover
-        ) {
-          return response.status(202).json({
-            id: id,
-            new: false,
-            msg: `Aucune modifications !!`,
+        // verifying the conformity of request (cover)
+        if (data.covercheck === false && data.cover !== undefined) {
+          return response.status(400).json({
+            errors: [
+              {
+                field: 'cover',
+                message: `cover's check is off, but there is a file`,
+              },
+            ],
           })
         } else {
-          const newData: UpdateArticle = {
-            title: post.title,
-            content: post.content,
-            cover: post.cover,
+          // Cover state changes :
+          // null = no changes, true = changing, false = delete
+          let coverState: boolean | null = null
+
+          if (data.covercheck === false && post.cover !== null) {
+            coverState = false
+          } else if (data.covercheck === false && post.cover === null) {
+            coverState = null
+          } else if (data.covercheck === true && data.cover !== undefined) {
+            coverState = true
+          } else if (data.covercheck === true && data.cover === undefined) {
+            coverState = null
           }
 
-          if (data.title) {
-            newData.title = request.body().title
-          }
-
-          if (data.content) {
-            newData.content = request.body().content
-          }
-
-          if (data.cover) {
-            const cover = data.cover
-
-            const newFileName = string.generateRandom(32) + '.' + cover?.extname
-            await cover?.moveToDisk('covers', { name: newFileName })
-
-            newData.cover = newFileName
-            await Drive.delete(`covers/${post.cover}`)
-          }
-
-          await post
-            .merge({
-              ...newData,
+          if (
+            (data.title === post.title || params.title === '') &&
+            (data.content === post.content || params.content === '') &&
+            coverState === null
+          ) {
+            return response.status(202).json({
+              id: id,
+              new: false,
+              msg: `Aucune modifications !!`,
             })
-            .save()
+          } else {
+            const newData: UpdateArticle = {
+              title: post.title,
+              content: post.content,
+              cover: post.cover,
+            }
 
-          return response.status(200).json({
-            id: id,
-            new: false,
-            msg: `L'article a ete mit a jour`,
-          })
+            if (data.title) {
+              newData.title = request.body().title
+            }
+
+            if (data.content) {
+              newData.content = request.body().content
+            }
+
+            // changer de cover
+            if (coverState === true) {
+              const cover = data.cover
+
+              const newFileName = string.generateRandom(32) + '.' + cover?.extname
+              await cover?.moveToDisk('covers', { name: newFileName })
+
+              newData.cover = newFileName
+              await Drive.delete(`covers/${post.cover}`)
+              // enlever la cover
+            } else if (coverState === false) {
+              newData.cover = null
+              await Drive.delete(`covers/${post.cover}`)
+            }
+
+            await post
+              .merge({
+                ...newData,
+              })
+              .save()
+
+            return response.status(200).json({
+              id: id,
+              new: false,
+              msg: `L'article a ete mit a jour`,
+            })
+          }
         }
         //VIDEO MODIF
       } else if (contentType === PostType.VIDEO) {
