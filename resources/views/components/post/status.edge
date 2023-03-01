@@ -1,5 +1,5 @@
 <div
-    class="container status has-text-centered"
+    class="container has-text-centered status"
     x-data="{
         id: {{id}},
         isOnline: {{status}},
@@ -16,7 +16,7 @@
         x-bind:class="isOnline ? 'is-success' : 'is-warning'"
     >
         <span
-            class="title"
+            class="subtitle is-4"
             x-html="statusMsg"
         ></span>
         <button

@@ -11,15 +11,16 @@
             Modifer
         </button>
 
-        @!component('../components/post/delete', { id: id })
+        @!component('../components/post/delete', { id: post.id })
     </div>
                 
 </div>
             
 
 @!component('../components/post/edit/form.edge', {
-    id: id,
-    title: title,
-    content: content,
-    content_type: content_type
+    id: post.id,
+    title: post.title,
+    content: post.content,
+    content_type: post.content_type,
+    cover: post.cover
 }) 

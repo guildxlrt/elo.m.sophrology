@@ -16,6 +16,11 @@ const limit = {
   video: '250mb',
 }
 
+// const extnames = {
+//   cover: ,
+//   video: ,
+// }
+
 export default class PostValidator {
   constructor(protected ctx: HttpContextContract) {}
 
@@ -44,7 +49,7 @@ export class ArticleValidator {
     content: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(30000)]),
     cover: schema.file.nullableAndOptional({
       size: limit.cover,
-      extnames: ['jpg', 'gif', 'png', 'webp', 'JPG', 'GIF', 'PNG', 'WEBP'],
+      extnames: ['jpg', 'gif', 'png', 'webp', 'avif', 'JPG', 'GIF', 'PNG', 'WEBP', 'AVIF'],
     }),
   })
 
@@ -53,7 +58,7 @@ export class ArticleValidator {
     'minLength': msg.minLength,
     'maxLength': msg.maxLength,
     'file.size': msg.fileSize,
-    'cover.extname': msg.coverExt,
+    'extname': msg.coverExt,
   }
 }
 
@@ -74,7 +79,7 @@ export class NewVideoValidator {
     'minLength': msg.minLength,
     'maxLength': msg.maxLength,
     'file.size': msg.fileSize,
-    'video.extname': msg.videoExt,
+    'extname': msg.videoExt,
   }
 }
 
@@ -94,6 +99,6 @@ export class UpdateVideoValidator {
     'minLength': msg.minLength,
     'maxLength': msg.maxLength,
     'file.size': msg.fileSize,
-    'video.extname': msg.videoExt,
+    'extname': msg.videoExt,
   }
 }

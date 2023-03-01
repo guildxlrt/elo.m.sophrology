@@ -22,6 +22,16 @@
             value: 'title'
         })
     </div>
+    @if(content_type === 'ARTICLE')
+        <div class="file-selector">
+            <label class="title is-5">Couverture : </label>
+            @!component('../../../components/post/edit/file-input.edge', {
+                id: id,
+                content_type: content_type,
+                cover: cover
+            })
+        </div>
+    @end
     <div class="content">
         <label class="label title is-5" for="content">
             @if(content_type === 'ARTICLE')
@@ -40,31 +50,10 @@
                 >{{content}}</textarea>
             </div>
         @elseif(content_type === 'VIDEO')
-            
-            <div
-                class="file is-dark is-normal is-boxed has-name"
-                x-data="{filename: ''}"
-            >
-                <label class="file-label">
-                    <input
-                        class="file-input"
-                        type="file"
-                        name="video"
-                        @change.prevent="filename = $event.target.files[0].name"
-                    >
-                    <span class="file-cta">
-                    <span class="file-label">
-                        Choisir un fichier
-                    </span>
-                    </span>
-                    <span
-                        class="file-name"
-                        x-html="filename ? filename : 'Nom du fichier'"
-                    >
-                    Nom du fichier
-                    </span>
-                </label>
-                </div>
+            @!component('../../../components/post/edit/file-input.edge', {
+                id: id,
+                content_type: content_type
+            })
         @end
         @!component('../../../components/inputError.edge', {
             value: 'content'

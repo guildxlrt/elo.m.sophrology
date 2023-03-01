@@ -27,19 +27,12 @@
 
         @else
             @!component('../components/post/view.edge', {
-                id: post.id,
-                title: post.title,
-                content: post.content,
-                content_type: post.content_type,
-                createdAt: post.createdAt
+                post: post,
             })
 
             @if(user !== false && isAuthor === true)
-                @!component('../components/post/edit/edit-btn.edge', {
-                    id: post.id,
-                    title: post.title,
-                    content: post.content,
-                    content_type: post.content_type
+                @!component('../components/post/edit/edit-unnew.edge', {
+                    post: post,
                 }) 
             @end
         @end 

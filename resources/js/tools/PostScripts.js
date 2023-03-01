@@ -78,10 +78,13 @@ export async function submitPostForm(event, id, content_type, errors) {
     const title = formData.get('title')
     const content = formData.get('content')
 
+    const cover = formData.get('cover')
+
     data = {
       content_type: content_type,
       title: title,
       content: content,
+      cover: cover,
     }
   } else if (content_type === 'VIDEO') {
     const title = formData.get('title')
@@ -136,6 +139,9 @@ export async function submitPostForm(event, id, content_type, errors) {
           errors.content = error.message
         }
         if (error.field === 'video') {
+          errors.content = error.message
+        }
+        if (error.field === 'cover') {
           errors.content = error.message
         }
         if (!error.field) {

@@ -1,19 +1,7 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/images/pexels-stayhereforu-15113964.webp": "http://localhost:8080/assets/images/pexels-stayhereforu-15113964.d0ae26d5.webp",
-  "assets/images/freepik__blank-white-notepaper-design_53876-97378.avif": "http://localhost:8080/assets/images/freepik__blank-white-notepaper-design_53876-97378.28b1fb8a.avif",
-  "assets/images/leaf-grey.svg": "http://localhost:8080/assets/images/leaf-grey.a9a1b5c3.svg",
-  "assets/images/circle-user-solid_off.svg": "http://localhost:8080/assets/images/circle-user-solid_off.2cf0d0ab.svg",
-  "assets/images/circle-user-solid_on.svg": "http://localhost:8080/assets/images/circle-user-solid_on.82c516b6.svg",
-  "assets/images/circle-xmark-solid.svg": "http://localhost:8080/assets/images/circle-xmark-solid.934bdf77.svg",
-  "assets/images/freepik__blue-water-surface-template-cartoon-style_1308-56686.avif": "http://localhost:8080/assets/images/freepik__blue-water-surface-template-cartoon-style_1308-56686.8baa2e76.avif",
-  "assets/images/freepik__top-view-clear-ocean-water-texture_23-2149132376.avif": "http://localhost:8080/assets/images/freepik__top-view-clear-ocean-water-texture_23-2149132376.35c3feb6.avif",
-  "assets/images/freepik__top-view-soil_23-2148175893.avif": "http://localhost:8080/assets/images/freepik__top-view-soil_23-2148175893.5c7453ba.avif",
-  "assets/images/freepik__oak-wooden-textured-design-background_53876-143033.avif": "http://localhost:8080/assets/images/freepik__oak-wooden-textured-design-background_53876-143033.3d98c613.avif",
-  "assets/images/freepik__beige-wooden-textured-flooring-background_53876-129605.avif": "http://localhost:8080/assets/images/freepik__beige-wooden-textured-flooring-background_53876-129605.8a0271f8.avif",
-  "assets/images/wooden-wood-backgrounds-textured-pattern-wallpaper-concept_53876-14103.avif": "http://localhost:8080/assets/images/wooden-wood-backgrounds-textured-pattern-wallpaper-concept_53876-14103.9a69e2d1.avif",
-  "assets/images/video.avif": "http://localhost:8080/assets/images/video.0052e272.avif",
+  "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.d0ae26d5.webp",
   "assets/images/article.avif": "http://localhost:8080/assets/images/article.28b1fb8a.avif",
-  "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.d0ae26d5.webp"
+  "assets/images/leaf-grey.svg": "http://localhost:8080/assets/images/leaf-grey.a9a1b5c3.svg"
 }
