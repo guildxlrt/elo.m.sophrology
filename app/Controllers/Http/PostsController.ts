@@ -9,6 +9,7 @@ import {
   UpdateVideoValidator,
 } from '../../Validators/PostValidator'
 import { NewArticle, NewVideo, UpdateArticle, UpdateVideo } from '../../Utils/Types'
+import { DateTime } from 'luxon'
 
 export default class PostsController {
   async new({ request, auth, response }: HttpContextContract) {
@@ -51,6 +52,7 @@ export default class PostsController {
         content_type: data.content_type,
         content: data.content,
         cover: newFileName,
+        updatedAt: null,
       }
 
       const post = await Post.create({
@@ -78,6 +80,7 @@ export default class PostsController {
         title: data.title,
         content_type: data.content_type,
         content: newFileName,
+        updatedAt: null,
       }
 
       const post = await Post.create({
@@ -148,18 +151,19 @@ export default class PostsController {
               msg: `Aucune modifications !!`,
             })
           } else {
-            const newData: UpdateArticle = {
+            const cleanedData: UpdateArticle = {
               title: post.title,
               content: post.content,
               cover: post.cover,
+              updatedAt: DateTime.local(),
             }
 
             if (data.title) {
-              newData.title = request.body().title
+              cleanedData.title = request.body().title
             }
 
             if (data.content) {
-              newData.content = request.body().content
+              cleanedData.content = request.body().content
             }
 
             // changer de cover
@@ -169,17 +173,17 @@ export default class PostsController {
               const newFileName = string.generateRandom(32) + '.' + cover?.extname
               await cover?.moveToDisk('covers', { name: newFileName })
 
-              newData.cover = newFileName
+              cleanedData.cover = newFileName
               await Drive.delete(`covers/${post.cover}`)
               // enlever la cover
             } else if (coverState === false) {
-              newData.cover = null
+              cleanedData.cover = null
               await Drive.delete(`covers/${post.cover}`)
             }
 
             await post
               .merge({
-                ...newData,
+                ...cleanedData,
               })
               .save()
 
@@ -201,13 +205,14 @@ export default class PostsController {
             msg: `Aucune modifications !!`,
           })
         } else {
-          const newData: UpdateVideo = {
+          const cleanedData: UpdateVideo = {
             title: post.title,
             content: post.content,
+            updatedAt: DateTime.local(),
           }
 
           if (data.title) {
-            newData.title = request.body().title
+            cleanedData.title = request.body().title
           }
 
           if (data.video) {
@@ -216,13 +221,13 @@ export default class PostsController {
             const newFileName = string.generateRandom(32) + '.' + video?.extname
             await video?.moveToDisk('videos', { name: newFileName })
 
-            newData.content = newFileName
+            cleanedData.content = newFileName
             await Drive.delete(`videos/${post.content}`)
           }
 
           await post
             .merge({
-              ...newData,
+              ...cleanedData,
             })
             .save()
 

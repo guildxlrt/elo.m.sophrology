@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
-import dateFormat from '../../Utils/Functions'
+import dateFormat from 'App/Utils/Functions'
+import { PostDateType } from '../../Utils/Types'
 import { allowNewUsr } from './UsersController'
 
 export default class PagesController {
@@ -66,8 +67,8 @@ export default class PagesController {
         author = true
       }
 
-      post.createdAt = dateFormat(post.createdAt)
-      post.updatedAt = dateFormat(post.updatedAt)
+      post.createdAt = dateFormat(post.createdAt, PostDateType.createdAt)
+      post.updatedAt = dateFormat(post.updatedAt, PostDateType.updatedAt)
 
       return view.render('pages/post', {
         post,

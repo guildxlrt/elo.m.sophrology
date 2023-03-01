@@ -36,7 +36,10 @@
                     {{post.content}}
                 </p>
             </div>
-            <div class="tag is-dark is-medium">{{post.createdAt}}</div>
+            @!component('../../components/post/timestamp.edge', {
+                updatedAt: post.updatedAt,
+                createdAt: post.createdAt
+            })
         @elseif(post.content_type === 'VIDEO')
             <div class="content">
                 <video class="video-player" style="width: 80%; height: 100%;" controls>
@@ -44,7 +47,10 @@
                     <source src="/store/videos/{{post.content}}" type="video/ogg">
                     Your browser does not support the video tag.
                 </video>
-                <div class="tag is-black is-medium">{{post.createdAt}}</div>
+                @!component('../../components/post/timestamp.edge', {
+                    updatedAt: post.updatedAt,
+                    createdAt: post.createdAt
+                })
             </div>
         @end
         

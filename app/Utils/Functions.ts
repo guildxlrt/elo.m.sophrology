@@ -1,4 +1,6 @@
-export default function dateFormat(value: Date) {
+import { PostDateType } from 'App/Utils/Types'
+
+export default function dateFormat(value: Date, dateType: PostDateType) {
   if (value === null) {
     return null
   }
@@ -13,14 +15,22 @@ export default function dateFormat(value: Date) {
   const oneHour = 1000 * 60 * 60
   const oneMinute = 1000 * 60
 
+  let label = ''
+
+  if (dateType === PostDateType.updatedAt) {
+    label = 'Modifie '
+  } else if (dateType === PostDateType.createdAt) {
+    label = 'Publie '
+  }
+
   function newFormat(time: number, scale: number, string: string) {
     const i = String(time / scale).split('.')[0]
-    const tag = 'il y a ' + i + string
+    const tagString = label + 'il y a ' + i + string
 
     if (i === '1' || string === ' mois') {
-      return tag
+      return tagString
     } else {
-      return tag + 's'
+      return tagString + 's'
     }
   }
 

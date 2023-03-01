@@ -93,7 +93,7 @@
           border-left: 5px dotted $danger;
         }
       }
-      > .tag {
+      > .timestamps {
         position: absolute;
         right: 10px;
         bottom: -50px;
@@ -124,7 +124,7 @@
       > .content {
         @include reCenter();
         flex-direction: column;
-        > .tag {
+        > .timestamps {
           position: absolute;
           right: 20%;
           bottom: -42px;
