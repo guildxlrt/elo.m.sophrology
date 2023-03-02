@@ -25,13 +25,16 @@ export async function submitMsgForm(inputs, errors) {
   })
     .then((res) => {
       alert(res.data)
+      console.log(res)
 
-      setTimeout(function () {
-        window.location.reload()
-      }, 1500)
+      // setTimeout(function () {
+      //   window.location.reload()
+      // }, 1500)
     })
     .catch((err) => {
       const errorsList = err.response.data.errors
+
+      console.log(err)
 
       errorsList.map((error) => {
         if (error.field === 'conditions') {
@@ -49,6 +52,9 @@ export async function submitMsgForm(inputs, errors) {
         }
         if (error.field === 'content') {
           errors.content = error.message
+        }
+        if (error.field === 'send') {
+          alert(error.message)
         }
       })
     })

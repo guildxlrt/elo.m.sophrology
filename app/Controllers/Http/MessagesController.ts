@@ -15,10 +15,29 @@ export interface MessageData {
 export default class MessagesController {
   constructor(private contact: ContactService) {}
 
-  async send({ request }: HttpContextContract) {
+  async send({ request, response }: HttpContextContract) {
     const data = await request.validate(MessageValidator)
-    this.contact.send(data as MessageData)
 
-    return `Le messasge a ete envoye.`
+    let mailerRes: boolean | null = null
+
+    await this.contact.send(data as MessageData).then((res) => {
+      if (res === true) mailerRes = true
+      if (res === false) mailerRes = false
+    })
+
+    console.log(mailerRes)
+
+    if (mailerRes === true) {
+      return response.status(200).json('Le message a ete envoye')
+    } else if (mailerRes === false) {
+      return response.status(503).json({
+        errors: [
+          {
+            field: 'send',
+            message: "Erreur interne : le serveur n'a pas pu envoyer le message...",
+          },
+        ],
+      })
+    }
   }
 }
