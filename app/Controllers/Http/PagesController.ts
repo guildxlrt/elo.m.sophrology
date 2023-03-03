@@ -83,16 +83,18 @@ export default class PagesController {
 
     if (auth.user !== undefined) {
       user = auth.user.id
+      const posts = await Post.query().where('user_id', user)
+
+      posts?.map((post: Post | null) => {
+        post.createdAt = dateFormat(post.createdAt, PostDateType.createdAt).slice(7)
+        if (post.updatedAt !== null)
+          post.updatedAt = dateFormat(post.updatedAt, PostDateType.updatedAt).slice(7)
+      })
+
+      return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
+    } else {
+      const posts = null
+      return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
     }
-
-    const posts = await Post.query().where('user_id', user)
-
-    posts.map((post) => {
-      post.createdAt = dateFormat(post.createdAt, PostDateType.createdAt).slice(7)
-      if (post.updatedAt !== null)
-        post.updatedAt = dateFormat(post.updatedAt, PostDateType.updatedAt).slice(7)
-    })
-
-    return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
   }
 }

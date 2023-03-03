@@ -5,7 +5,7 @@
   .contact-body {
     > .container > .field > .input-wrapper {
       .input {
-        max-width: 540px;
+        max-width: 455px;
       }
       .textarea {
         max-height: 312px;
@@ -26,7 +26,18 @@
     > .subtitle,
     .input,
     .checkbox {
-      margin-top: 12px;
+      margin: 15px 0px;
+    }
+
+    .input {
+      min-width: 325px;
+      @media (min-width: 620px) {
+        min-width: 455px;
+      }
+    }
+
+    .error {
+      margin: 0px;
     }
   }
 }
@@ -96,11 +107,6 @@
   }
 }
 
-.notification,
-.box {
-  @include slantShadow(1px, 7px, 0.5);
-}
-
 .navbar {
   @include smoothShadow(6px, 3px, $shadow, 0.4);
 }
@@ -141,6 +147,11 @@
   > .card-footer {
     border-top: none;
   }
+}
+
+.notification,
+.box {
+  @include slantShadow(1px, 7px, 0.5);
 }
 
 .hero {

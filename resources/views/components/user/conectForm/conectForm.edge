@@ -18,7 +18,7 @@
             action="{{route('create')}}"
         @end
     >
-        @!component('../../components/user/input.edge', {
+        @!component('../../components/user/conectForm/input.edge', {
             type: type,
             title: 'Adresse email',
             name: 'email',
@@ -28,7 +28,7 @@
         })
 
         
-        @!component('../../components/user/input.edge', {
+        @!component('../../components/user/conectForm/input.edge', {
             type: type,
             title: 'Mot de passe',
             name: 'password',
@@ -39,7 +39,7 @@
         })
 
         @if(type === 'create')
-            @!component('../../components/user/input.edge', {
+            @!component('../../components/user/conectForm/input.edge', {
                 type: type,
                 title: 'Confirmation',
                 name: 'passwordConfirm',

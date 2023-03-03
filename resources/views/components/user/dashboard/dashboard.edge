@@ -50,5 +50,19 @@
         </div>
     </div>
 </section>
+@if(posts[0])
+    @!component('../../components/user/dashboard/postsManager.edge', { posts: posts})
+@else
+    <section
+        class="section is-large has-text-centered centering-item posts-manager"
+    >
+        <h1 class="title">
+            Mes publications
+        </h1>
 
-@!component('../../components/user/postsManager.edge', { posts: posts})
+        <span class="subtitle is-5">Vous n'avez aucune publication a cet instant.</span>
+    </section>
+@end
+
+
+
