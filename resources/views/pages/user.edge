@@ -16,7 +16,7 @@
             </div>
         </section>
     @else
-      @!component('../components/user/dashboard.edge')
+      @!component('../components/user/dashboard.edge', { posts: posts})
     @end
     
 @endsection

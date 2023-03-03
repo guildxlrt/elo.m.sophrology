@@ -3,6 +3,13 @@ import Alpine from 'alpinejs'
 import axios from 'axios'
 import { newStatus, deletePost, resetPostErrors, submitPostForm } from './tools/PostScripts'
 import { resetMsgInputs, resetMsgErrors, submitMsgForm } from './tools/ContactScripts'
+import {
+  resetNwlErrors,
+  resetNwlInputs,
+  resubForm,
+  subForm,
+  unsubForm,
+} from './tools/NewsletterScript'
 import { logout } from './tools/UserScripts'
 
 // Libraries
@@ -22,5 +29,11 @@ window.submitPostForm = submitPostForm
 window.resetMsgInputs = resetMsgInputs
 window.resetMsgErrors = resetMsgErrors
 window.submitMsgForm = submitMsgForm
+//---Newsletter
+window.subForm = subForm
+window.unsubForm = unsubForm
+window.resubForm = resubForm
+window.resetNwlInputs = resetNwlInputs
+window.resetNwlErrors = resetNwlErrors
 //---User
 window.logout = logout

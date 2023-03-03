@@ -62,3 +62,97 @@
     }
   }
 }
+.posts-manager {
+  flex-direction: column;
+
+  @media (max-width: 555px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .title {
+    margin-bottom: 52px;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 1080px;
+    @media (min-width: 556px) {
+      @include smoothShadow(6px, 3px, $grey-light, 0.4);
+      border-radius: 7px;
+    }
+
+    & td,
+    & th {
+      vertical-align: middle;
+    }
+
+    > thead {
+      background-color: $grey-light;
+    }
+  }
+}
+
+@media (max-width: 555px) {
+  .table {
+    @include reCenter;
+  }
+  .table tbody {
+    display: block;
+  }
+  .table thead,
+  .table th {
+    display: none;
+  }
+  .cell {
+    &.created,
+    &.updated {
+      display: none;
+    }
+
+    &.title,
+    &.status,
+    &.type,
+    &.cover {
+      @include reCenter;
+    }
+  }
+  .table tr {
+    border: 2px solid $grey-dark;
+
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      'cell-title cell-title cell-title'
+      'cell-status cell-type cell-cover';
+  }
+
+  .title {
+    grid-area: cell-title;
+    max-height: 68px;
+    > a {
+      max-height: 68px;
+      text-overflow: clip;
+      overflow: hidden;
+    }
+  }
+
+  .status {
+    grid-area: cell-status;
+  }
+
+  .type {
+    grid-area: cell-type;
+  }
+
+  .cover {
+    grid-area: cell-cover;
+  }
+
+  .posts-manager .title {
+    margin-bottom: 0px;
+  }
+}

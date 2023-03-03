@@ -3,7 +3,7 @@
 >
     <div class="container contact-header">
         <h3 class="title">Contact</h3>
-        <span class="content">Pour me contacter : </span>
+        <span class="subtitle is-5">Pour me contacter :</span>
     </div>
     <div
         class="container contact-body"
@@ -19,10 +19,10 @@
                 @submit.prevent="submitMsgForm(inputs, errors)"
                 x-data="{
                     inputs: {
-                        name: 'titus',
-                        surname: 'seasarus',
-                        email: 'tito@lepronto.fr',
-                        content: 'deeddedede',
+                        name: '',
+                        surname: '',
+                        email: '',
+                        content: '',
                         conditions: null
                     },
                     errors: {

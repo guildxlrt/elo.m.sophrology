@@ -14,7 +14,7 @@
               <span  class="has-text-dark"></span>
               <span  class="has-text-dark"></span>
             </div>
-            <a class="navbar-item logo" href="/">
+            <a class="navbar-item logo" href="{{route('home')}}">
               <span>Éloïse Martin</span>
             </a> 
           </div>
@@ -26,19 +26,19 @@
           >
             <div class="navbar-end">
               <a
-                href="/presentation"
+                href="{{route('about')}}"
                 class="navbar-item"
               >
                 Qui suis-je ?
               </a>
               <a
-                href="/les-seances-de-sophrologie"
+                href="{{route('sessions')}}"
                 class="navbar-item"
               >
                 Séances
               </a>
               <a
-                href="/blog"
+                href="{{route('blog')}}"
                 class="navbar-item"
               >
                 Blog

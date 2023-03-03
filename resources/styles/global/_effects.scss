@@ -42,13 +42,12 @@
     @include transparentBack($navbar-block, 1);
   }
 
-  &.notification {
+  &.notification,
+  &.box {
     @include blurFilter(2px);
   }
 }
 
 .centering-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include reCenter;
 }

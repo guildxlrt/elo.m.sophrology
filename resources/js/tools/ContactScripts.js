@@ -27,9 +27,9 @@ export async function submitMsgForm(inputs, errors) {
       alert(res.data)
       console.log(res)
 
-      // setTimeout(function () {
-      //   window.location.reload()
-      // }, 1500)
+      setTimeout(function () {
+        window.location.reload()
+      }, 1500)
     })
     .catch((err) => {
       const errorsList = err.response.data.errors

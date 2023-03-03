@@ -3,7 +3,7 @@ import MessageValidator from 'App/Validators/MessageValidator'
 import { ContactService } from 'App/Services/ContactService'
 import { inject } from '@adonisjs/core/build/standalone'
 
-export interface MessageData {
+interface MessageData {
   surname: string
   name: string
   email: string
@@ -24,8 +24,6 @@ export default class MessagesController {
       if (res === true) mailerRes = true
       if (res === false) mailerRes = false
     })
-
-    console.log(mailerRes)
 
     if (mailerRes === true) {
       return response.status(200).json('Le message a ete envoye')

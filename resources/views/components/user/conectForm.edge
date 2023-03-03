@@ -13,9 +13,9 @@
         class="form" 
         method="post"
         @if(type === 'login')
-            action="/login"
+            action="{{route('login')}}"
         @elseif(type === 'create')
-            action="/create"
+            action="{{route('create')}}"
         @end
     >
         @!component('../../components/user/input.edge', {

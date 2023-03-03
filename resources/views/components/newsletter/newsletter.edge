@@ -1,0 +1,38 @@
+<form 
+    class="section has-text-centered is-medium newsletter"
+    @submit.prevent="subForm(inputs, errors)"
+    x-data="{
+        inputs: {
+            email: 'bernardote@email.com',
+            conditions: null
+        },
+        errors: {
+            email: '',
+            conditions: '',
+            send: ''
+        }
+    }"
+>
+    <h3 class="title">Newsletter</h3>
+    <div class="box is-primary add-blur">
+
+        <label class="subtitle is-5">Pour s'abonner :</label>
+        @!component('../../components/newsletter/input.edge', {
+            field: 'email',
+            tag: "adresse@email"
+        })
+        
+        @!component('../../components/newsletter/input.edge', {
+            field: 'conditions'
+        })
+
+        <button 
+            class="button is-link"
+            type="submit"
+        >S'abonner</button>
+        @!component('../../components/inputError.edge', {
+            value: 'send'
+        })
+        
+    </div>
+</form>

@@ -31,6 +31,10 @@
     @if(user === false)
       @!component('components/contact/contact')
     @end
+
+    @if(user === false)
+      @!component('components/newsletter/newsletter.edge')
+    @end
           
     @!component('components/footer') 
   </body>

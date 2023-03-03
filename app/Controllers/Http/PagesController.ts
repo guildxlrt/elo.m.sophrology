@@ -34,7 +34,7 @@ export default class PagesController {
       user = auth.user.id
     }
 
-    const posts = await Post.all()
+    const posts = await Post.query().where('status', true)
 
     return view.render('pages/blog', { posts, user: user })
   }
@@ -80,10 +80,19 @@ export default class PagesController {
 
   async user({ view, auth }: HttpContextContract) {
     let user = false
+
     if (auth.user !== undefined) {
       user = auth.user.id
     }
 
-    return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr })
+    const posts = await Post.query().where('user_id', user)
+
+    posts.map((post) => {
+      post.createdAt = dateFormat(post.createdAt, PostDateType.createdAt).slice(7)
+      if (post.updatedAt !== null)
+        post.updatedAt = dateFormat(post.updatedAt, PostDateType.updatedAt).slice(7)
+    })
+
+    return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
   }
 }

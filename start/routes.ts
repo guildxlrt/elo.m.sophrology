@@ -20,9 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', 'PagesController.index')
-Route.get('/presentation', 'PagesController.about')
-Route.get('/les-seances-de-sophrologie', 'PagesController.sessions')
+Route.get('/', 'PagesController.index').as('home')
+Route.get('/presentation', 'PagesController.about').as('about')
+Route.get('/les-seances-de-sophrologie', 'PagesController.sessions').as('sessions')
 Route.get('/user', 'PagesController.user').as('user')
 
 Route.get('/blog', 'PagesController.blog').as('blog')
@@ -39,6 +39,10 @@ Route.group(() => {
 
 Route.post('/message', 'MessagesController.send')
 
-Route.post('/create', 'UsersController.create')
+Route.post('/subscribe', 'NewsletterController.subscribe')
+Route.post('/unsubscribe', 'NewsletterController.unsubscribe')
+Route.post('/resubscribe', 'NewsletterController.resubscribe')
+
+Route.post('/create', 'UsersController.create').as('create')
 Route.post('/login', 'UsersController.login').as('login')
 Route.delete('/logout', 'UsersController.logout').as('logout')

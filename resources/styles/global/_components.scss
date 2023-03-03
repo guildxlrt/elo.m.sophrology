@@ -15,6 +15,22 @@
   }
 }
 
+.newsletter {
+  @include reCenter;
+  flex-direction: column;
+
+  > .box {
+    max-width: 540px;
+    padding-bottom: 24px;
+
+    > .subtitle,
+    .input,
+    .checkbox {
+      margin-top: 12px;
+    }
+  }
+}
+
 .wrap-buttons {
   @include flexRow;
   justify-content: space-evenly;
@@ -80,7 +96,8 @@
   }
 }
 
-.notification {
+.notification,
+.box {
   @include slantShadow(1px, 7px, 0.5);
 }
 
