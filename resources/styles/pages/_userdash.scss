@@ -93,6 +93,10 @@
   }
 }
 
+.cell > .subtitle {
+  font-weight: bold;
+}
+
 @media (max-width: 555px) {
   .table {
     @include reCenter;
@@ -116,6 +120,17 @@
     &.cover {
       @include reCenter;
     }
+
+    &.title {
+      grid-area: cell-title;
+      max-height: 68px;
+      padding-bottom: 0px;
+      > a {
+        max-height: 68px;
+        text-overflow: clip;
+        overflow: hidden;
+      }
+    }
   }
   .table tr {
     border: 2px solid $grey-dark;
@@ -131,16 +146,6 @@
   }
   .table td {
     border: none;
-  }
-
-  .title {
-    grid-area: cell-title;
-    max-height: 68px;
-    > a {
-      max-height: 68px;
-      text-overflow: clip;
-      overflow: hidden;
-    }
   }
 
   .status {

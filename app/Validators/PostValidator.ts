@@ -40,7 +40,7 @@ export class ArticleValidator {
 
   public schema = schema.create({
     content_type: schema.enum(Object.values(PostType)),
-    title: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(140)]),
+    title: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(120)]),
     content: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(30000)]),
     cover: schema.file.nullableAndOptional({
       size: limit.cover,
@@ -63,7 +63,7 @@ export class NewVideoValidator {
 
   public schema = schema.create({
     content_type: schema.enum(Object.values(PostType)),
-    title: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(140)]),
+    title: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(120)]),
     video: schema.file({
       size: limit.video,
       extnames: ['mp4', 'avi', 'mkv', 'webm', 'MP4', 'AVI', 'MKV', 'WEBM'],
