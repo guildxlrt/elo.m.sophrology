@@ -129,6 +129,9 @@
       'cell-title cell-title cell-title'
       'cell-status cell-type cell-cover';
   }
+  .table td {
+    border: none;
+  }
 
   .title {
     grid-area: cell-title;
