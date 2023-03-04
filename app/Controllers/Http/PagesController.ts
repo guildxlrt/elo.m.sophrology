@@ -7,20 +7,27 @@ import { allowNewUsr } from './UsersController'
 export default class PagesController {
   async index({ view, auth }: HttpContextContract) {
     let user = false
+
     if (auth.user !== undefined) {
       user = auth.user.id
     }
+
     return view.render('pages/index', { user: user })
   }
+
   async about({ view, auth }: HttpContextContract) {
     let user = false
+
     if (auth.user !== undefined) {
       user = auth.user.id
     }
+
     return view.render('pages/about', { user: user })
   }
+
   async sessions({ view, auth }: HttpContextContract) {
     let user = false
+
     if (auth.user !== undefined) {
       user = auth.user.id
     }
@@ -30,6 +37,7 @@ export default class PagesController {
 
   async blog({ view, auth }: HttpContextContract) {
     let user = false
+
     if (auth.user !== undefined) {
       user = auth.user.id
     }
@@ -96,5 +104,15 @@ export default class PagesController {
       const posts = null
       return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
     }
+  }
+
+  async conditions({ view, auth }: HttpContextContract) {
+    let user = false
+
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
+    return view.render('pages/conditions', { user: user })
   }
 }

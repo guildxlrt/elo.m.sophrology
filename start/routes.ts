@@ -24,6 +24,7 @@ Route.get('/', 'PagesController.index').as('home')
 Route.get('/presentation', 'PagesController.about').as('about')
 Route.get('/les-seances-de-sophrologie', 'PagesController.sessions').as('sessions')
 Route.get('/user', 'PagesController.user').as('user')
+Route.get('/conditions', 'PagesController.conditions').as('conditions')
 
 Route.get('/blog', 'PagesController.blog').as('blog')
 Route.get('/blog/:id', 'PagesController.post').as('get.post')

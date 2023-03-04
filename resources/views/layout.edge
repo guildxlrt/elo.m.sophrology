@@ -27,13 +27,13 @@
     >
       @!section('page')
     </main>
-
+    
     @if(user === false)
-      @!component('components/contact/contact')
+      @!component('components/newsletter/newsletter.edge')
     @end
 
     @if(user === false)
-      @!component('components/newsletter/newsletter.edge')
+      @!component('components/contact/contact')
     @end
           
     @!component('components/footer') 

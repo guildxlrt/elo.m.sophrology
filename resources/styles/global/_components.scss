@@ -119,10 +119,16 @@
 .footer {
   @include smoothShadow(6px, 3px, $shadow, 0.4);
   min-height: 336px;
-  > .container > .columns > .column {
-    color: $danger;
-    &:hover {
-      color: $dark;
+  > .container {
+    > .columns > .column {
+      color: $danger;
+      &:hover {
+        color: $dark;
+      }
+    }
+
+    > p {
+      margin: 72px;
     }
   }
 }

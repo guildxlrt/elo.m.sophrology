@@ -1,9 +1,15 @@
 import mailchimp from '@mailchimp/mailchimp_marketing'
 
-const mailchimpCfg = {
-  apiKey: '9e84a1d11befe45a70838017f45e47ca-us13',
-  server: 'us13',
-  list_id: '9c37c81054',
+interface MailchimpCfg {
+  apiKey: string | undefined
+  server: string | undefined
+  list_id: string | undefined
+}
+
+const mailchimpCfg: MailchimpCfg = {
+  apiKey: process.env.MC_API_KEY,
+  server: process.env.MC_SERVER,
+  list_id: process.env.MC_LIST_ID,
 }
 
 export class NewsletterService {
