@@ -3,7 +3,7 @@
 
   position: absolute;
   top: $position;
-  right: $position;
+  right: calc($position + 33px);
 
   > .usr-img {
     $size: 25px;

@@ -14,10 +14,7 @@ export default class UserValidator {
       }),
       rules.unique({ table: 'users', column: 'email' }),
     ]),
-    password: schema.string({ trim: true }, [
-      rules.confirmed('passwordConfirm'),
-      rules.validPasswd(),
-    ]),
+    password: schema.string([rules.confirmed('passwordConfirm'), rules.validPasswd()]),
   })
 
   public messages: CustomMessages = {

@@ -9,30 +9,15 @@ export enum PostDateType {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
 }
-
-export interface NewVideo {
-  status: boolean
-  user_id: any
-  title: string
-  content_type: PostType
-  content: string
-  updatedAt: null
-}
-
 export interface NewArticle {
-  status: boolean
-  user_id: any
   title: string
   content_type: PostType
   content: string
   cover: string | null
+  status: boolean
+  url_path: string | { error: { field: string; message: string }[] }
+  user_id: any
   updatedAt: null
-}
-
-export interface UpdateVideo {
-  title: string
-  content: string
-  updatedAt: DateTime
 }
 
 export interface UpdateArticle {
@@ -40,4 +25,22 @@ export interface UpdateArticle {
   content: string
   cover: string | null
   updatedAt: DateTime
+  url_path: string | { error: { field: string; message: string }[] }
+}
+
+export interface NewVideo {
+  title: string
+  content_type: PostType
+  content: string
+  status: boolean
+  url_path: string | { error: { field: string; message: string }[] }
+  user_id: any
+  updatedAt: null
+}
+
+export interface UpdateVideo {
+  title: string
+  content: string
+  updatedAt: DateTime
+  url_path: string | { error: { field: string; message: string }[] }
 }

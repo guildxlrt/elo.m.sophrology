@@ -23,6 +23,7 @@ export default class extends BaseSchema {
       table.string('cover').nullable()
 
       table.boolean('status').notNullable().defaultTo(false)
+      table.string('url_path').notNullable().unique()
     })
   }
 

@@ -10,6 +10,7 @@ import {
 } from '../../Validators/PostValidator'
 import { NewArticle, NewVideo, UpdateArticle, UpdateVideo } from '../../Utils/Types'
 import { DateTime } from 'luxon'
+import { new_url_path } from '../../Utils/Functions'
 
 export default class PostsController {
   async new({ request, auth, response }: HttpContextContract) {
@@ -17,6 +18,12 @@ export default class PostsController {
 
     if (contentType === PostType.ARTICLE) {
       const data = await request.validate(ArticleValidator)
+
+      const urlPath: any = await new_url_path(request.body().title)
+
+      if (urlPath.error) {
+        return response.status(400).json({ errors: urlPath.error })
+      }
 
       const cover = data.cover
       const covercheck = data.covercheck
@@ -52,6 +59,7 @@ export default class PostsController {
         content_type: data.content_type,
         content: data.content,
         cover: newFileName,
+        url_path: urlPath,
         updatedAt: null,
       }
 
@@ -69,6 +77,12 @@ export default class PostsController {
     } else if (contentType === PostType.VIDEO) {
       const data = await request.validate(NewVideoValidator)
 
+      const urlPath: any = await new_url_path(request.body().title)
+
+      if (urlPath.error) {
+        return response.status(400).json({ errors: urlPath.error })
+      }
+
       const video = data.video
 
       const newFileName = string.generateRandom(32) + '.' + video?.extname
@@ -80,6 +94,7 @@ export default class PostsController {
         title: data.title,
         content_type: data.content_type,
         content: newFileName,
+        url_path: urlPath,
         updatedAt: null,
       }
 
@@ -114,6 +129,12 @@ export default class PostsController {
         //ARTICLE MODIF
       } else if (contentType === PostType.ARTICLE) {
         const data = await request.validate(ArticleValidator)
+
+        const urlPath: any = await new_url_path(request.body().title)
+
+        if (urlPath.error) {
+          return response.status(400).json({ errors: urlPath.error })
+        }
 
         // verifying the conformity of request (cover)
         if (data.covercheck === false && data.cover !== undefined) {
@@ -155,11 +176,13 @@ export default class PostsController {
               title: post.title,
               content: post.content,
               cover: post.cover,
+              url_path: post.url_path,
               updatedAt: DateTime.local(),
             }
 
             if (data.title) {
               cleanedData.title = request.body().title
+              cleanedData.url_path = urlPath
             }
 
             if (data.content) {
@@ -198,6 +221,12 @@ export default class PostsController {
       } else if (contentType === PostType.VIDEO) {
         const data = await request.validate(UpdateVideoValidator)
 
+        const urlPath: any = await new_url_path(request.body().title)
+
+        if (urlPath.error) {
+          return response.status(400).json({ errors: urlPath.error })
+        }
+
         if ((data.title === post.title || params.title === '') && !data.video) {
           return response.status(202).json({
             id: id,
@@ -208,11 +237,13 @@ export default class PostsController {
           const cleanedData: UpdateVideo = {
             title: post.title,
             content: post.content,
+            url_path: post.url_path,
             updatedAt: DateTime.local(),
           }
 
           if (data.title) {
             cleanedData.title = request.body().title
+            cleanedData.url_path = urlPath
           }
 
           if (data.video) {

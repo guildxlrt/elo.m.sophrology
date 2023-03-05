@@ -16,6 +16,7 @@ export default class Post extends BaseModel {
 
   @column()
   public title: string
+
   @column()
   public content: string
   @column()
@@ -23,6 +24,9 @@ export default class Post extends BaseModel {
 
   @column()
   public status: boolean
+
+  @column()
+  public url_path: string
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
