@@ -132,12 +132,6 @@ export default class PostsController {
       } else if (contentType === PostType.ARTICLE) {
         const data = await request.validate(ArticleValidator)
 
-        const urlPath: any = await new_url_path(request.body().title)
-
-        if (urlPath.error && data.title !== post.title) {
-          return response.status(400).json({ errors: urlPath.error })
-        }
-
         // verifying the conformity of request (cover)
         if (data.covercheck === false && data.cover !== undefined) {
           return response.status(400).json({
@@ -183,8 +177,15 @@ export default class PostsController {
               updatedAt: DateTime.local(),
             }
 
-            if (data.title) {
+            if (data.title !== post.title && params.title !== '') {
               cleanedData.title = request.body().title
+
+              const urlPath: any = await new_url_path(request.body().title)
+
+              if (urlPath.error && data.title !== post.title) {
+                return response.status(400).json({ errors: urlPath.error })
+              }
+
               cleanedData.url_path = urlPath
             }
 
@@ -213,9 +214,13 @@ export default class PostsController {
               })
               .save()
 
+            const { url_path } = post.$attributes
+
+            console.log(url_path)
+
             return response.status(200).json({
               id: id,
-              url_path: cleanedData.url_path,
+              url_path: url_path,
               new: false,
               msg: `L'article a ete mit a jour`,
             })
@@ -224,12 +229,6 @@ export default class PostsController {
         //VIDEO MODIF
       } else if (contentType === PostType.VIDEO) {
         const data = await request.validate(UpdateVideoValidator)
-
-        const urlPath: any = await new_url_path(request.body().title)
-
-        if (urlPath.error && data.title !== post.title) {
-          return response.status(400).json({ errors: urlPath.error })
-        }
 
         if ((data.title === post.title || params.title === '') && !data.video) {
           return response.status(202).json({
@@ -246,8 +245,15 @@ export default class PostsController {
             updatedAt: DateTime.local(),
           }
 
-          if (data.title) {
+          if (data.title !== post.title && params.title !== '') {
             cleanedData.title = request.body().title
+
+            const urlPath: any = await new_url_path(request.body().title)
+
+            if (urlPath.error && data.title !== post.title) {
+              return response.status(400).json({ errors: urlPath.error })
+            }
+
             cleanedData.url_path = urlPath
           }
 
@@ -267,9 +273,11 @@ export default class PostsController {
             })
             .save()
 
+          const { url_path } = post.$attributes
+
           return response.status(200).json({
             id: id,
-            url_path: cleanedData.url_path,
+            url_path: url_path,
             new: false,
             msg: `La video a ete mit a jour`,
           })

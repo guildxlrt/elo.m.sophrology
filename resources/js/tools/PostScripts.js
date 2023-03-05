@@ -121,7 +121,7 @@ export async function submitPostForm(event, id, content_type, errors) {
     },
   })
     .then((res) => {
-      const { msg, id, url_path, created } = res.data
+      const { msg, url_path, created } = res.data
 
       alert(msg)
 
