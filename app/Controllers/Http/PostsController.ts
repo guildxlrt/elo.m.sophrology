@@ -67,10 +67,11 @@ export default class PostsController {
         ...cleanedData,
       })
 
-      const id = post.$attributes.id
+      const { id, url_path } = post.$attributes
 
       return response.status(200).json({
         id: id,
+        url_path: url_path,
         created: true,
         msg: `L'article a ete sauvegarde et publie`,
       })
@@ -102,10 +103,11 @@ export default class PostsController {
         ...cleanedData,
       })
 
-      const id = post.$attributes.id
+      const { id, url_path } = post.$attributes
 
       return {
         id: id,
+        url_path: url_path,
         created: true,
         msg: `La video a ete sauvegarde et publie`,
       }
@@ -132,7 +134,7 @@ export default class PostsController {
 
         const urlPath: any = await new_url_path(request.body().title)
 
-        if (urlPath.error) {
+        if (urlPath.error && data.title !== post.title) {
           return response.status(400).json({ errors: urlPath.error })
         }
 
@@ -168,6 +170,7 @@ export default class PostsController {
           ) {
             return response.status(202).json({
               id: id,
+              url_path: post.url_path,
               new: false,
               msg: `Aucune modifications !!`,
             })
@@ -212,6 +215,7 @@ export default class PostsController {
 
             return response.status(200).json({
               id: id,
+              url_path: cleanedData.url_path,
               new: false,
               msg: `L'article a ete mit a jour`,
             })
@@ -223,13 +227,14 @@ export default class PostsController {
 
         const urlPath: any = await new_url_path(request.body().title)
 
-        if (urlPath.error) {
+        if (urlPath.error && data.title !== post.title) {
           return response.status(400).json({ errors: urlPath.error })
         }
 
         if ((data.title === post.title || params.title === '') && !data.video) {
           return response.status(202).json({
             id: id,
+            url_path: post.url_path,
             new: false,
             msg: `Aucune modifications !!`,
           })
@@ -264,6 +269,7 @@ export default class PostsController {
 
           return response.status(200).json({
             id: id,
+            url_path: cleanedData.url_path,
             new: false,
             msg: `La video a ete mit a jour`,
           })

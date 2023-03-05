@@ -44,7 +44,9 @@ export default class PagesController {
 
     const posts = await Post.query().where('status', true)
 
-    return view.render('pages/blog', { posts, user: user })
+    console.log(posts)
+
+    return view.render('pages/blog', { posts: posts.reverse(), user: user })
   }
 
   async post({ params, view, auth, response, session, bouncer }: HttpContextContract) {
@@ -69,7 +71,7 @@ export default class PagesController {
         return view.render('pages/post', { post, user: user })
       }
     } else {
-      const post = await Post.findOrFail(params.id)
+      const post = await Post.findByOrFail('url_path', params.url_path)
 
       if (auth.user !== undefined && (await bouncer.allows('editPost', post)) === true) {
         author = true
@@ -99,10 +101,19 @@ export default class PagesController {
           post.updatedAt = dateFormat(post.updatedAt, PostDateType.updatedAt).slice(7)
       })
 
-      return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
+      return view.render('pages/user', {
+        user: user,
+        allowNewUsr: allowNewUsr,
+        posts: posts.reverse(),
+      })
     } else {
       const posts = null
-      return view.render('pages/user', { user: user, allowNewUsr: allowNewUsr, posts: posts })
+
+      return view.render('pages/user', {
+        user: user,
+        allowNewUsr: allowNewUsr,
+        posts: posts,
+      })
     }
   }
 

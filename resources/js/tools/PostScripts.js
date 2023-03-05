@@ -121,21 +121,20 @@ export async function submitPostForm(event, id, content_type, errors) {
     },
   })
     .then((res) => {
-      const { msg, id, created } = res.data
+      const { msg, id, url_path, created } = res.data
 
       alert(msg)
 
       if (created === true) {
         setTimeout(function () {
-          window.location.href = `/blog/${id}`
+          window.location.href = `/blog/${url_path}`
         }, 1500)
       } else {
-        window.location.reload()
+        window.location.href = `/blog/${url_path}`
       }
     })
     .catch((err) => {
       const errList = err.response.data.errors
-      console.log(err.response.data)
 
       errList.map((error) => {
         if (error.field === 'title') {

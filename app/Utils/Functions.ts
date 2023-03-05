@@ -71,7 +71,9 @@ export async function new_url_path(value: string) {
       error: [
         {
           field: 'title',
-          message: `Le titre doit etre unique, mais il est deja prit (la ponctuation et le bicamerale (maj-min) ne rentrent pas en compte)`,
+          message: `Le titre doit etre unique : celui-ci est deja utilise.
+          <br/>
+          [la ponctuation et le bicamerale (maj-min) ne rentrent pas en compte]`,
         },
       ],
     }

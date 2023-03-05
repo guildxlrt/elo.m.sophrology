@@ -16,7 +16,7 @@
         >
             @each(post in posts)
                 <li class="column is-narrow">
-                    <a href="{{route('get.post', {id: post.id})}}">
+                    <a href="{{route('get.post', {url_path: post.url_path})}}">
                         <div
                             @if(post.content_type === 'ARTICLE')
                                 class="card is-primary add-blur"

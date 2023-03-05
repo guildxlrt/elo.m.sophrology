@@ -27,7 +27,7 @@ Route.get('/user', 'PagesController.user').as('user')
 Route.get('/conditions', 'PagesController.conditions').as('conditions')
 
 Route.get('/blog', 'PagesController.blog').as('blog')
-Route.get('/blog/:id', 'PagesController.post').as('get.post')
+Route.get('/blog/:url_path', 'PagesController.post').as('get.post')
 Route.get('/blog/:id/:content_type', 'PagesController.post').as('new.post')
 
 Route.group(() => {
