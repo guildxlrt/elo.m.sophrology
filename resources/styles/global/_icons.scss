@@ -3,7 +3,7 @@
 
   position: absolute;
   top: $position;
-  right: calc($position + 33px);
+  right: calc($position + 17px);
 
   > .usr-img {
     $size: 25px;
@@ -15,15 +15,11 @@
   }
 }
 
-// .exit-icon {
-//   $size: 18px;
+.error > .exit-icon {
+  $size: 18px;
+  width: $size;
+  height: $size;
+  margin: 0px;
 
-//   width: $size;
-//   height: $size;
-//   background-size: $size;
-
-//   filter: invert(48%) sepia(60%) saturate(2476%) hue-rotate(305deg) brightness(80%) contrast(95%);
-
-//   background-image: url('../../assets/icons/circle-xmark-solid.svg');
-//   background-repeat: no-repeat;
-// }
+  bottom: -2px;
+}

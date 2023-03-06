@@ -1,4 +1,4 @@
-//----// HTML's
+//----// IN HTML's
 
 body {
   color: $text;
@@ -51,36 +51,21 @@ a {
   }
 }
 
-//----// CLASSES
+//----// IN CLASSES
 
 .button {
-  border-radius: 15px;
+  border-radius: 18px;
   border: 0px;
   transition: all 0.35s $bezier-1 0s;
 
   &.is-info {
     @include btnColors($info-btn);
-    color: $dark;
-    &:hover {
-      color: $dark;
-      @include smoothShadow(6px, 1px, darken($info-btn, 20%), 0);
-    }
   }
   &.is-link {
     @include btnColors($link-btn);
-    &:hover {
-      @include smoothShadow(6px, 1px, darken($link-btn, 30%), 0);
-      color: white;
-      background-color: $link-btn;
-    }
   }
   &.is-success {
     @include btnColors($success-btn);
-    color: $dark;
-    &:hover {
-      color: $dark;
-      @include smoothShadow(6px, 2px, #9bf48a, 0);
-    }
   }
   &.is-danger {
     @include btnColors($danger-btn);
@@ -196,4 +181,68 @@ a {
       }
     }
   }
+}
+
+.error {
+  @include flexRow;
+  margin: 24px;
+  justify-content: center;
+
+  > .subtitle,
+  > .exit-icon {
+    cursor: pointer;
+  }
+
+  > .exit-icon {
+    margin-left: 10px;
+    position: relative;
+    bottom: -4px;
+  }
+}
+
+.title,
+.subtitle,
+.table,
+.label,
+.input,
+.textarea,
+a.navbar-item,
+a.navbar-link {
+  color: $text;
+}
+
+a.navbar-item:hover.logo:hover {
+  color: $link;
+}
+
+.flash {
+  &__cont {
+    position: sticky;
+    z-index: 20;
+    top: 80px;
+
+    @include anim-opacity($bezier-1);
+  }
+
+  margin-top: 30px;
+  padding: 10px 20px 10px 20px;
+  border-width: 5px;
+
+  &:hover {
+    @include anim-over($bezier-1);
+  }
+
+  &.is- {
+    &success {
+      border: 3px solid darken($success, 5);
+    }
+    &warning {
+      border: 3px solid darken($warning, 5);
+    }
+  }
+}
+
+.tag:not(body) .delete {
+  margin-left: 15px;
+  bottom: -1px;
 }

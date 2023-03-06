@@ -1,48 +1,61 @@
-//---Update Bulma's color variables
-$primary: $pale-rose;
-$info: $very-light-blue;
-$warning: $pale-lavender;
-$link: $pinkish-tan;
-$danger: $pale-magenta;
-$success: $light-grey-green;
+//=====Update Bulma's color variables
+$primary: $light-green;
+$secondary: $mushroom-light;
+//---functionnals
+$info: $tetradic-1;
+$link: $mushroom;
+$success: $analog-1;
+$warning: $tetradic-2;
+$danger: $coral;
 //---greyscale
 $white: $anti-flash-white;
+$light: $white-beige;
 $grey-light: $silver;
+$grey: $medium-grey;
 $grey-dark: $charcoal;
 $dark: $chocolate;
-$light: $pinky-palish-grey;
+$black: #000000;
 
-//---Elements
-$about: $pale-pink;
-$dark-bis: desaturate($dark, 55);
-$secondary: $pale-pink;
-// background
-$bg-color: lighten($pale-rose, 13);
-// Shadow
-$shadow: $pinkish-grey;
-// navbar
-$navlink-hover: $pale-magenta;
-$navbar-block: $light;
-// links
-$link-footer: $pale-magenta;
-// buttons
+//=====ELEMENTS
+//---Buttons
 $link-btn: lighten($link, 6);
-$success-btn: lighten($success, 12);
+$success-btn: $success;
 $danger-btn: $danger;
 $info-btn: lighten($info, 8);
-// inputs
-$input: lighten(desaturate($info, 50), 15);
-$darken-input: darken($input, 8%);
-$input-hover: $info;
-$input-focus: $link;
+
+//---Inputs
+$input: lighten($light, 5);
+$darken-input: darken($input, 3);
+$input-hover: $grey-light, 0;
+$input-focus: $info;
 $input-radius: 10px;
 
+// Blog
+$video: darken($secondary, 5);
+$article: lighten($secondary, 10);
+// Background
+$bg-color: $white;
+// Shadow
+$shadow: $grey;
+
+// navbar
+$navlink-hover: $link;
+$navbar-block: $light;
+// footer
+$footer: $secondary;
+$link-footer: darken($info, 20);
+$link-footer-hover: $info;
+
+//---Others
+$about: $light;
+$dark-bis: desaturate($dark, 55);
+
 // Update some of Bulma's component variables
-$body-background-color: $anti-flash-white;
+$body-background-color: $white;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
-$text: $dark;
+$text: $dark-green;
 
 // directions
 $to-right: 90deg;

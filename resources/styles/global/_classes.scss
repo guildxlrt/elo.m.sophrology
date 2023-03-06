@@ -1,0 +1,48 @@
+.centering-item {
+  @include reCenter;
+}
+
+.is- {
+  &primary {
+    @include linGradient($to-botom-right, lighten($primary, 15%), $primary);
+  }
+
+  &secondary {
+    @include linGradient($to-botom-right, lighten($secondary, 15%), $secondary);
+  }
+
+  &info {
+    @include linGradient($to-botom-right, lighten($info, 15%), $info);
+  }
+
+  &link {
+    @include linGradient($to-botom-right, lighten($link, 15%), $link);
+  }
+
+  &success {
+    @include linGradient($to-botom-right, lighten($success, 15%), $success);
+  }
+
+  &warning {
+    @include linGradient($to-botom-right, lighten($warning, 15%), $warning);
+  }
+
+  &danger {
+    @include linGradient($to-botom-right, lighten($danger, 15%), $danger);
+  }
+}
+
+.wrap-buttons {
+  @include flexRow;
+  justify-content: space-evenly;
+  min-width: 250px;
+
+  &.down {
+    padding-top: 52px;
+  }
+
+  > .container {
+    max-width: fit-content;
+    margin: 0px;
+  }
+}

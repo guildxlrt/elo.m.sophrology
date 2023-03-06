@@ -19,9 +19,9 @@
                     <a href="{{route('get.post', {url_path: post.url_path})}}">
                         <div
                             @if(post.content_type === 'ARTICLE')
-                                class="card is-primary add-blur"
+                                class="card is-article"
                             @elseif(post.content_type === 'VIDEO')
-                                class="card is-secondary add-blur"                              
+                                class="card is-video"                              
                             @end
                         >
                             <div class="card-header">

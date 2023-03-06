@@ -12,7 +12,7 @@
     }"
 >
     <div
-        class="container notification add-blur"
+        class="container notification "
         x-bind:class="isOnline ? 'is-success' : 'is-warning'"
     >
         <span
@@ -21,7 +21,7 @@
         ></span>
         <button
             class="button"
-            x-bind:class="isOnline ? 'is-dark' : 'is-info'"
+            x-bind:class="isOnline ? 'is-dark' : 'is-white'"
             x-html="changeStatus"
             x-on:click="
                 newStatus(id)

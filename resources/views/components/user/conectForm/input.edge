@@ -23,11 +23,20 @@
 @if(flashMessages.has(`errors.${name}`) && type === 'create')
     <div
         class="error"
+        x-data="{click: false}"
+        x-show="!click"
+        x-transition.opacity.duration.1200ms
     >
         <span
             class="subtitle is-6 has-text-danger"
+            x-on:click="click = !click"
         >
             {{ flashMessages.get(`errors.${name}`) }}
         </span>
+        <img
+            src="/icons/circle-xmark-solid.svg"
+            class="exit-icon"
+            x-on:click="click = !click"
+        />
     </div>
 @end

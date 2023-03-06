@@ -42,93 +42,45 @@
   }
 }
 
-.wrap-buttons {
-  @include flexRow;
-  justify-content: space-evenly;
-  min-width: 250px;
-
-  &.down {
-    padding-top: 52px;
-  }
-
-  > .container {
-    max-width: fit-content;
-    margin: 0px;
-  }
+//----NAVBAR
+.stickybar {
+  position: sticky;
+  top: 0px;
+  z-index: 30;
 }
-
-.flash {
-  margin-top: 30px;
-  padding: 10px 20px 10px 20px;
-  border-width: 5px;
-
-  &:hover {
-    @include over($bezier-1);
-  }
-
-  &__cont {
-    position: sticky;
-    z-index: 20;
-    top: 80px;
-
-    @include opacity($bezier-1);
-
-    > .tag:not(body) {
-      &.is-warning,
-      &.is-success {
-        background-color: transparent;
-        border-radius: 10px;
-      }
-    }
-  }
-
-  &.is-success {
-    @include flashColors($success);
-  }
-  &.is-warning {
-    @include flashColors($warning);
-  }
-}
-
-.error {
-  @include flexRow;
-  margin: 24px;
-  justify-content: center;
-
-  > .subtitle,
-  > .exit-icon {
-    cursor: pointer;
-  }
-
-  > .exit-icon {
-    margin-left: 10px;
-    position: relative;
-    bottom: -4px;
-  }
-}
-
 .navbar {
-  @include smoothShadow(6px, 3px, $shadow, 0.4);
+  @include smoothShadow(4px, 2px, $shadow, 0.4);
+  @include blurFilter(4px);
+  background-color: transparentize($primary, 0.8);
 }
 .navbar-end {
   @media (min-width: 1024px) and (max-width: 1280px) {
     margin-left: 500px;
   }
 }
-
+//----------------//
 .footer {
   @include smoothShadow(6px, 3px, $shadow, 0.4);
   min-height: 336px;
-  > .container {
-    > .columns > .column {
-      color: $danger;
-      &:hover {
-        color: $dark;
-      }
-    }
 
+  @include linGradient($to-botom-right, lighten($footer, 15%), $footer);
+
+  > .container {
+    > p,
+    > span {
+      color: $grey-dark;
+    }
     > p {
       margin: 72px;
+    }
+    > .columns,
+    > span {
+      a {
+        color: $link-footer;
+        &:hover {
+          color: $link-footer-hover;
+        }
+      }
     }
   }
 }
@@ -143,6 +95,7 @@
   max-width: 420px;
   min-height: 370px;
   box-shadow: 3px 5px 10px 4px transparentize($shadow, 0.3);
+
   > .card-header {
     @include smoothShadow(0px, 0px, transparent, 1);
   }
@@ -162,4 +115,7 @@
 
 .hero {
   @include smoothShadow(6px, 3px, $shadow, 0.4);
+  &.is-primary .title {
+    color: $light;
+  }
 }

@@ -7,14 +7,14 @@
 
 .about {
   @include smoothShadow(6px, 1px, $shadow, 0.5);
-  @include opacity($bezier-2);
+  @include anim-opacity($bezier-2);
 
   @media (max-width: 767px) {
     box-shadow: none;
   }
   @media (min-width: 768px) {
     @include blurFilter(2px);
-    @include transparentBack($about, 0.9);
+    background-color: transparentize($about, 0.6);
   }
 
   @media (min-width: 540px) and (max-width: 1023px) {

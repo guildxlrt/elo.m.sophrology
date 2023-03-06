@@ -89,6 +89,9 @@
 
     > thead {
       background-color: $grey-light;
+      > tr > th {
+        text-align: center;
+      }
     }
   }
 }
@@ -133,7 +136,9 @@
     }
   }
   .table tr {
-    border: 2px solid $grey-dark;
+    border: 2px solid $grey-light;
+    border-radius: 10px;
+    margin: 10px 0px;
 
     display: grid;
     grid-auto-rows: 1fr;

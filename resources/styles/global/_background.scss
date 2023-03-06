@@ -1,7 +1,7 @@
 .bg-gradient {
-  @include linGradient($to-botom-right, $white, $bg-color);
+  background-color: $bg-color;
 }
 
 .leafs {
-  background: url('../../assets/backgrounds/main/leaf-grey.svg') 0%/65px;
+  background: url('../../assets/backgrounds/main/leaf-teal.svg') 0%/65px;
 }

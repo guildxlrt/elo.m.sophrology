@@ -1,0 +1,49 @@
+//---ELEMENTS COLORS
+@mixin btnColors($color-value) {
+  $main: $color-value;
+  $lightened: lighten($color-value, 20%);
+  $darkened: darken($color-value, 20%);
+  $amount-value: 0.2;
+
+  // white buttons
+  @if $color-value == $white or $color-value == $light {
+    @include radGradient(
+      transparentize($color: $lightened, $amount: $amount-value),
+      60%,
+      transparentize($color: $main, $amount: $amount-value),
+      70%,
+      transparentize($color: $darkened, $amount: $amount-value),
+      100%
+    );
+  } @else {
+    // dark buttons
+    @if $color-value == $black or $color-value == $dark {
+      $main: lighten($color-value, 10%);
+    }
+
+    @include radGradient(
+      transparentize($color: $darkened, $amount: $amount-value),
+      40%,
+      transparentize($color: $main, $amount: $amount-value),
+      100%,
+      transparentize($color: $lightened, $amount: $amount-value),
+      100%
+    );
+  }
+
+  border: 2px solid transparentize($color: darken($main, 10%), $amount: $amount-value);
+  &:hover {
+    transform: scale(1.08);
+    @include smoothShadow(6px, 1px, $color-value, 0);
+  }
+}
+
+@mixin post-radius($content-type) {
+  @if $content-type == 'article' {
+    border-radius: 3px 10px 6px 4px;
+  }
+
+  @if $content-type == 'video' {
+    border-radius: 20% 20% 20% 20% / 80% 80% 80% 80%;
+  }
+}

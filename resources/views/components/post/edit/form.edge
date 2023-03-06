@@ -34,9 +34,9 @@
         </div>
         <div
             @if(content_type === 'ARTICLE')
-                class="container post-wrapper article add-blur"
+                class="container post-wrapper article "
             @elseif(content_type === 'VIDEO')
-                class="container post-wrapper video add-blur"
+                class="container post-wrapper video "
             @end
         >
             
@@ -51,9 +51,9 @@
     @else
         <div
             @if(content_type === 'ARTICLE')
-                class="container post-wrapper article add-blur"
+                class="container post-wrapper article "
             @elseif(content_type === 'VIDEO')
-                class="container post-wrapper video add-blur"
+                class="container post-wrapper video "
             @end
         >
             @!component('../../../components/post/edit/inputs.edge', {

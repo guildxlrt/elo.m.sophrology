@@ -41,13 +41,20 @@
           padding: 0px;
         }
 
-        @include opacity($bezier-2);
+        @include anim-opacity($bezier-2);
 
         .card {
-          border-radius: 7% 40% 7% 40% / 40% 8% 40% 7%;
+          border-radius: 40% 8% 40% 7% / 7% 40% 7% 40%;
+
+          &.is-video {
+            @include linGradient($to-botom-right, lighten($video, 15%), $video);
+          }
+          &.is-article {
+            @include linGradient($to-botom-right, lighten($article, 10%), $article);
+          }
 
           &:hover {
-            @include over($bezier-1);
+            @include anim-over($bezier-1);
           }
 
           width: 340px;

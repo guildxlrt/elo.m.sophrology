@@ -1,7 +1,10 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.d0ae26d5.webp",
+  "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.a06ff9df.webp",
   "assets/images/article.avif": "http://localhost:8080/assets/images/article.28b1fb8a.avif",
-  "assets/images/leaf-grey.svg": "http://localhost:8080/assets/images/leaf-grey.a9a1b5c3.svg"
+  "assets/images/leaf-grey.svg": "http://localhost:8080/assets/images/leaf-grey.a9a1b5c3.svg",
+  "assets/images/leaf-teal.svg": "http://localhost:8080/assets/images/leaf-teal.348aeb71.svg",
+  "assets/images/circle-user-solid_on.svg": "http://localhost:8080/assets/images/circle-user-solid_on.cc0e5eaa.svg",
+  "assets/images/circle-xmark-solid.svg": "http://localhost:8080/assets/images/circle-xmark-solid.2e94ca56.svg"
 }
