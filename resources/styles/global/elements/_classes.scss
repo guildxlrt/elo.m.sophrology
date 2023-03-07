@@ -1,86 +1,16 @@
-//----// IN HTML's
-
-body {
+.title,
+.subtitle,
+.table,
+.label,
+.input,
+.textarea,
+a.navbar-item,
+a.navbar-link {
   color: $text;
 }
 
-main {
-  // Config
-  position: relative;
-  top: -52px;
-  z-index: 0;
-  &.burger-on {
-    top: -188px;
-  }
-}
-
-a {
-  color: $link-footer;
-
-  &.navbar-item,
-  .navbar-link {
-    color: $dark;
-    transition: all 0.3s;
-
-    &:hover,
-    &:focus,
-    &:focus-within {
-      background-color: transparent;
-      color: $navlink-hover;
-
-      @media (min-width: 1024px) {
-        transform: scale(1.25);
-      }
-      @media (max-width: 1023px) {
-        transform: scale(1.25) translate(10%, 0%);
-      }
-
-      &.logo {
-        &:hover,
-        &:focus,
-        &:focus-within,
-        &:active {
-          transform: scale(1);
-          color: $dark;
-        }
-      }
-    }
-    &:active {
-      transform: scale(1);
-    }
-  }
-}
-
-//----// IN CLASSES
-
-.button {
-  border-radius: 18px;
-  border: 0px;
-  transition: all 0.35s $bezier-1 0s;
-
-  &.is-info {
-    @include btnColors($info-btn);
-  }
-  &.is-link {
-    @include btnColors($link-btn);
-  }
-  &.is-success {
-    @include btnColors($success-btn);
-  }
-  &.is-danger {
-    @include btnColors($danger-btn);
-  }
-
-  &.is-dark {
-    @include btnColors($dark);
-  }
-  &.is-grey {
-    color: white;
-    @include btnColors($grey);
-  }
-  &.is-white {
-    @include btnColors($white);
-  }
+a.navbar-item:hover.logo:hover {
+  color: $link;
 }
 
 .input,
@@ -125,6 +55,36 @@ a {
   }
 }
 
+.button {
+  border-radius: 18px;
+  border: 0px;
+  transition: all 0.35s $bezier-1 0s;
+
+  &.is-info {
+    @include btnColors($info-btn);
+  }
+  &.is-link {
+    @include btnColors($link-btn);
+  }
+  &.is-success {
+    @include btnColors($success-btn);
+  }
+  &.is-danger {
+    @include btnColors($danger-btn);
+  }
+
+  &.is-dark {
+    @include btnColors($dark);
+  }
+  &.is-grey {
+    color: white;
+    @include btnColors($grey);
+  }
+  &.is-white {
+    @include btnColors($white);
+  }
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -137,11 +97,11 @@ a {
     height: 0;
 
     &:checked + .slider {
-      background-color: $secondary;
+      background-color: $switch;
     }
 
     &:focus + .slider {
-      box-shadow: 0 0 1px $secondary;
+      box-shadow: 0 0 1px $switch;
     }
 
     &:checked + .slider:before {
@@ -198,21 +158,6 @@ a {
     position: relative;
     bottom: -4px;
   }
-}
-
-.title,
-.subtitle,
-.table,
-.label,
-.input,
-.textarea,
-a.navbar-item,
-a.navbar-link {
-  color: $text;
-}
-
-a.navbar-item:hover.logo:hover {
-  color: $link;
 }
 
 .flash {
