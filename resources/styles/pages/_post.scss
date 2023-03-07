@@ -129,6 +129,16 @@
     }
   }
 }
+.socials {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  > .subtitle {
+    position: relative;
+    right: 20px;
+  }
+}
 
 .timestamps {
   margin: 50px;

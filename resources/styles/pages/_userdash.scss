@@ -77,21 +77,32 @@
   .table {
     width: 100%;
     max-width: 1080px;
+    border-radius: 8px;
+
     @media (min-width: 556px) {
       @include smoothShadow(6px, 3px, $grey-light, 0.4);
-      border-radius: 7px;
     }
-
     & td,
     & th {
       vertical-align: middle;
     }
 
-    > thead {
-      background-color: $grey-light;
+    & thead {
       > tr > th {
         text-align: center;
+        background-color: $grey-light;
+
+        &.first {
+          border-radius: 8px 0px 0px 0px;
+        }
+        &.last {
+          border-radius: 0px 8px 0px 0px;
+        }
       }
+    }
+
+    & tr {
+      background-color: lighten($light, 8);
     }
   }
 }

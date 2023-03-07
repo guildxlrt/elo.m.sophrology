@@ -27,7 +27,7 @@ $switch: $info;
 //---Inputs
 $input: lighten($light, 5);
 $darken-input: darken($input, 3);
-$input-hover: $grey-light, 0;
+$input-hover: $grey-light;
 $input-focus: $info;
 $input-radius: 10px;
 

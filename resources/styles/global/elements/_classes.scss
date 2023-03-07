@@ -60,6 +60,10 @@ a.navbar-item:hover.logo:hover {
   border: 0px;
   transition: all 0.35s $bezier-1 0s;
 
+  &:hover {
+    transform: scale(1.08);
+  }
+
   &.is-info {
     @include btnColors($info-btn);
   }
@@ -190,4 +194,24 @@ a.navbar-item:hover.logo:hover {
 .tag:not(body) .delete {
   margin-left: 15px;
   bottom: -1px;
+}
+
+.social-icon {
+  width: fit-content;
+  height: fit-content;
+  margin: 3px;
+  @media (max-width: 767px) {
+    margin-top: 25px;
+  }
+  transition: all 0.35s $bezier-1 0s;
+
+  > img {
+    $size: 32px;
+    width: $size;
+    height: $size;
+  }
+
+  &:hover {
+    transform: scale(1.25);
+  }
 }

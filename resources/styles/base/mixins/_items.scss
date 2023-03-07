@@ -32,8 +32,8 @@
   }
 
   border: 2px solid transparentize($color: darken($main, 10%), $amount: $amount-value);
+
   &:hover {
-    transform: scale(1.08);
     @include smoothShadow(6px, 1px, $color-value, 0);
   }
 }

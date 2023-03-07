@@ -1,4 +1,48 @@
 <div class="container">
+    <div
+        class="socials"
+        x-data="{
+            link: window.location.href,
+            facebook: 'http://www.facebook.com/sharer/sharer.php?u=',
+            twiter: 'http://www.twitter.com/share?url=',
+            linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url='
+        }"
+    >   
+        <span class="subtitle is-5">Partager :</span>
+        <div>
+            <a 
+                class="social-icon"
+                x-bind:href="facebook+link" 
+                target="_blank"
+            >
+                <img
+                    src="/icons/socials/square-facebook.svg"
+                    alt="facebook"
+                />
+            </a>
+            <a
+                class="social-icon"
+                x-bind:href="twiter+link" 
+                target="_blank"
+            >
+                <img
+                    src="/icons/socials/linkedin.svg"
+                    alt="twiter"
+                />
+            </a>
+            <a
+                class="social-icon"
+                x-bind:href="linkedin+link"
+                target="_blank"
+            >
+                <img
+                    src="/icons/socials/square-twitter.svg"
+                    alt="twiter"
+                />
+            </a>
+        </div>
+        
+    </div>
     <div class="columns timestamps">
         @if(updatedAt !== null)
             <div class="tag column is-4 is-primary is-medium">
