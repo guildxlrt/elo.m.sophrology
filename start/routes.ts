@@ -37,8 +37,8 @@ Route.group(() => {
   Route.delete('/blog/:id/before-delete', 'PostsController.beforeDelete')
   Route.delete('/blog/:id/delete', 'PostsController.delete')
 
-  Route.get('/password', 'PagesController.password').as('password')
-  Route.post('/password-change', 'UsersController.passwordChange').as('password.change')
+  Route.get('/password/:query', 'PagesController.password').as('password.view')
+  Route.post('/password/:query', 'UsersController.password').as('password')
 }).middleware('auth')
 
 Route.post('/message', 'MessagesController.send')

@@ -1,28 +1,29 @@
 <form
     class="form" 
     method="post"
-    action="{{route('password.change')}}"
->               
-    @!component('../../components/password/input.edge', {
-        title: 'Actuel',
-        name: 'password',
-        placeholder: 'mot de passe',
-        value: '',
-
-    })
+    action="{{route('password', { query : query })}}"
+>
+    @if(query === 'change')
+        @!component('../../components/password/input.edge', {
+            title: 'Actuel',
+            name: 'password',
+            placeholder: 'mot de passe',
+            value: '',
+        })
+    @end
 
     @!component('../../components/password/input.edge', {
         title: 'Nouveau',
         name: 'newPasswd',
         placeholder: 'nouveau mot de passe',
-        value: '',
+        value: 'qwerty56RT',
     })
 
     @!component('../../components/password/input.edge', {
         title: 'Confirmation',
         name: 'newPasswdConfirm',
         placeholder: 'confirmation',
-        value: '',
+        value: 'qwerty56RT',
     })
 
 

@@ -45,13 +45,37 @@ export default class UsersController {
     await auth.use('web').logout()
   }
 
-  async passwordChange({ request, bouncer, auth, response, session }: HttpContextContract) {
+  async password({ request, params, auth, response, session }: HttpContextContract) {
+    const query = params.query
+
     const user = await User.findOrFail(auth.user.id)
 
-    const { password, newPasswd, newPasswdConfirm } = request.body()
+    if (query === 'change') {
+      const { password, newPasswd } = request.body()
 
-    if (typeof password === 'string' && (await Hash.verify(user.password, password))) {
-      if (password !== newPasswd) {
+      if (typeof password === 'string' && (await Hash.verify(user.password, password))) {
+        if (password !== newPasswd) {
+          const data = await request.validate(PasswordValidator)
+
+          await user
+            .merge({
+              password: data.newPasswd,
+            })
+            .save()
+
+          session.flash({ success: `Le mot de passe a ete change` })
+        } else {
+          session.flash({ errors: { newPasswd: 'les mots de passe doivent etre differents' } })
+        }
+      } else {
+        session.flash({ errors: { password: 'erreur de mot de passe' } })
+      }
+    } else if (query === 'recover') {
+      const { newPasswd } = request.body()
+
+      const passCompare = await Hash.verify(user.password, newPasswd)
+
+      if (passCompare === false) {
         const data = await request.validate(PasswordValidator)
 
         await user
@@ -62,12 +86,11 @@ export default class UsersController {
 
         session.flash({ success: `Le mot de passe a ete change` })
       } else {
-        session.flash({ errors: { newPasswd: 'les mots de passe doivent etre differents' } })
+        session.flash({
+          errors: { newPasswd: `le nouveau mots de passe doit differer de l'ancien` },
+        })
       }
-    } else {
-      session.flash({ errors: { password: 'erreur de mot de passe' } })
     }
-
     return response.redirect().back()
   }
 }

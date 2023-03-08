@@ -127,13 +127,19 @@ export default class PagesController {
     return view.render('pages/conditions', { user: user })
   }
 
-  async password({ view, auth }: HttpContextContract) {
+  async password({ view, auth, params }: HttpContextContract) {
+    const query = params.query
+
     let user = false
 
     if (auth.user !== undefined) {
       user = auth.user.id
     }
 
-    return view.render('pages/password', { user: user })
+    if (query === 'change') {
+      return view.render('pages/password', { user: user, query: 'change' })
+    } else if (query === 'recover') {
+      return view.render('pages/password', { user: user, query: 'recover' })
+    }
   }
 }
