@@ -1,6 +1,16 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
+const msg = {
+  required: 'Le champs doit etre complete',
+  confirm: 'Les mots de passe doivent se correspondre',
+  strong: `Le mot de passe n'est pas assez fort :
+  
+  • il doit etre d'une longueur minimum de 8 caracteres
+  
+  • il doit contenir au minimum 2 chiffres, 2 minuscules et 2 majuscules`,
+}
+
 export class UserValidator {
   constructor(protected ctx: HttpContextContract) {}
 
@@ -18,13 +28,11 @@ export class UserValidator {
   })
 
   public messages: CustomMessages = {
-    'required': 'Le champs doit etre complete',
+    'required': msg.required,
     'email': `l'email doit etre au format email : bernard@email.com,  jeannette.dupond@laposte.fr`,
     'email.unique': `L'adresse email est deja utilise`,
-    'passwordConfirm.confirmed': 'Les mots de passe doivent se correspondre',
-    'password.validate': `Le mot de passe n'est pas assez fort :
-    • il doit etre d'une longueur minimum de 8 caracteres
-    • il doit contenir au minimum 2 chiffres, 2 minuscules et 2 majuscules`,
+    'passwordConfirm.confirmed': msg.confirm,
+    'password.validPasswd': msg.strong,
   }
 }
 
@@ -36,10 +44,8 @@ export class PasswordValidator {
   })
 
   public messages: CustomMessages = {
-    'required': 'Le champs doit etre complete',
-    'newPasswdConfirm.confirmed': 'Les mots de passe doivent se correspondre',
-    'newPasswd.validate': `Le mot de passe n'est pas assez fort :
-    • il doit etre d'une longueur minimum de 8 caracteres
-    • il doit contenir au minimum 2 chiffres, 2 minuscules et 2 majuscules`,
+    'required': msg.required,
+    'newPasswdConfirm.confirmed': msg.confirm,
+    'newPasswd.validPasswd': msg.strong,
   }
 }

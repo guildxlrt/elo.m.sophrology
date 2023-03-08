@@ -3,11 +3,11 @@ import User from 'App/Models/User'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { PasswordValidator, UserValidator } from 'App/Validators/UserValidator'
 
-export const allowNewUsr = Boolean(Number(process.env.CREATE_USER))
+export const allowUsrCreate = Boolean(Number(process.env.USER_CREATE))
 
 export default class UsersController {
   async create({ request, response, session, auth }: HttpContextContract) {
-    if (allowNewUsr === true) {
+    if (allowUsrCreate === true) {
       const data = await request.validate(UserValidator)
 
       const user = await new User()
@@ -50,14 +50,22 @@ export default class UsersController {
 
     const { password, newPasswd, newPasswdConfirm } = request.body()
 
-    if (typeof user.password === 'string' && (await Hash.verify(user.password, password))) {
-      const newPass = {
-        newPasswd: newPasswd,
-        newPasswdConfirm: newPasswdConfirm,
+    if (typeof password === 'string' && (await Hash.verify(user.password, password))) {
+      if (password !== newPasswd) {
+        const data = await request.validate(PasswordValidator)
+
+        await user
+          .merge({
+            password: data.newPasswd,
+          })
+          .save()
+
+        session.flash({ success: `Le mot de passe a ete change` })
+      } else {
+        session.flash({ errors: { newPasswd: 'les mots de passe doivent etre differents' } })
       }
-      const data = await request.validate(PasswordValidator)
     } else {
-      session.flash({ alert: 'erreur de mot de passe' })
+      session.flash({ errors: { password: 'erreur de mot de passe' } })
     }
 
     return response.redirect().back()

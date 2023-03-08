@@ -1,0 +1,36 @@
+<label
+    class="label"
+    for="{{name}}"
+>
+    {{title}}
+</label>
+<div class="has-icons-left has-icons-right">
+    <input
+        name="{{name}}"
+        class="input"
+        placeholder="{{placeholder}}"
+        value="{{value}}"
+        type="password"
+    >
+</div>
+@if(flashMessages.has(`errors.${name}`))
+    <div
+        class="error"
+        style="margin: 0px;"
+        x-data="{click: false}"
+        x-show="!click"
+        x-transition.opacity.duration.1200ms
+    >
+        <span
+            class="subtitle is-6 has-text-danger"
+            x-on:click="click = !click"
+        >
+            {{ flashMessages.get(`errors.${name}`) }}
+        </span>
+        <img
+            src="/icons/circle-xmark-solid.svg"
+            class="exit-icon"
+            x-on:click="click = !click"
+        />
+    </div>
+@end

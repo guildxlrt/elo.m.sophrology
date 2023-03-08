@@ -44,7 +44,20 @@ export class ArticleValidator {
     content: schema.string({ trim: true }, [rules.minLength(3), rules.maxLength(30000)]),
     cover: schema.file.nullableAndOptional({
       size: limit.cover,
-      extnames: ['jpg', 'gif', 'png', 'webp', 'avif', 'JPG', 'GIF', 'PNG', 'WEBP', 'AVIF'],
+      extnames: [
+        'jpg',
+        'jpeg',
+        'gif',
+        'png',
+        'webp',
+        'avif',
+        'JPG',
+        'JPEG',
+        'GIF',
+        'PNG',
+        'WEBP',
+        'AVIF',
+      ],
     }),
     covercheck: schema.boolean(),
   })
