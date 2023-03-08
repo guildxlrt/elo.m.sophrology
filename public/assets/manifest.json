@@ -3,5 +3,6 @@
   "assets/app.js": "http://localhost:8080/assets/app.js",
   "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.a06ff9df.webp",
   "assets/images/article.avif": "http://localhost:8080/assets/images/article.28b1fb8a.avif",
-  "assets/images/leaf-teal.svg": "http://localhost:8080/assets/images/leaf-teal.348aeb71.svg"
+  "assets/images/leaf-teal.svg": "http://localhost:8080/assets/images/leaf-teal.348aeb71.svg",
+  "assets/fonts/Lora-VariableFont_wght.ttf": "http://localhost:8080/assets/fonts/Lora-VariableFont_wght.3a653a05.ttf"
 }

@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Lora';
+  src: url('../fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Update Bulma's global variables
+$family-sans-serif: 'Lora', serif;
