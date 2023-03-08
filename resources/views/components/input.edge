@@ -15,15 +15,16 @@
         @else
             type="password"
         @end
-        
+
         @if(active === false)
             disabled
         @end
     >
 </div>
-@if(flashMessages.has(`errors.${name}`) && type === 'create')
+@if(flashMessages.has(`errors.${name}`))
     <div
         class="error"
+        style="margin: 0px;"
         x-data="{click: false}"
         x-show="!click"
         x-transition.opacity.duration.1200ms

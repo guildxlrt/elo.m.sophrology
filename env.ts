@@ -34,6 +34,7 @@ export default Env.rules({
   SMTP_USERNAME: Env.schema.string(),
   SMTP_PASSWORD: Env.schema.string(),
   USER_CREATE: Env.schema.string(),
+  PASSWORD_RECOVERY: Env.schema.string(),
   MC_API_KEY: Env.schema.string(),
   MC_SERVER: Env.schema.string(),
   MC_LIST_ID: Env.schema.string(),

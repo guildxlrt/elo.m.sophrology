@@ -2,11 +2,12 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { PasswordValidator, UserValidator } from 'App/Validators/UserValidator'
-
-export const allowUsrCreate = Boolean(Number(process.env.USER_CREATE))
+import { stringToBool } from '../../Utils/Functions'
 
 export default class UsersController {
   async create({ request, response, session, auth }: HttpContextContract) {
+    const allowUsrCreate = await stringToBool(process.env.USER_CREATE)
+
     if (allowUsrCreate === true) {
       const data = await request.validate(UserValidator)
 
@@ -46,12 +47,12 @@ export default class UsersController {
   }
 
   async password({ request, params, auth, response, session }: HttpContextContract) {
+    const allowPwdRecover = await stringToBool(process.env.USER_CREATE)
     const query = params.query
-
-    const user = await User.findOrFail(auth.user.id)
 
     if (query === 'change') {
       const { password, newPasswd } = request.body()
+      const user = await User.findOrFail(auth.user.id)
 
       if (typeof password === 'string' && (await Hash.verify(user.password, password))) {
         if (password !== newPasswd) {
@@ -71,23 +72,30 @@ export default class UsersController {
         session.flash({ errors: { password: 'erreur de mot de passe' } })
       }
     } else if (query === 'recover') {
-      const { newPasswd } = request.body()
+      if (allowPwdRecover === true) {
+        const { email, newPasswd } = request.body()
+        const user = await User.findByOrFail('email', email)
 
-      const passCompare = await Hash.verify(user.password, newPasswd)
+        const passCompare = await Hash.verify(user.password, newPasswd)
 
-      if (passCompare === false) {
-        const data = await request.validate(PasswordValidator)
+        if (passCompare === false) {
+          const data = await request.validate(PasswordValidator)
 
-        await user
-          .merge({
-            password: data.newPasswd,
+          await user
+            .merge({
+              password: data.newPasswd,
+            })
+            .save()
+
+          session.flash({ success: `Le mot de passe a ete change` })
+        } else {
+          session.flash({
+            errors: { newPasswd: `le nouveau mots de passe doit differer de l'ancien` },
           })
-          .save()
-
-        session.flash({ success: `Le mot de passe a ete change` })
+        }
       } else {
         session.flash({
-          errors: { newPasswd: `le nouveau mots de passe doit differer de l'ancien` },
+          alert: `Recuperation de mot de passe actuellement suspendue !!`,
         })
       }
     }

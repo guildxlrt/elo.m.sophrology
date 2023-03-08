@@ -5,18 +5,18 @@
     @if(user === false)
         <section class="section is-medium has-text-centered centering-item dashboard">
             <div class="columns">
-                @!component('../components/user/conectForm/conectForm.edge', {
+                @!component('../components/conect/form.edge', {
                     type: 'login'
                 })
 
-                @!component('../components/user/conectForm/conectForm.edge', {
+                @!component('../components/conect/form.edge', {
                     type: 'create',
                     allowNewUsr: allowNewUsr
                 })
             </div>
         </section>
     @else
-        @!component('../components/user/dashboard/dashboard.edge', { posts: posts})
+        @!component('../components/dashboard/dashboard.edge', { posts: posts})
     @end
     
 @endsection

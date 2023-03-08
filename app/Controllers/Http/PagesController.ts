@@ -1,8 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
 import dateFormat from 'App/Utils/Functions'
+import { stringToBool } from '../../Utils/Functions'
 import { PostDateType } from '../../Utils/Types'
-import { allowNewUsr } from './UsersController'
 
 export default class PagesController {
   async index({ view, auth }: HttpContextContract) {
@@ -33,6 +33,16 @@ export default class PagesController {
     }
 
     return view.render('pages/sessions', { user: user })
+  }
+
+  async conditions({ view, auth }: HttpContextContract) {
+    let user = false
+
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
+    return view.render('pages/conditions', { user: user })
   }
 
   async blog({ view, auth }: HttpContextContract) {
@@ -89,6 +99,8 @@ export default class PagesController {
   }
 
   async user({ view, auth }: HttpContextContract) {
+    const allowNewUsr = await stringToBool(process.env.USER_CREATE)
+
     let user = false
 
     if (auth.user !== undefined) {
@@ -117,17 +129,9 @@ export default class PagesController {
     }
   }
 
-  async conditions({ view, auth }: HttpContextContract) {
-    let user = false
-
-    if (auth.user !== undefined) {
-      user = auth.user.id
-    }
-
-    return view.render('pages/conditions', { user: user })
-  }
-
   async password({ view, auth, params }: HttpContextContract) {
+    const allowPwdRecover = await stringToBool(process.env.PASSWORD_RECOVERY)
+
     const query = params.query
 
     let user = false
@@ -137,9 +141,16 @@ export default class PagesController {
     }
 
     if (query === 'change') {
-      return view.render('pages/password', { user: user, query: 'change' })
+      return view.render('pages/password', {
+        user: user,
+        query: 'change',
+      })
     } else if (query === 'recover') {
-      return view.render('pages/password', { user: user, query: 'recover' })
+      return view.render('pages/password', {
+        user: user,
+        query: 'recover',
+        allowPwdRecover: allowPwdRecover,
+      })
     }
   }
 }

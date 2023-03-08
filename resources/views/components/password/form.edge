@@ -1,35 +1,64 @@
 <form
     class="form" 
     method="post"
-    action="{{route('password', { query : query })}}"
+    action="{{route('password', { query: query })}}"
 >
     @if(query === 'change')
-        @!component('../../components/password/input.edge', {
+        @!component('../../components/input.edge', {
             title: 'Actuel',
             name: 'password',
             placeholder: 'mot de passe',
             value: '',
         })
+
+        @!component('../../components/input.edge', {
+            title: 'Nouveau',
+            name: 'newPasswd',
+            placeholder: 'nouveau mot de passe',
+            value: '',
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Confirmation',
+            name: 'newPasswdConfirm',
+            placeholder: 'confirmation',
+            value: '',
+        })
+    @elseif(query === 'recover')
+        @!component('../../components/input.edge', {
+            title: 'email',
+            name: 'email',
+            placeholder: 'adresse',
+            value: '',
+            active: active
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Nouveau',
+            name: 'newPasswd',
+            placeholder: 'nouveau mot de passe',
+            value: '',
+            active: active
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Confirmation',
+            name: 'newPasswdConfirm',
+            placeholder: 'confirmation',
+            value: '',
+            active: active
+        })
     @end
 
-    @!component('../../components/password/input.edge', {
-        title: 'Nouveau',
-        name: 'newPasswd',
-        placeholder: 'nouveau mot de passe',
-        value: 'qwerty56RT',
-    })
-
-    @!component('../../components/password/input.edge', {
-        title: 'Confirmation',
-        name: 'newPasswdConfirm',
-        placeholder: 'confirmation',
-        value: 'qwerty56RT',
-    })
+    
 
 
     <button
         type="submit"
         class="button is-link"
+        @if(active === false)
+            disabled
+        @end
     >
         Envoyer
     </button>

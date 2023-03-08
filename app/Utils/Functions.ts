@@ -79,3 +79,12 @@ export async function new_url_path(value: string) {
     }
   }
 }
+
+export async function stringToBool(value: any) {
+  if (typeof value === 'string' && value === 'true') {
+    return true
+  }
+  if (typeof value === 'string' && value === 'false') {
+    return false
+  }
+}

@@ -35,6 +35,9 @@
 
   &:hover {
     @include smoothShadow(6px, 1px, $color-value, 0);
+    &:disabled {
+      @include smoothShadow(0px, 0px, $color-value, 1);
+    }
   }
 }
 
