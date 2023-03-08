@@ -126,4 +126,14 @@ export default class PagesController {
 
     return view.render('pages/conditions', { user: user })
   }
+
+  async password({ view, auth }: HttpContextContract) {
+    let user = false
+
+    if (auth.user !== undefined) {
+      user = auth.user.id
+    }
+
+    return view.render('pages/password', { user: user })
+  }
 }

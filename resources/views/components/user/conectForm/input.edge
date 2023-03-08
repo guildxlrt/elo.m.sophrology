@@ -10,11 +10,12 @@
         class="input"
         placeholder="{{placeholder}}"
         value="{{value}}"
-        @if(name === 'password' || name === 'passwordConfirm')
-            type="password"
-        @else
+        @if(name === 'email')
             type="text"
+        @else
+            type="password"
         @end
+        
         @if(active === false)
             disabled
         @end

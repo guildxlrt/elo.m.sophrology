@@ -19,16 +19,13 @@
 
   > .container {
     @include flexColumn;
+    $vert-marg: 80px;
+    margin-top: $vert-marg;
+    margin-bottom: $vert-marg;
 
     > .wrap-buttons {
       justify-content: space-between;
     }
-  }
-
-  > .container {
-    $vert-marg: 80px;
-    margin-top: $vert-marg;
-    margin-bottom: $vert-marg;
   }
 
   // CONNECT FORM
@@ -62,6 +59,7 @@
     }
   }
 }
+
 .posts-manager {
   flex-direction: column;
 
@@ -73,38 +71,6 @@
   .title {
     margin-bottom: 52px;
   }
-
-  .table {
-    width: 100%;
-    max-width: 1080px;
-    border-radius: 8px;
-
-    @media (min-width: 556px) {
-      @include smoothShadow(6px, 3px, $grey-light, 0.4);
-    }
-    & td,
-    & th {
-      vertical-align: middle;
-    }
-
-    & thead {
-      > tr > th {
-        text-align: center;
-        background-color: $grey-light;
-
-        &.first {
-          border-radius: 8px 0px 0px 0px;
-        }
-        &.last {
-          border-radius: 0px 8px 0px 0px;
-        }
-      }
-    }
-
-    & tr {
-      background-color: lighten($light, 8);
-    }
-  }
 }
 
 .cell > .subtitle {
@@ -112,16 +78,21 @@
 }
 
 @media (max-width: 555px) {
-  .table {
-    @include reCenter;
+  .table tr {
+    border: 2px solid $grey-light;
+    border-radius: 10px;
+    margin: 10px 0px;
+
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      'cell-title cell-title cell-title'
+      'cell-status cell-type cell-cover';
   }
-  .table tbody {
-    display: block;
-  }
-  .table thead,
-  .table th {
-    display: none;
-  }
+
   .cell {
     &.created,
     &.updated {
@@ -145,23 +116,6 @@
         overflow: hidden;
       }
     }
-  }
-  .table tr {
-    border: 2px solid $grey-light;
-    border-radius: 10px;
-    margin: 10px 0px;
-
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 2fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      'cell-title cell-title cell-title'
-      'cell-status cell-type cell-cover';
-  }
-  .table td {
-    border: none;
   }
 
   .status {

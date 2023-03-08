@@ -30,6 +30,40 @@
 
         
     </div>
+</section>
+
+
+@if(posts[0])
+    @!component('../../components/user/dashboard/postsManager.edge', { posts: posts})
+@else
+    <section
+        class="section is-large has-text-centered centering-item posts-manager"
+    >
+        <h1 class="title">
+            Mes publications
+        </h1>
+
+        <span class="subtitle is-5">Vous n'avez aucune publication a cet instant.</span>
+    </section>
+@end
+
+<section class="section is-medium has-text-centered centering-item dashboard">        
+    <div
+        class="container has-text-centered centering-item"
+    >   
+        <h1
+            class="title is-4"
+        >
+            Mot de passe :
+        </h1>
+        <a
+            class="button is-link"
+            href="{{route('password')}}"
+        >
+            Changer
+        </a>
+    </div>
+    
 
     <div
         class="container has-text-centered centering-item"
@@ -50,19 +84,6 @@
         </div>
     </div>
 </section>
-@if(posts[0])
-    @!component('../../components/user/dashboard/postsManager.edge', { posts: posts})
-@else
-    <section
-        class="section is-large has-text-centered centering-item posts-manager"
-    >
-        <h1 class="title">
-            Mes publications
-        </h1>
-
-        <span class="subtitle is-5">Vous n'avez aucune publication a cet instant.</span>
-    </section>
-@end
 
 
 

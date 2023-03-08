@@ -36,6 +36,9 @@ Route.group(() => {
   Route.patch('/blog/:id/status', 'PostsController.status')
   Route.delete('/blog/:id/before-delete', 'PostsController.beforeDelete')
   Route.delete('/blog/:id/delete', 'PostsController.delete')
+
+  Route.get('/password', 'PagesController.password').as('password')
+  Route.post('/password-change', 'UsersController.passwordChange').as('password.change')
 }).middleware('auth')
 
 Route.post('/message', 'MessagesController.send')
