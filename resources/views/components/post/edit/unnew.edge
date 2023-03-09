@@ -1,0 +1,26 @@
+<div
+    class="form"
+    x-show="!modif"
+    x-transition.opacity.1200ms
+>
+    <div class="container has-text-centered wrap-buttons down">
+        <button
+            class="button is-link"
+            x-on:click="modif = !modif"
+        >
+            Modifer
+        </button>
+
+        @!component('../components/post/delete', { id: post.id })
+    </div>
+                
+</div>
+            
+
+@!component('../components/post/edit/form.edge', {
+    id: post.id,
+    title: post.title,
+    content: post.content,
+    content_type: post.content_type,
+    cover: post.cover
+}) 

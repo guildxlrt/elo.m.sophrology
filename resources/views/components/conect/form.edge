@@ -1,0 +1,67 @@
+<div class="column notification is-secondary ">
+    <h1
+        class="title"
+    >
+        @if(type === 'login')
+            Se connecter
+        @elseif(type === 'create')
+            Creer
+        @end
+    </h1>
+        
+    <form
+        class="form" 
+        method="post"
+        @if(type === 'login')
+            action="{{route('login')}}"
+        @elseif(type === 'create')
+            action="{{route('create')}}"
+        @end
+    >
+        @!component('../../components/input.edge', {
+            type: type,
+            title: 'Adresse email',
+            name: 'email',
+            placeholder: 'adresse@email',
+            value: '',
+            active: allowNewUsr
+        })
+
+        
+        @!component('../../components/input.edge', {
+            type: type,
+            title: 'Mot de passe',
+            name: 'password',
+            placeholder: 'mot de passe',
+            value: '',
+            active: allowNewUsr
+
+        })
+
+        @if(type === 'create')
+        @!component('../../components/input.edge', {
+                type: type,
+                title: 'Confirmation',
+                name: 'passwordConfirm',
+                placeholder: 'confirmation',
+                value: '',
+                active: allowNewUsr
+            })
+        @end
+
+
+        <button
+            type="submit"
+            class="button is-link"
+            @if(allowNewUsr === false)
+                disabled
+            @end
+        >
+            @if(type === 'create')
+                Creer  
+            @elseif(type === 'login')
+                Connexion
+            @end
+        </button>
+    </form>        
+</div>

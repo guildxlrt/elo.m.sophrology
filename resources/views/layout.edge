@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{--  Config  --}}
+    <title>Éloïse Martin ~ Sophrologie</title>
+    <meta name="description" content="Therapies de sophrologie d'Eloise Martin">
+    {{--  <link rel="icon" type="image/png" href="" sizes="16x16">  --}}
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+  </head>
+  
+  <body
+    class="bg-gradient"
+    x-data="{open: false}"
+  >
+    <div class="leafs">
+    @!component('components/header', {
+      user: user
+    })
+    @!component('components/flash')
+
+    <main
+      class="section is-paddingless"
+      x-bind:class="open ? 'burger-on' : null"
+    >
+      @!section('page')
+    </main>
+    
+    @if(user === false)
+      @!component('components/newsletter/newsletter.edge')
+    @end
+
+    @if(user === false)
+      @!component('components/contact/contact')
+    @end
+          
+    @!component('components/footer') 
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<section
+    class="section is-large has-text-centered centering-item posts-manager"
+>
+    <h1 class="title">
+        Mes publications
+    </h1>
+    
+    <table
+        class="table"
+    >
+        <thead>
+            <tr>
+                <th class="first">Status</th>
+                <th>Titre</abbr></th>
+                <th>Type</th>
+                <th><abbr title="Couverture">Cover</abbr></th>
+                <th><abbr title="Creation">Creation</abbr></th>
+                <th class="last"><abbr title="Mise a jour">M a J</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(post in posts)
+                <tr>
+                    <td class="cell status">
+                        @if(post.status === true)
+                            🟢
+                        @elseif(post.status === false)
+                            🔘
+                        @end
+                    </td>
+                    <td class="cell title">
+                        <a class="subtitle is-6 has-text-danger" href="{{route('get.post', {url_path: post.url_path})}}">
+                            {{post.title}}
+                        </a>
+                    </td>
+                    <td class="cell type">
+                        @if(post.content_type === 'ARTICLE')
+                            article
+                        @elseif(post.content_type === 'ARTICLE')
+                            video
+                        @end
+                    </td>
+                    <td class="cell cover">
+                        @if(post.cover !== null)
+                            couvert
+                        @else
+                            non couvert
+                        @end
+                    </td>
+                    <td class="cell created">{{post.createdAt}}</td>
+                    <td class="cell updated">
+                        @if(post.updatedAt !== null)
+                            {{post.updatedAt}}
+                        @end
+                    </td>
+
+
+
+                    {{--  <a href="{{route('get.post', {id: post.id})}}">
+                        <div
+                            class="card is-primary "
+                        >
+                            <div class="card-header">
+                                <h3
+                                    class=" title is-5"
+                                    style="height: 48px;"
+                                >
+                                    {{}}
+                                </h3>
+                            </div>
+                            <div class=card-content>
+                                {{post.content}}    
+                            </div>
+                            <div class="card-footer">{{post.content_type }}</div>
+                        </div>
+                    </a>  --}}
+                </tr>
+            @end
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,26 @@
+@if(field === 'conditions')
+    <div class="input-wrapper">
+        <label class="checkbox" for="{{field}}">
+            <input
+                type="checkbox"
+                x-model="inputs.{{field}}"
+            >
+            I agree to the <a href="#">terms and conditions</a>
+        </label>
+    </div>
+    @!component('../../components/inputError.edge', {
+        value: field
+    })
+@else
+    <div class="input-wrapper has-icons-left has-icons-right">
+        <input
+            class="input"
+            type="text"
+            placeholder="{{tag}}"
+            x-model="inputs.{{field}}"
+        >
+    </div>
+    @!component('../../components/inputError.edge', {
+        value: field
+    })
+@end

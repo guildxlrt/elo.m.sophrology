@@ -1,0 +1,45 @@
+@layout('layout')
+
+@section('page')
+
+    <section
+        class="section is-large has-text-centered centering-item blog"
+    >
+        <h1
+            class="title"
+        >
+            Dernieres publications
+        </h1>
+
+        <ul
+            class="columns is-multiline"
+        >
+            @each(post in posts)
+                <li class="column is-narrow">
+                    <a href="{{route('get.post', {url_path: post.url_path})}}">
+                        <div
+                            @if(post.content_type === 'ARTICLE')
+                                class="card is-article"
+                            @elseif(post.content_type === 'VIDEO')
+                                class="card is-video"                              
+                            @end
+                        >
+                            <div class="card-header">
+                                <h3
+                                    class=" title is-5"
+                                    style="height: 48px;"
+                                >
+                                    {{post.title}}
+                                </h3>
+                            </div>
+                            <div class=card-content>
+                                {{post.content}}    
+                            </div>
+                            <div class="card-footer">{{post.content_type }}</div>
+                        </div>
+                    </a>
+                </li>
+            @endeach
+        </ul>
+    </section>
+@endsection

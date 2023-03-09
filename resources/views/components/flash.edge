@@ -1,0 +1,31 @@
+@if(flashMessages.has('success'))
+    <div class="container has-text-centered flash__cont">
+        <span 
+            class="tag is-success is-large flash" 
+            x-data="{click: false}" 
+            x-show="!click"
+            x-transition.opacity.duration.1200ms
+        >
+            {{ flashMessages.get('success') }}
+            <button
+                class="delete"
+                x-on:click="click = !click"
+            ></button>
+        </span>
+    </div>
+@elseif(flashMessages.has('alert'))
+  <div class="container has-text-centered flash__cont">
+        <span 
+            class="tag is-warning is-large flash" 
+            x-data="{click: false}"
+            x-show="!click"
+            x-transition.opacity.duration.1200ms
+        >
+            {{ flashMessages.get('alert') }}
+            <button
+                class="delete"
+                x-on:click="click = !click"
+            ></button>
+        </span>
+    </div>
+@end

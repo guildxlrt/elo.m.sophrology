@@ -1,0 +1,13 @@
+@import 'fonts';
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Import my custom colors
+@import 'base/index.scss';
+
+// Import Bulma CSS framwork
+@import '/node_modules/bulma/bulma.sass';
+
+// import my config
+@import 'global/index.scss';
+@import 'pages/index.scss';

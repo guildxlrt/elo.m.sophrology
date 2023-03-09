@@ -1,0 +1,89 @@
+<form
+    class="edit-new-form"
+    @submit.prevent="submitPostForm($event, '{{id}}', '{{content_type}}', errors)"
+    x-data="{
+        errors: {
+            title: '',
+            content: '',
+            cover: ''
+        },
+    }"
+    @if(id !== 'new')
+        x-show="modif"
+        x-transition.opacity.1200ms
+    @end
+    
+>
+    @if(id === 'new')
+        <div
+            class="container has-text-centered wrap-buttons"
+            style="margin-top: 64px;"
+        >
+            <a
+                class="button is-dark"
+                href="{{route('blog')}}"
+            >
+                Quitter
+            </a>
+            <button
+                class="button is-link"
+                type="submit"
+            >
+                Sauvegarder
+            </button>
+        </div>
+        <div
+            @if(content_type === 'ARTICLE')
+                class="container post-wrapper article "
+            @elseif(content_type === 'VIDEO')
+                class="container post-wrapper video "
+            @end
+        >
+            
+            @!component('../../../components/post/edit/inputs.edge', {
+                id: id,
+                title: '',
+                content: '',
+                content_type: content_type
+            })
+            
+        </div>
+    @else
+        <div
+            @if(content_type === 'ARTICLE')
+                class="container post-wrapper article "
+            @elseif(content_type === 'VIDEO')
+                class="container post-wrapper video "
+            @end
+        >
+            @!component('../../../components/post/edit/inputs.edge', {
+                id: id,
+                title: title,
+                content: content,
+                content_type: content_type,
+                cover: cover
+            })
+        </div>
+        <div
+            class="container wrap-buttons down"
+            x-show="modif"
+            x-transition.opacity.1200ms
+        >
+            <button
+                class="button is-grey"
+               @click.prevent="
+                    modif = !modif
+                    resetPostErrors(errors)
+                "
+            >
+                Annuller
+            </button>
+            <button
+                class="button is-link"
+                type="submit"
+            >
+                Sauvegarder
+            </button>
+        </div>
+    @end
+</form>

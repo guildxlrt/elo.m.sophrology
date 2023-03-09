@@ -1,0 +1,65 @@
+<header class="stickybar">
+    <nav
+        class="navbar "
+    >
+        <div class="container">
+          <div class="navbar-brand">
+            <div
+              class="navbar-burger is-marginless"
+              data-target="burger"
+              x-bind:class="open ? 'is-active' : null"
+              x-on:click="open = !open"
+            >
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+              <span  class="has-text-dark"></span>
+            </div>
+            <a class="navbar-item logo" href="{{route('home')}}">
+              <span>Éloïse Martin</span>
+            </a> 
+          </div>
+
+          <div
+            id="burger"
+            class="navbar-menu"
+            x-bind:class="open ? 'is-active ' : null"
+          >
+            <div class="navbar-end">
+              <a
+                href="{{route('about')}}"
+                class="navbar-item"
+              >
+                Qui suis-je ?
+              </a>
+              <a
+                href="{{route('sessions')}}"
+                class="navbar-item"
+              >
+                Séances
+              </a>
+              <a
+                href="{{route('blog')}}"
+                class="navbar-item"
+              >
+                Blog
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="usr-log" href="{{route('user')}}">
+          @if(user === false)
+            <img
+              src="/icons/circle-user-solid_off.svg"
+              class="usr-img offline"
+              alt="logoff"
+            />
+          @else
+            <img
+              src="/icons/circle-user-solid_on.svg"
+              class="usr-img offline"
+              alt="logon"
+            />
+          @end
+        </a>
+    </nav>
+</header>

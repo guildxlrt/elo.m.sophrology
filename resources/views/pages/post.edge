@@ -1,0 +1,48 @@
+@layout('layout')
+
+@section('page')
+    <section
+        class="section is-medium post"
+        @if(flashMessages.has(`errors`))
+            x-data="{ modif: true }"
+        @else
+            x-data="{ modif: false }"    
+        @end
+    >        
+        @if(post.id !== 'new' && user !== false && isAuthor === true)
+            @!component('../components/post/status', {
+                status: post.status,
+                id: post.id
+            })
+        @end
+        
+        
+        @if(post.id === 'new')
+            @!component('../components/post/edit/form.edge', {
+                id: post.id,
+                title: '',
+                content: '',
+                content_type: post.content_type
+            })
+
+        @else
+            @!component('../components/post/view.edge', {
+                post: post,
+            })
+
+            @if(user !== false && isAuthor === true)
+                @!component('../components/post/edit/unnew.edge', {
+                    post: post,
+                }) 
+            @end
+        @end
+
+        @if(post.id !== 'new')
+            @!component('../components/post/timestamp.edge', {
+                updatedAt: post.updatedAt,
+                createdAt: post.createdAt
+            })
+        @end
+        
+    </section>
+@endsection

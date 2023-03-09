@@ -1,0 +1,225 @@
+.title,
+.subtitle,
+.table,
+.label,
+.input,
+.textarea,
+a.navbar-item,
+a.navbar-link {
+  color: $text;
+}
+
+.title,
+.subtitle {
+  font-family: $title-font;
+}
+
+a.navbar-item:hover.logo:hover {
+  color: $link;
+}
+
+.input,
+.textarea {
+  @include linGradient($to-top-left, $darken-input, $input);
+  border-radius: $input-radius;
+
+  @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
+  &:hover {
+    border-color: $input-hover;
+  }
+  &:focus {
+    border-color: $input-focus;
+  }
+
+  &:disabled {
+    @include smoothShadow(4px, 1px, darken($shadow, 10%), 0);
+    @include linGradient($to-top-left, darken($grey-light, 7%), $grey-light);
+    border-color: $grey-light;
+  }
+}
+
+.file.is-boxed.has-name .file-cta {
+  border-radius: $input-radius $input-radius 0 0;
+}
+.file.is-boxed.has-name .file-name {
+  border-radius: 0 0 $input-radius $input-radius;
+}
+
+.file {
+  border-radius: $input-radius;
+  width: fit-content;
+  @include reCenter();
+  @include smoothShadow(4px, 1px, darken($shadow, 30%), 0);
+
+  > .file-label {
+    > .file-name {
+      border-color: $darken-input;
+
+      @include linGradient($to-top-left, $darken-input, $input);
+    }
+  }
+}
+
+.button {
+  border-radius: 18px;
+  border: 0px;
+  transition: all 0.35s $bezier-1 0s;
+
+  &:hover {
+    transform: scale(1.08);
+    &:disabled {
+      transform: scale(1);
+    }
+  }
+
+  &.is-info {
+    @include btnColors($info-btn);
+  }
+  &.is-link {
+    @include btnColors($link-btn);
+  }
+  &.is-success {
+    @include btnColors($success-btn);
+  }
+  &.is-danger {
+    @include btnColors($danger-btn);
+  }
+
+  &.is-dark {
+    @include btnColors($dark);
+  }
+  &.is-grey {
+    color: white;
+    @include btnColors($grey);
+  }
+  &.is-white {
+    @include btnColors($white);
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+
+  & input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .slider {
+      background-color: $switch;
+    }
+
+    &:focus + .slider {
+      box-shadow: 0 0 1px $switch;
+    }
+
+    &:checked + .slider:before {
+      -webkit-transform: translateX(15px);
+      -ms-transform: translateX(15px);
+      transform: translateX(15px);
+    }
+  }
+
+  > .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $grey-light;
+    -webkit-transition: 0.6s;
+    transition: 0.6s;
+
+    &:before {
+      position: absolute;
+      content: '';
+      height: 12px;
+      width: 12px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.6s;
+      transition: 0.6s;
+    }
+
+    &.round {
+      border-radius: 34px;
+      &:before {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.error {
+  @include flexRow;
+  margin: 24px;
+  justify-content: center;
+
+  > .subtitle,
+  > .exit-icon {
+    cursor: pointer;
+  }
+
+  > .exit-icon {
+    margin-left: 10px;
+    position: relative;
+    bottom: -4px;
+  }
+}
+
+.flash {
+  &__cont {
+    position: sticky;
+    z-index: 20;
+    top: 80px;
+
+    @include anim-opacity($bezier-1);
+  }
+
+  margin-top: 30px;
+  padding: 10px 20px 10px 20px;
+  border-width: 5px;
+
+  &:hover {
+    @include anim-over($bezier-1);
+  }
+
+  &.is- {
+    &success {
+      border: 3px solid darken($success, 5);
+    }
+    &warning {
+      border: 3px solid darken($warning, 5);
+    }
+  }
+}
+
+.tag:not(body) .delete {
+  margin-left: 15px;
+  bottom: -1px;
+}
+
+.social-icon {
+  width: fit-content;
+  height: fit-content;
+  margin: 3px;
+  @media (max-width: 767px) {
+    margin-top: 25px;
+  }
+  transition: all 0.35s $bezier-1 0s;
+
+  > img {
+    $size: 32px;
+    width: $size;
+    height: $size;
+  }
+
+  &:hover {
+    transform: scale(1.25);
+  }
+}

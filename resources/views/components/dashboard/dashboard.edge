@@ -1,0 +1,89 @@
+<section class="section is-medium has-text-centered centering-item dashboard">        
+    <h1
+        class="title is-2"
+    >
+        Tableau de bord
+    </h1>
+    <div
+        class="container has-text-centered centering-item"
+    >
+        <h1
+            class="title is-4"
+        >
+            Publier :
+        </h1>
+
+        <div class="wrap-buttons">
+            <a
+                class="button is-link"
+                href="{{route('new.post', {id: 'new', content_type: 'ARTICLE'})}}"
+            >
+                Article
+            </a>
+            <a
+                class="button is-link"
+                href="{{route('new.post', {id: 'new', content_type: 'VIDEO'})}}"
+            >
+                Video
+            </a>            
+        </div>
+
+        
+    </div>
+</section>
+
+
+@if(posts[0])
+    @!component('../../components/dashboard/postsManager.edge', { posts: posts})
+@else
+    <section
+        class="section is-large has-text-centered centering-item posts-manager"
+    >
+        <h1 class="title">
+            Mes publications
+        </h1>
+
+        <span class="subtitle is-5">Vous n'avez aucune publication a cet instant.</span>
+    </section>
+@end
+
+<section class="section is-medium has-text-centered centering-item dashboard">        
+    <div
+        class="container has-text-centered centering-item"
+    >   
+        <h1
+            class="title is-4"
+        >
+            Mot de passe :
+        </h1>
+        <a
+            class="button is-link"
+            href="{{route('password.view', { query : 'change'})}}"
+        >
+            Changer
+        </a>
+    </div>
+    
+
+    <div
+        class="container has-text-centered centering-item"
+    >
+        <h1
+            class="title is-4"
+        >
+            Se deconnecter :
+        </h1>
+
+        <div class="container">
+            <button
+                class="button is-dark"
+                x-on:click="logout()"
+            >
+                Deconnexion
+            </button>
+        </div>
+    </div>
+</section>
+
+
+

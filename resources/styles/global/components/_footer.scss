@@ -1,0 +1,25 @@
+.footer {
+  @include smoothShadow(6px, 3px, $shadow, 0.4);
+  min-height: 336px;
+
+  @include linGradient($to-botom-right, lighten($footer, 15%), $footer);
+
+  > .container {
+    > p,
+    > span {
+      color: $grey-dark;
+    }
+    > p {
+      margin: 72px;
+    }
+    > .columns,
+    > span {
+      a {
+        color: $link-footer;
+        &:hover {
+          color: $link-footer-hover;
+        }
+      }
+    }
+  }
+}

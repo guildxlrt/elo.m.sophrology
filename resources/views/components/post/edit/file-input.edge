@@ -1,0 +1,38 @@
+<div
+    class="file is-dark is-normal is-boxed has-name"
+    x-data="{
+        filename: ''
+    }"
+>
+    <label class="file-label">
+        <input
+            @change.prevent="filename = $event.target.files[0].name"
+            class="file-input"
+            type="file"
+            @if(content_type === 'ARTICLE')
+                name="cover"
+            @elseif(content_type === 'VIDEO')
+                name="video"
+            @end
+            
+        >
+        <span class="file-cta">
+        <span class="file-label">
+            @if(content_type === 'VIDEO' && id === 'new')
+                Choisir un fichier
+            @elseif(
+                (content_type === 'ARTICLE' && id === 'new') || 
+                (content_type === 'ARTICLE' && id !== 'new' && cover === null)
+            )
+                Ajouter
+            @else
+                Changer
+            @end
+        </span>
+        </span>
+        <span
+            class="file-name has-text-centered"
+            x-html="filename ? filename : 'aucun fichier'"
+        ></span>
+    </label>
+</div>

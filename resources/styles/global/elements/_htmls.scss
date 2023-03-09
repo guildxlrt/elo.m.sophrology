@@ -1,0 +1,52 @@
+//----// IN HTML's
+
+body {
+  color: $text;
+}
+
+main {
+  // Config
+  position: relative;
+  top: -52px;
+  z-index: 0;
+  &.burger-on {
+    top: -188px;
+  }
+}
+
+a {
+  color: $link-footer;
+
+  &.navbar-item,
+  .navbar-link {
+    color: $dark;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: transparent;
+      color: $navlink-hover;
+
+      @media (min-width: 1024px) {
+        transform: scale(1.25);
+      }
+      @media (max-width: 1023px) {
+        transform: scale(1.25) translate(10%, 0%);
+      }
+
+      &.logo {
+        &:hover,
+        &:focus,
+        &:focus-within,
+        &:active {
+          transform: scale(1);
+          color: $dark;
+        }
+      }
+    }
+    &:active {
+      transform: scale(1);
+    }
+  }
+}

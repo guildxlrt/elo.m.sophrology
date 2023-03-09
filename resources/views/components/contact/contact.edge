@@ -1,0 +1,99 @@
+<section
+    class="section has-text-centered is-medium contact"
+>
+    <div class="container contact-header">
+        <h3 class="title">Contact</h3>
+        <span class="subtitle is-5">Pour me contacter :</span>
+    </div>
+    <div
+        class="container contact-body"
+        x-data="{ showForm: false }"
+    >
+        <div
+            class="container"
+            x-show="showForm"
+            x-transition.opacity.duration.1200ms.scale.origin.top
+        >
+            <form
+                class="field"
+                @submit.prevent="submitMsgForm(inputs, errors)"
+                x-data="{
+                    inputs: {
+                        name: '',
+                        surname: '',
+                        email: '',
+                        content: '',
+                        conditions: null
+                    },
+                    errors: {
+                        name: '',
+                        surname: '',
+                        email: '',
+                        content: '',
+                        conditions: '' 
+                    }
+                }"
+            >   
+                @!component('components/contact/inputs', {
+                    field: 'surname',
+                    tag: 'Prénom'
+                })
+
+                @!component('components/contact/inputs', {
+                    field: 'name',
+                    tag: 'Nom'
+                })
+
+                @!component('components/contact/inputs', {
+                    field: 'email',
+                    tag: 'Email'
+                })
+
+                @!component('components/contact/inputs', {
+                    field: 'content',
+                    tag: 'Message'
+                })
+
+                @!component('components/contact/inputs', {
+                    field: 'conditions'
+                })
+
+                <div
+                    class="wrap-buttons"
+                    x-show="showForm"
+                    x-transition.opacity.duration.1200ms.scale.origin.top
+                >
+                    <button
+                        class="button is-grey"
+                        @click.prevent="
+                            showForm = !showForm            
+                            resetMsgInputs(inputs)
+                            resetMsgErrors(errors)
+                        "
+                    >
+                        Annuller
+                    </button>
+                    <button
+                        class="button is-link"
+                        type="submit"
+                    >
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div
+            class="click-control"
+            x-show="!showForm"
+            x-transition.opacity.duration.1200ms.scale.origin.top
+        >
+            <button
+                class="button is-link"
+                @click.prevent="showForm = !showForm"
+            >
+                Contacter
+            </button>
+        </div>
+    </div>
+</section>

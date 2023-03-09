@@ -1,0 +1,65 @@
+<form
+    class="form" 
+    method="post"
+    action="{{route('password', { query: query })}}"
+>
+    @if(query === 'change')
+        @!component('../../components/input.edge', {
+            title: 'Actuel',
+            name: 'password',
+            placeholder: 'mot de passe',
+            value: '',
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Nouveau',
+            name: 'newPasswd',
+            placeholder: 'nouveau mot de passe',
+            value: '',
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Confirmation',
+            name: 'newPasswdConfirm',
+            placeholder: 'confirmation',
+            value: '',
+        })
+    @elseif(query === 'recover')
+        @!component('../../components/input.edge', {
+            title: 'email',
+            name: 'email',
+            placeholder: 'adresse',
+            value: '',
+            active: active
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Nouveau',
+            name: 'newPasswd',
+            placeholder: 'nouveau mot de passe',
+            value: '',
+            active: active
+        })
+
+        @!component('../../components/input.edge', {
+            title: 'Confirmation',
+            name: 'newPasswdConfirm',
+            placeholder: 'confirmation',
+            value: '',
+            active: active
+        })
+    @end
+
+    
+
+
+    <button
+        type="submit"
+        class="button is-link"
+        @if(active === false)
+            disabled
+        @end
+    >
+        Envoyer
+    </button>
+</form>  

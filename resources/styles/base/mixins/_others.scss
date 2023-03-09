@@ -1,0 +1,31 @@
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+@mixin smoothShadow($blur-radius, $spread-radius, $shadow-color, $shadow-amount) {
+  box-shadow: 0px 0px $blur-radius $spread-radius
+    transparentize($color: $shadow-color, $amount: $shadow-amount);
+}
+
+@mixin slantShadow($direction, $blur-radius, $shadow-amount) {
+  box-shadow: $direction calc($direction + 2px) $blur-radius 4px
+    transparentize($shadow, $shadow-amount);
+}
+
+@mixin blurFilter($amount-value) {
+  backdrop-filter: blur($amount-value);
+  -webkit-backdrop-filter: blur($amount-value);
+}
+
+@mixin reCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,25 @@
+.usr-log {
+  $position: 15px;
+
+  position: absolute;
+  top: $position;
+  right: calc($position + 17px);
+
+  > .usr-img {
+    $size: 25px;
+
+    width: $size;
+    height: $size;
+    background-size: $size;
+    background-repeat: no-repeat;
+  }
+}
+
+.error > .exit-icon {
+  $size: 18px;
+  width: $size;
+  height: $size;
+  margin: 0px;
+
+  bottom: -2px;
+}

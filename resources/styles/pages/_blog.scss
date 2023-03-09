@@ -1,0 +1,104 @@
+.section.is-large {
+  @media (min-width: 1024px) {
+    padding-top: 100px;
+  }
+}
+
+.blog {
+  @include flexColumn;
+
+  @media (max-width: 1023px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  > .title {
+    margin-top: 58px;
+
+    @media (min-width: 1024px) {
+      margin-top: 0px;
+    }
+    height: 15%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  > .columns {
+    margin-top: 52px;
+    width: 100%;
+    min-height: 640px;
+    height: 70%;
+    justify-content: center;
+
+    > .column {
+      @media (max-width: 359px) {
+        padding: 12px 6px;
+      }
+
+      > a {
+        @include reCenter;
+        @media (max-width: 359px) {
+          padding: 0px;
+        }
+
+        @include anim-opacity($bezier-2);
+
+        .card {
+          border-radius: 40% 8% 40% 7% / 7% 40% 7% 40%;
+
+          &.is-video {
+            @include linGradient($to-botom-right, lighten($video, 15%), $video);
+          }
+          &.is-article {
+            @include linGradient($to-botom-right, lighten($article, 10%), $article);
+          }
+
+          &:hover {
+            @include anim-over($bezier-1);
+          }
+
+          width: 340px;
+          max-width: 340px;
+
+          &:hover {
+            transform: scale(0.92);
+
+            @media (min-width: 520px) {
+              transform: scale(1.08);
+            }
+          }
+
+          > .card-header {
+            @include reCenter;
+          }
+          > .card-content {
+            text-align: start;
+            max-height: 120px;
+            max-width: 328px;
+
+            display: inline-block;
+            overflow: hidden;
+            white-space: normal;
+            text-overflow: ellipsis;
+          }
+
+          > .card-content,
+          > .card-footer {
+            padding: 0px 24px;
+          }
+
+          @media (max-width: 359px) {
+            padding: 22px 6px;
+            min-width: 280px;
+            max-width: 280px;
+            > .card-header,
+            > .card-header,
+            > .card-footer {
+              padding: 18px 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

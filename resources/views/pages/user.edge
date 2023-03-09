@@ -1,0 +1,22 @@
+@layout('layout')
+
+@section('page')  
+
+    @if(user === false)
+        <section class="section is-medium has-text-centered centering-item dashboard">
+            <div class="columns">
+                @!component('../components/conect/form.edge', {
+                    type: 'login'
+                })
+
+                @!component('../components/conect/form.edge', {
+                    type: 'create',
+                    allowNewUsr: allowNewUsr
+                })
+            </div>
+        </section>
+    @else
+        @!component('../components/dashboard/dashboard.edge', { posts: posts})
+    @end
+    
+@endsection

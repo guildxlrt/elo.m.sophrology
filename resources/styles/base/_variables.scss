@@ -1,0 +1,68 @@
+//=====Update Bulma's color variables
+$primary: $light-green;
+$secondary: $mushroom-light;
+//---functionnals
+$info: $tetradic-1;
+$link: $mushroom;
+$success: $analog-1;
+$warning: $tetradic-2;
+$danger: $coral;
+//---greyscale
+$white: $anti-flash-white;
+$light: $white-beige;
+$grey-light: $silver;
+$grey: $medium-grey;
+$grey-dark: $charcoal;
+$dark: $chocolate;
+$black: #000000;
+
+//=====ELEMENTS
+//---Buttons
+$link-btn: lighten($link, 6);
+$success-btn: $success;
+$danger-btn: $danger;
+$info-btn: lighten($info, 8);
+$switch: $info;
+
+//---Inputs
+$input: lighten($light, 5);
+$darken-input: darken($input, 3);
+$input-hover: $grey-light;
+$input-focus: $info;
+$input-radius: 10px;
+
+// Blog
+$video: darken($secondary, 5);
+$article: lighten($secondary, 10);
+// Background
+$bg-color: $white;
+// Shadow
+$shadow: $grey;
+
+// navbar
+$navlink-hover: $link;
+$navbar-block: $light;
+// footer
+$footer: $secondary;
+$link-footer: darken($info, 20);
+$link-footer-hover: $info;
+
+//---Others
+$about: $light;
+$dark-bis: desaturate($dark, 55);
+
+// Update some of Bulma's component variables
+$body-background-color: $white;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$text: $dark-green;
+
+// directions
+$to-right: 90deg;
+$to-botom-right: 135deg;
+$to-top-left: 315deg;
+
+//Cubic-bezier
+$bezier-1: cubic-bezier(0, 0.5, 0.8, 0.6);
+$bezier-2: cubic-bezier(0.2, 0.5, 1, 0.2);

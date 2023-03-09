@@ -1,0 +1,28 @@
+//---Background
+@mixin linGradient($direction, $color-1, $color-2) {
+  background: $color-1; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    $direction,
+    $color-1,
+    $color-2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    $direction,
+    $color-1,
+    $color-2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin radGradient($color-1, $amount-1, $color-2, $amount-2, $color-3, $amount-3) {
+  background: $color-1; /* fallback for old browsers */
+  background: -webkit-radial-gradient(
+    $color-1 $amount-1,
+    $color-2 $amount-2,
+    $color-3 $amount-3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: radial-gradient(
+    $color-1 $amount-1,
+    $color-2 $amount-2,
+    $color-3 $amount-3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

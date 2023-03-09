@@ -1,0 +1,90 @@
+<div
+    @if(content_type === 'ARTICLE')
+        class="post article"
+
+    @elseif(content_type === 'VIDEO')
+        class="post video"
+    @end
+>
+    <div class="title">
+        <label class="title is-5" for="title">Titre</label>
+        <div class="has-icons-left has-icons-right">
+            <input
+                id="title-input"
+                class="input"
+                type="text"
+                name="title"
+                placeholder="Titre"
+                value="{{title}}"
+            >
+        </div>
+        @!component('../../../components/inputError.edge', {
+            value: 'title'
+        })
+    </div>
+    @if(content_type === 'ARTICLE')
+        <div
+            class="file-selector"
+            @if(id !== 'new' && cover !== null)
+                x-data="{ showFileInput: true }"
+            @else
+                x-data="{ showFileInput: false }"
+            @end
+            
+        >
+            <label class="title is-5">Couverture : </label>
+            <label class="switch">
+                <input
+                    type="checkbox"
+                    name="covercheck"
+                    @change.prevent="showFileInput = !showFileInput"
+                    @if(id !== 'new' && cover !== null)
+                        checked
+                    @end
+                >
+                <span class="slider round"></span>
+            </label>
+            <div
+                x-show="showFileInput"
+                x-transition.opacity.duration.400ms
+            >
+                @!component('../../../components/post/edit/file-input.edge', {
+                    id: id,
+                    content_type: content_type,
+                    cover: cover
+                })
+            </div>
+            @!component('../../../components/inputError.edge', {
+                value: 'cover'
+            })
+        </div>
+    @end
+    <div class="content">
+        <label class="label title is-5" for="content">
+            @if(content_type === 'ARTICLE')
+                Article
+            @elseif(content_type === 'VIDEO')
+                Video
+            @end
+        </label>
+        @if(content_type === 'ARTICLE')
+            <div>
+                <textarea
+                    id="content-input"
+                    class="textarea"
+                    name="content"
+                    placeholder="Article"
+                >{{content}}</textarea>
+            </div>
+        @elseif(content_type === 'VIDEO')
+            @!component('../../../components/post/edit/file-input.edge', {
+                id: id,
+                content_type: content_type
+            })
+        @end
+        @!component('../../../components/inputError.edge', {
+            value: 'content'
+        })
+    </div>
+</div>
+

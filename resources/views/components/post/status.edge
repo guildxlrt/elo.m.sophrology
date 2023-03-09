@@ -1,0 +1,35 @@
+<div
+    class="container has-text-centered status"
+    x-data="{
+        id: {{id}},
+        isOnline: {{status}},
+        changeStatus: '',
+        statusMsg: ''
+    }"
+    x-effect="function(){
+        changeStatus = isOnline === true ? 'Retirer' : 'Publier'
+        statusMsg = isOnline === true ? `La publication est en ligne` : `La publication est en hors-ligne`
+    }"
+>
+    <div
+        class="container notification "
+        x-bind:class="isOnline ? 'is-success' : 'is-warning'"
+    >
+        <span
+            class="subtitle is-4"
+            x-html="statusMsg"
+        ></span>
+        <button
+            class="button"
+            x-bind:class="isOnline ? 'is-dark' : 'is-white'"
+            x-html="changeStatus"
+            x-on:click="
+                newStatus(id)
+                .then((res) => {
+                    alert(res.msg)
+                    if(res.success === true) isOnline = !isOnline
+                })
+            "
+        ></button>
+    </div>
+</div>
