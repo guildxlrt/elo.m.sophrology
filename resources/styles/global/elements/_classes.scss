@@ -9,6 +9,11 @@ a.navbar-link {
   color: $text;
 }
 
+.title,
+.subtitle {
+  font-family: $title-font;
+}
+
 a.navbar-item:hover.logo:hover {
   color: $link;
 }
