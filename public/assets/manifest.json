@@ -1,9 +1,9 @@
 {
-  "assets/app.css": "/assets/app.37893b2a.css",
-  "assets/app.js": "/assets/app.79c13c35.js",
-  "assets/fonts/PlayfairDisplay-VariableFont_wght.ttf": "/assets/fonts/PlayfairDisplay-VariableFont_wght.3f7c1412.ttf",
-  "assets/fonts/Lora-VariableFont_wght.ttf": "/assets/fonts/Lora-VariableFont_wght.3a653a05.ttf",
-  "assets/images/banner.webp": "/assets/images/banner.a06ff9df.webp",
-  "assets/images/article.avif": "/assets/images/article.28b1fb8a.avif",
-  "assets/images/leaf-teal.svg": "/assets/images/leaf-teal.348aeb71.svg"
+  "assets/app.css": "http://localhost:8080/assets/app.css",
+  "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/fonts/PlayfairDisplay-VariableFont_wght.ttf": "http://localhost:8080/assets/fonts/PlayfairDisplay-VariableFont_wght.3f7c1412.ttf",
+  "assets/fonts/Lora-VariableFont_wght.ttf": "http://localhost:8080/assets/fonts/Lora-VariableFont_wght.3a653a05.ttf",
+  "assets/images/banner.webp": "http://localhost:8080/assets/images/banner.a06ff9df.webp",
+  "assets/images/article.avif": "http://localhost:8080/assets/images/article.28b1fb8a.avif",
+  "assets/images/leaf-teal.svg": "http://localhost:8080/assets/images/leaf-teal.348aeb71.svg"
 }

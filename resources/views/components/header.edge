@@ -51,17 +51,17 @@
           </div>
         </div>
         <a class="usr-log" href="{{route('user')}}">
-          @if(user === false)
-            <img
-              src="/icons/circle-user-solid_off.svg"
-              class="usr-img offline"
-              alt="logoff"
-            />
-          @else
+          @if(typeof user === 'number')
             <img
               src="/icons/circle-user-solid_on.svg"
-              class="usr-img offline"
+              class="usr-img"
               alt="logon"
+            />
+          @elseif(user === false)
+            <img
+              src="/icons/circle-user-solid_off.svg"
+              class="usr-img"
+              alt="logoff"
             />
           @end
         </a>
