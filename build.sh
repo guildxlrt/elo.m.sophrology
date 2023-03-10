@@ -7,3 +7,5 @@ pnpm install -P --no-optional
 
 cd ..
 cp .env build/.env
+
+node ace migration:run
