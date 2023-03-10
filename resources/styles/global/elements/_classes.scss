@@ -182,7 +182,7 @@ a.navbar-link {
   border-width: 5px;
 
   &:hover {
-    @include anim-over($bezier-1);
+    @include card-over($bezier-1);
   }
 
   &.is- {
@@ -201,13 +201,12 @@ a.navbar-link {
 }
 
 .social-icon {
-  width: fit-content;
-  height: fit-content;
+  @include reCenter;
+  height: 36px;
   margin: 3px;
   @media (max-width: 767px) {
     margin-top: 25px;
   }
-  transition: all 0.35s $bezier-1 0s;
 
   > img {
     $size: 32px;
@@ -216,6 +215,6 @@ a.navbar-link {
   }
 
   &:hover {
-    transform: scale(1.25);
+    @include tiny-over($bezier-1);
   }
 }

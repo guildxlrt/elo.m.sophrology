@@ -54,7 +54,7 @@
           }
 
           &:hover {
-            @include anim-over($bezier-1);
+            @include card-over($bezier-1);
           }
 
           width: 340px;

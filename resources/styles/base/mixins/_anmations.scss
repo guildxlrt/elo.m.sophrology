@@ -1,10 +1,16 @@
-@mixin anim-over($timing-func) {
+@mixin card-over($timing-func) {
   transform: scale(1);
   opacity: 1;
-  animation: over 6.2s $timing-func 0.3s infinite alternate backwards;
+  animation: card 6.2s $timing-func 0.3s infinite alternate backwards;
 }
 
 @mixin anim-opacity($timing-func) {
   opacity: 0;
   animation: justOpacity 2.2s $timing-func 0.3s 1 alternate forwards;
+}
+
+@mixin tiny-over($timing-func) {
+  transform: scale(1);
+  opacity: 1;
+  animation: tiny 1.2s $timing-func 0s 1 alternate forwards;
 }

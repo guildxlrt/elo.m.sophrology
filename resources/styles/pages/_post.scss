@@ -138,6 +138,10 @@
     position: relative;
     right: 20px;
   }
+  >div {
+    @include reCenter;
+    flex-direction: row;
+  }
 }
 
 .timestamps {
