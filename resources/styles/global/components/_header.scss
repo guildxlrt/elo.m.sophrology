@@ -8,12 +8,12 @@
   @include blurFilter(4px);
   background-color: transparentize($primary, 0.8);
 }
+
 .navbar-end {
-  @media (min-width: 1024px) and (max-width: 1280px) {
-    margin-left: 500px;
+  @media (min-width: 1024px) and (max-width: 1164px) {
+    margin-right: 60px;
   }
 }
-
 
 a.navbar-item.logo{
   > img {
