@@ -13,7 +13,7 @@
   
   <body
     class="bg-gradient"
-    x-data="{open: false}"
+    x-data="{ openBurger: false }"
   >
     <div class="leafs">
     @!component('components/header', {
@@ -23,7 +23,7 @@
 
     <main
       class="section is-paddingless"
-      x-bind:class="open ? 'burger-on' : null"
+      x-bind:class="openBurger ? 'burger-on' : null"
     >
       @!section('page')
     </main>
@@ -36,6 +36,6 @@
       @!component('components/contact/contact')
     @end
           
-    @!component('components/footer') 
+    @!component('components/footer')
   </body>
 </html>

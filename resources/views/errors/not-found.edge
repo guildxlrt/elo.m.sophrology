@@ -1,1 +1,14 @@
-<p> It's a 404 </p>
+@layout('layout')
+
+@section('page')
+    <section
+        class="section is-large"
+    >   
+        <div class="container">
+            <h1 class="title is-2 has-text-danger">Mince, introuvable 🧐</h1>
+            <p class="content is-large">Le serveur renvoit une erreur 404.</p>
+            <p class="content is-medium">Cela signifie que la page n'a pas ete trouve, soit parce qu'elle n'existe pas ou qu'elle a ete suprime.</p>
+        </div>
+        
+    </section>
+@endsection

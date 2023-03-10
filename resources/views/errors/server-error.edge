@@ -1,1 +1,14 @@
-<p> It's a 500 </p>
+@layout('layout')
+
+@section('page')
+    <section
+        class="section is-large"
+    >   
+        <div class="container">
+            <h1 class="title is-2 has-text-danger">Oups, probleme serveur 😅</h1>
+            <p class="content is-large">Le serveur renvoit une erreur 500.</p>
+            <p class="content is-medium">Cela signifie qu'un de nos service est momentanement indisponible, jusqu'a ce qu'une correction de maintenance soit effectuee.</p>
+        </div>
+        
+    </section>
+@endsection

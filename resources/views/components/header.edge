@@ -7,22 +7,26 @@
             <div
               class="navbar-burger is-marginless"
               data-target="burger"
-              x-bind:class="open ? 'is-active' : null"
-              x-on:click="open = !open"
+              x-bind:class="openBurger ? 'is-active' : null"
+              x-on:click="openBurger = !openBurger"
             >
               <span  class="has-text-dark"></span>
               <span  class="has-text-dark"></span>
               <span  class="has-text-dark"></span>
             </div>
             <a class="navbar-item logo" href="{{route('home')}}">
-              <span>Éloïse Martin</span>
+              <img
+                src="/logo/logo.webp"
+                class="usr-img offline"
+                alt="logon"
+              />
             </a> 
           </div>
 
           <div
             id="burger"
             class="navbar-menu"
-            x-bind:class="open ? 'is-active ' : null"
+            x-bind:class="openBurger ? 'is-active ' : null"
           >
             <div class="navbar-end">
               <a

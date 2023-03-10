@@ -18,7 +18,7 @@ a {
   color: $link-footer;
 
   &.navbar-item,
-  .navbar-link {
+  &.navbar-link {
     color: $dark;
     transition: all 0.3s;
 
@@ -33,16 +33,6 @@ a {
       }
       @media (max-width: 1023px) {
         transform: scale(1.25) translate(10%, 0%);
-      }
-
-      &.logo {
-        &:hover,
-        &:focus,
-        &:focus-within,
-        &:active {
-          transform: scale(1);
-          color: $dark;
-        }
       }
     }
     &:active {

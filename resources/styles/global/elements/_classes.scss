@@ -14,10 +14,6 @@ a.navbar-link {
   font-family: $title-font;
 }
 
-a.navbar-item:hover.logo:hover {
-  color: $link;
-}
-
 .input,
 .textarea {
   @include linGradient($to-top-left, $darken-input, $input);
