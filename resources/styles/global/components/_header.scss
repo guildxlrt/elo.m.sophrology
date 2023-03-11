@@ -10,8 +10,14 @@
 }
 
 .navbar-end {
-  @media (min-width: 1024px) and (max-width: 1164px) {
-    margin-right: 60px;
+  @media (min-width: 1024px) and (max-width: 1280px) {
+    margin-right: 12%;
+  }
+  > a {
+    font-size: 16px;
+    @media (min-width: 1024px) {
+      font-size: 19px;
+    }
   }
 }
 
