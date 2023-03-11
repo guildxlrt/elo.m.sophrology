@@ -23,9 +23,11 @@
 
 a.navbar-item.logo{
   > img {
-    $height: 51px;
+    $height: 48px;
     height: $height;
     max-height: $height;
+    position: relative;
+    bottom: -3px;
   }
   padding: 0px 12px;
   transition: none;
